@@ -32,7 +32,7 @@ function(xdata,cont,test,log2.opt=0) {
     for (i in 1:n) {
         x1 <- tmat[i,1:m1];
         x2 <- tmat[i,(m1+1):m];
-        tt <- t.test(x1,x2);
+        tt <- t.test(x1,x2,var.equal=TRUE);
         p.value[i] <- tt$p.value;
         FC[i] <- mean(2^x2)/mean(2^x1);
     }

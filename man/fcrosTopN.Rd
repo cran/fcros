@@ -1,28 +1,28 @@
 \name{fcrosTopN}
 \alias{fcrosTopN}
 
-\title{fcrosTopN: Search for the "topN" differentially expressed genes}
+\title{fcrosTopN: Search for the "top N" differentially expressed genes}
 
-\description{This function allows to seach for the "topN" DE genes.
-It uses the fcros() f-value results for that purpose.}
+\description{This function allows to seach for the "top N" DE genes.
+It uses the f-values obtained using fcros() or fcros2().}
 
 \usage{fcrosTopN(fvalue, topN)}
 
 \arguments{
-  \item{fvalue}{ This is a f-value vector obtained using fcros() function: \code{fvalue}}
-  \item{topN}{ Expected number of DE genes in the dataset:
-       \code{topN}}
+  \item{fvalue}{ This is a f-value vector obtained using functions fcros() or fcros2(): 
+                 \code{fvalue}}
+  \item{topN}{ Expected number of DE genes in the data used: \code{topN}}
 }
 
-\value{ This function return a data frame containg 2 components
-    \item{alpha }{Two thrsehold values allowing to have "topN" DE genes}
-    \item{index }{Indexes of the "topN" DE genes}
+\value{ This function returns a data frame containing 2 components
+    \item{alpha }{Two threshold values allowing to have "top N" DE genes}
+    \item{index }{Indexes of the "top N" DE genes}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele et al. (2013), Fold change ranks ordering statistics for detecting
-                    differentially expressed genes, Manuscript in preparation}
+\references{Dembele D and Kastner P, Fold change ranks ordering statistics for detecting
+                    differentially expressed genes, 2013, Manuscript submitted}
 
 \examples{
    data(fdata);

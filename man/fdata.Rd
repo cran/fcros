@@ -6,7 +6,7 @@
 \title{Example of dataset for the FCROS method.}
 
 \description{This is a synthetic dataset generated using package "madsim".
-It is a two biological conditions dataset with: 10000 genes and 20 samples
+It is a two biological conditions data matrix using 10000 genes and 20 samples
 (10 control and 10 test samples). 108 and 102 genes of this dataset are down-
 and up regulated, respectively.}
 
@@ -45,8 +45,8 @@ in package "madsim". A real microarray data, "madsim_test", was used
 as seed and the number of control and test samples were set to 10. Parameter "sdn" was set to
 0.3 and all other parameters were set to their default settings.}
 
-\references{D Dembele, A flexible microarray data simulation model. 
-Microarrays, v. n. pp., 2013}
+\references{Dembele D, A flexible microarray data simulation model. 
+Microarrays 2013, v.2, n.2, pp.115-130}
 
 \examples{
    data(fdata)

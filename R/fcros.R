@@ -1,5 +1,5 @@
 fcros <-
-function(xdata,cont,test,log2.opt=0,trim.opt=0.3) {
+function(xdata,cont,test,log2.opt=0,trim.opt=0.2) {
     n <- nrow(xdata);
 
     xcol <- colnames(xdata);

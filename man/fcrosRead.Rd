@@ -4,12 +4,12 @@
 \title{This function allows reading input file for FCROS method}
 
 \description{This function can be used to read a tab delimited text
-file for using with FCROS. You may also use other functions (read.csv(), read.csv2(),
-read.delim() or read.delim2()) to read your dataset for using with FCROS.}
+file to be used with FCROS. You may also use other functions (read.csv(), read.csv2(),
+read.delim() or read.delim2()) to read your dataset.}
 
 \usage{fcrosRead(file)}
 
-\arguments{\item{file}{file is the name of tab delimited text file to read}}
+\arguments{\item{file}{ file is a tab delimited text file to read}}
 
 \value{Output is a data frame containing variable "xdata"}
 
