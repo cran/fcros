@@ -1,5 +1,5 @@
 fcrosTtest <-
-function(xdata,cont,test,log2.opt=0) {
+function(xdata, cont, test, log2.opt = 0) {
     n <- nrow(xdata);
 
     xcol <- colnames(xdata);
@@ -28,13 +28,15 @@ function(xdata,cont,test,log2.opt=0) {
 
     FC <- matrix(c(rep(0,n)),ncol=1);
     p.value <- matrix(c(rep(0,n)),ncol=1);
+    stat <- matrix(c(rep(0,n)),ncol=1);
     # compute fold changes and p-values
     for (i in 1:n) {
         x1 <- tmat[i,1:m1];
         x2 <- tmat[i,(m1+1):m];
         tt <- t.test(x1,x2,var.equal=TRUE);
         p.value[i] <- tt$p.value;
+        stat[i] <- tt$statistic;
         FC[i] <- mean(2^x2)/mean(2^x1);
     }
-     list(FC=FC, p.value=p.value);
+     list(FC = FC, p.value = p.value, stat = stat);
 }

@@ -28,7 +28,8 @@ column names of the data matrix "xdata".}
 
 \value{     
     \item{FC }{Fold changes for genes in the data matrix.}
-    \item{p.value }{Student t-test p-value associated to genes.}
+    \item{p.value }{Student t-test p-values associated to genes.}
+    \item{stat }{Student t-test statistics associated to genes.}
 }
 
 \author{Doulaye Dembele}

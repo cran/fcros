@@ -1,5 +1,5 @@
 fcrosRMat <-
-function(xdata,cont,test,log2.opt=0) {
+function(xdata, cont, test, log2.opt = 0, trim.opt = 0.3) {
     n <- nrow(xdata);
 
     xcol <- colnames(xdata);
@@ -44,7 +44,7 @@ function(xdata,cont,test,log2.opt=0) {
         x2 <- fmat[i,(m1+1):m];
         FC[i] <- mean(2^x2)/mean(2^x1);
     }
-    FC2 = rowMeans(2^rmat[1:n,]);
+    FC2 = apply(2^rmat[1:n,],1,mean,trim=trim.opt);
 
-    list(rmat=rmat, FC=FC, FC2=FC2);
+    list(rmat = rmat, FC = FC, FC2 = FC2);
 }

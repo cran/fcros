@@ -21,8 +21,8 @@ It uses the f-values obtained using fcros() or fcros2().}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and Kastner P, Fold change ranks ordering statistics for detecting
-                    differentially expressed genes, 2013, Manuscript submitted}
+\references{Dembele D and Kastner P, Fold change rank ordering statistics: a new method for detecting
+                    differentially expressed genes, BMC Bioinformatics 2014, 15:14}
 
 \examples{
    data(fdata);

@@ -13,7 +13,7 @@
              corresponding ranks are associated to genes. Then, a statistic is associated
              to the average ordered rank for each gene.}
 
-\usage{fcros2(xdata1, xdata2, cont, test, log2.opt = 0, trim.opt = 0.2)}
+\usage{fcros2(xdata1, xdata2, cont, test, log2.opt = 0, trim.opt = 0.3)}
 
 \arguments{
     \item{xdata1}{ A matrix or table containing two biological conditions dataset to
@@ -26,9 +26,9 @@
        \code{test} = c("test01", "test02", "test03", ...)}
   \item{log2.opt}{ A scalar equals to 0 or 1. Value 0 (default) means that
               data in "xdata1" and "xdata2" are expressed in a log2 scale: \code{log2.opt} = 0}
-  \item{trim.opt}{ A scalar between 0 and 0.5. Value 0.2 (default) means that
-              20% of lower and upper ranks of gene are not used for computing "ri",
-              i.e. the average rank, see below: \code{trim.opt} = 0.2}
+  \item{trim.opt}{ A scalar between 0 and 0.5. Value 0.3 (default) means that
+              30% of lower and upper ranks of gene are not used for computing "ri",
+              i.e. the average rank, see below: \code{trim.opt} = 0.3}
 }
 
 \details{Names appearing in the parameters "cont" and "test" should match
@@ -39,8 +39,8 @@ some names of the columns in the data matrices "xdata1" and "xdata2".}
               These values are rank statistics leading to f-values for genes}
     \item{FC }{Fold changes for genes in the datasets. These fold changes are calculated as a ratio of
              averages from the test and control samples.}
-    \item{FC2 }{Fold changes for genes in the datasets. These fold changes are calculated as an average
-              of the fold changes obtained using several pairs of samples.}
+    \item{FC2 }{Fold changes for genes in the datasets. These fold changes are calculated as a
+              robust average of the fold changes obtained using several pairs of samples.}
     \item{f.value }{F-values associated to genes using the "mean" and the
                   "standard deviation" ("sd") of values in "ri". The "mean" and
                   "sd" are used as normal distribution parameters.}
@@ -54,8 +54,8 @@ some names of the columns in the data matrices "xdata1" and "xdata2".}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and Kastner P, Fold change ranks ordering statistics for detecting
-                    differentially expressed genes, 2013, Manuscript submitted}
+\references{Dembele D and Kastner P, Fold change rank ordering statistics: a new method for detecting
+                    differentially expressed genes, BMC Bioinformatics 2014, 15:14}
 
 \examples{
    data(fdata);

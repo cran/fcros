@@ -19,8 +19,8 @@
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.0\cr
-        Date: \tab 2013-07-29\cr
+        Version: \tab 1.1\cr
+        Date: \tab 2014-01-15\cr
         License: \tab GPL (>=2.0)\cr
     }
        
@@ -41,8 +41,8 @@
 \author{Doulaye Dembele
 Maintainer: Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and Kastner P, Fold change ranks ordering statistics for detecting
-                    differentially expressed genes, 2013, Manuscript submitted}
+\references{Dembele D and Kastner P, Fold change rank ordering statistics: a new method for detecting
+                    differentially expressed genes, BMC Bioinformatics 2014, 15:14}
 \keyword{ package }
 
 \examples{

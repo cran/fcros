@@ -1,5 +1,5 @@
 fcros2 <-
-function(xdata1,xdata2,cont,test,log2.opt=0,trim.opt=0.2) {
+function(xdata1,xdata2,cont,test,log2.opt=0,trim.opt=0.3) {
 
     n1 <- nrow(xdata1);
     n2 <- nrow(xdata2);
@@ -7,10 +7,10 @@ function(xdata1,xdata2,cont,test,log2.opt=0,trim.opt=0.2) {
 
     n <- n1;
     # compute rank matrix from dataset 1
-    r1 <- fcrosRMat(xdata1,cont,test,log2.opt);
+    r1 <- fcrosRMat(xdata1,cont,test,log2.opt,trim.opt);
 
     # compute rank matrix from dataset 2
-    r2 <- fcrosRMat(xdata2,cont,test,log2.opt);
+    r2 <- fcrosRMat(xdata2,cont,test,log2.opt,trim.opt);
 
     m1 <- ncol(r1$rmat);
     m2 <- ncol(r2$rmat);
