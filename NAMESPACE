@@ -1,1 +1,1 @@
-export(fcros,fcros2,fcrosRMat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN)
+export(fcros,fcros2,fcrosMod,fcrosFCmat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN,fcrosVolcanoPlot,fcrosHistoPlot)

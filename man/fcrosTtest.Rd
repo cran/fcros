@@ -3,31 +3,31 @@
 
 \title{Student t-test for detecting differentially expressed genes}
 
-\description{The function uses the basic R t.test() function to perform the
-             Student t-test for genes in a data matrix. It should be used
-             for two biological conditions transcriptomic dataset (microarray,
-             or RNA-seq). Fold change and p-values are returned
-             for each gene in the data matrix.}
+\description{The function uses the basic R t.test() function to perform 
+             the Student t-test for genes in a data matrix. It should be 
+             used for two biological conditions transcriptomic dataset 
+             (microarray, or RNA-seq). Fold change and p-values are 
+             returned for each gene in the dataset.}
 
 \usage{fcrosTtest(xdata, cont, test, log2.opt = 0)}
 
 \arguments{
-  \item{xdata}{ A matrix or table containing a two biological conditions data to
-                process for detecting differentially expressed genes:
-       \code{xdata}}
+  \item{xdata}{ A matrix or table containing a two biological conditions 
+          dataset to process for detecting differentially expressed genes:
+          \code{xdata}}
   \item{cont}{ A vector containing the names of control samples:
        \code{cont} = c("cont01", "cont02", ...)}
   \item{test}{ A vector containing the names of test samples:
        \code{test} = c("test01", "test02", "test03", ...)}
   \item{log2.opt}{ A scalar equals to 0 or 1. Value 0 (default) means that
-              data in "xdata" are expressed in a log2 scale: \code{log2.opt} = 0}
+       data in "xdata" are expressed in a log2 scale: \code{log2.opt} = 0}
 }
 
 \details{Names appearing in the parameters "cont" and "test" should match
 column names of the data matrix "xdata".}
 
 \value{     
-    \item{FC }{Fold changes for genes in the data matrix.}
+    \item{FC }{Fold changes for genes in the dataset.}
     \item{p.value }{Student t-test p-values associated to genes.}
     \item{stat }{Student t-test statistics associated to genes.}
 }

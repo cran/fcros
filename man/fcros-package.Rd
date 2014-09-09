@@ -5,44 +5,69 @@
 
 \title{FCROS for detecting differentially expressed genes}
 
-\description{Implementation of a method based on fold change ranks ordering statistics
-             for detecting differentially expressed genes. FCROS can be used with
-             two biological conditions transcriptomic dataset: microarray or RNA-seq.
-             Using several combinations of pairs of samples from the two biological
-             conditions, fold change (FC) are calculated. For each combination, the FC
-             obtained are sorted in increasing order and corresponding ranks are associated
-             to genes. Then, a statistic is associated to the average ordered rank of 
-             each gene in the dataset(s).
+\description{Implementation of a method based on fold change ranks ordering 
+             statistics for detecting differentially expressed genes. FCROS 
+             can be used with two biological conditions
+             dataset: microarray or RNA-seq, ... Using combinations of
+             pairs of samples from the two biological conditions, fold change
+             (FC) are calculated. A matrix of fold changes or ratios can also
+             be used as input. The FC are sorted in an increasing order and
+             corresponding ranks are associated to genes. Then, a statistic
+             is computed for the robust
+             average ordered ranks of each gene in the dataset.
 }
 
 \details{
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.1\cr
-        Date: \tab 2014-01-15\cr
+        Version: \tab 1.2\cr
+        Date: \tab 2014-09-09\cr
         License: \tab GPL (>=2.0)\cr
     }
        
     Package fcros has the following functions:
     \tabular{ll}{
-         fcros(): \tab The main function based on fold change to associated statistics
-                  to genes.\cr\tab Data are in a single table.\cr
-         fcros2(): \tab The main function based on fold change to associated statistics
-                  to genes.\cr\tab Data are in two separate tables.\cr
-         fcrosTtest(): \tab Uses Student t-test to calculate p-value for genes in a dataset.\cr
-         fcrosRead(): \tab Allows to read a tab delimited text file to be use in fcros() or fcros2().\cr
-         fcrosWrite(): \tab Allows to save fcros() results in a tab delimited text file\cr
-         fcrosTopN(): \tab Allows to search for the top N down- and/or up-regulated genes using\cr \tab
-                      the function fcros() or fcros2() results\cr
+         fcros(): \tab Using dataset from two biological conditions and in a
+                  single table, this function\cr\tab performs pairwise 
+                  conparison of samples to obtain a matrix of fold changes.
+                  \cr\tab Fold changes of this matrix are sorted
+                  and used to associate statistic to genes.\cr
+         fcros2(): \tab Using dataset from two biological conditions and in
+                  two tables, this function\cr\tab performs pairwise
+                  conparison of samples to obtain a matrix of fold changes.
+                  \cr\tab Fold changes of this matrix are sorted
+                  and used to associate statistic to genes.\cr
+         fcrosMod(): \tab This function uses fold changes or ratios matrix to
+                  associate statistic to genes.\cr
+         fcrosFCmat(): \tab This function allows to compute a matrix with
+                  pairwise fold changes from\cr\tab two biological conditions
+                  dataset.\cr
+         fcrosTtest(): \tab This function allows to use Student t-test to 
+                       calculate p-value for genes in a\cr\tab dataset.\cr
+         fcrosRead(): \tab Allows to read a tab delimited text file to be 
+                  use in fcros() or fcros2().\cr
+         fcrosWrite(): \tab Allows to save results from function fcros(),
+                  fcros2() or fcrosMod() in a tab\cr\tab delimited text 
+                  file.\cr
+         fcrosTopN(): \tab Allows to search for the top N down- and/or
+                  up-regulated genes from the\cr\tab results of function
+                  fcros(), fcros2() or fcrosMod().\cr
+         fcrosHistoPlot(): \tab Plots on the screen the histogram of the
+                  FCROS statistics obtained using results\cr\tab of
+                  function fcros(), fcros2() or fcrosMod()\cr
+         fcrosVolcanoPlot(): \tab Perform a volcano plot of the FCROS
+                  results from function fcros(), fcros2() or\cr\tab
+                  fcrosMod()\cr
     }
 }
 
 \author{Doulaye Dembele
 Maintainer: Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and Kastner P, Fold change rank ordering statistics: a new method for detecting
-                    differentially expressed genes, BMC Bioinformatics 2014, 15:14}
+\references{Dembele D and Kastner P, Fold change rank ordering statistics: 
+                    a new method for detecting differentially expressed 
+                    genes, BMC Bioinformatics 2014, 15:14}
 \keyword{ package }
 
 \examples{
@@ -51,10 +76,13 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");
    log2.opt <- 0;
-   trim.opt <- 0.2;
+   trim.opt <- 0.25;
 
    # perform fcros
    af <- fcros(fdata, cont, test, log2.opt, trim.opt);
+
+   # perform Volcano plot
+   fcrosVolcanoPlot(af, thr = 0.01)
 
    # save fcros values in a file
    fcrosWrite(af, file = "test2delete_values.txt");

@@ -4,13 +4,14 @@
 \title{fcrosTopN: Search for the "top N" differentially expressed genes}
 
 \description{This function allows to seach for the "top N" DE genes.
-It uses the f-values obtained using fcros() or fcros2().}
+It uses the output results obtained using function fcros(), fcros2() or 
+fcrosMod().}
 
 \usage{fcrosTopN(fvalue, topN)}
 
 \arguments{
-  \item{fvalue}{ This is a f-value vector obtained using functions fcros() or fcros2(): 
-                 \code{fvalue}}
+  \item{fvalue}{ This is an output object obtained using functions fcros(),
+        fcros2() or fcrosMod(): \code{fvalue}}
   \item{topN}{ Expected number of DE genes in the data used: \code{topN}}
 }
 
@@ -21,8 +22,9 @@ It uses the f-values obtained using fcros() or fcros2().}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and Kastner P, Fold change rank ordering statistics: a new method for detecting
-                    differentially expressed genes, BMC Bioinformatics 2014, 15:14}
+\references{Dembele D and Kastner P, Fold change rank ordering statistics: 
+            a new method for detecting differentially expressed genes,
+            BMC Bioinformatics 2014, 15:14}
 
 \examples{
    data(fdata);

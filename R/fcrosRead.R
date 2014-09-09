@@ -1,5 +1,5 @@
 fcrosRead <-
-function(file) {
-    xdata <- read.table(file, sep="\t", header=TRUE);
-    list(xdata = xdata);
+function(filename) {
+    xdata <- read.table(filename, sep="\t", header = TRUE)
+    return(xdata)
 }

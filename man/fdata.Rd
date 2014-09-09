@@ -6,13 +6,13 @@
 \title{Example of dataset for the FCROS method.}
 
 \description{This is a synthetic dataset generated using package "madsim".
-It is a two biological conditions data matrix using 10000 genes and 20 samples
-(10 control and 10 test samples). 108 and 102 genes of this dataset are down-
-and up regulated, respectively.}
+It is a two biological conditions data matrix using 10,000 genes and 20 
+samples (10 control and 10 test samples). 108 and 102 genes of this 
+dataset are down- and up-regulated, respectively.}
 
 \usage{data(fdata)}
 \format{
-  A data frame with 10000 observations on the following 22 variables.
+  A data frame with 10,000 observations on the following 22 variables.
   \describe{
     \item{\code{index}}{a text for the genes, unique ID}
     \item{\code{cont01}}{a numeric vector with log2 intensities for control sample 01}
@@ -40,24 +40,25 @@ and up regulated, respectively.}
   }
 }
 
-\details{This dataset is obtained using the microarray data simulation model implemented
-in package "madsim". A real microarray data, "madsim_test", was used
-as seed and the number of control and test samples were set to 10. Parameter "sdn" was set to
-0.3 and all other parameters were set to their default settings.}
+\details{This dataset is obtained using the microarray data simulation model
+implemented in package "madsim". A real microarray data, "madsim_test", was 
+used as seed and the number of control and test samples were set to 10. 
+Parameter "sdn" was set to 0.3 and all other parameters were set to their 
+default settings.}
 
-\references{Dembele D, A flexible microarray data simulation model. 
+\references{Dembele D, A flexible microarray data simulation model.
 Microarrays 2013, v.2, n.2, pp.115-130}
 
 \examples{
    data(fdata)
-   
-   op = par(mfrow=c(2,1));
-   
+
+   op = par(mfrow = c(2,1));
+
    #  perform MA plot using samples "cont01" and "cont05"
    A1 = 0.5*(fdata$cont01 + fdata$cont05);
    M1 = fdata$cont05 - fdata$cont01;
 
-   plot(A1, M1, col="red", xlim=c(2,18), ylim=c(-5,5), 
+   plot(A1, M1, col="red", xlim=c(2,18), ylim=c(-5,5),
             main="MA plot with two control samples");
    lines(x = c(2,18), y = c(0,0), col = "blue")
    lines(x = c(2,18), y = c(-1,-1), col = "blue")
@@ -67,7 +68,7 @@ Microarrays 2013, v.2, n.2, pp.115-130}
    A2 = 0.5*(fdata$cont01 + fdata$test05);
    M2 = fdata$test05 - fdata$cont01;
 
-   plot(A2, M2, col="red", xlim=c(2,18), ylim=c(-5,5), 
+   plot(A2, M2, col="red", xlim=c(2,18), ylim=c(-5,5),
             main="MA plot with one control and one test samples");
    lines(x = c(2,18), y = c(0,0), col = "blue")
    lines(x = c(2,18), y = c(-1,-1), col = "blue")

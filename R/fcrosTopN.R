@@ -1,4 +1,4 @@
-fcrosTopN <- 
+fcrosTopN <-
 function(fvalue,topN) {
       n <- length(fvalue);
       s.fvalue <- sort(fvalue, method = "sh", index.return = TRUE);
@@ -11,5 +11,5 @@ function(fvalue,topN) {
       }
       alpha <- c(s.fvalue$x[i], s.fvalue$x[n-j+1]);
       index <- c(s.fvalue$ix[1:i],s.fvalue$ix[(n-j+1):n]);
-      list(alpha=alpha, index=index)
+      list(alpha = alpha, index = index)
 }
