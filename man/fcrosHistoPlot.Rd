@@ -1,16 +1,18 @@
 \name{fcrosHistoPlot}
 \alias{fcrosHistoPlot}
 
-\title{fcrosHistoPlot: Histogram plot of the FCROS statistics}
+\title{fcrosHistoPlot(): Histogram plot function of the fcros results}
 
 \description{This function allows to have a histogram plot. It uses the 
-ri statistics obtained using function fcros(), fcros2() or fcrosMod().}
+statistics ri obtained using the functions fcros(), fcros2() and fcrosMod().}
 
-\usage{fcrosHistoPlot(af)}
+\usage{fcrosHistoPlot(af, nbins = 50)}
 
 \arguments{
-  \item{af}{ This is an object obtained using function fcros(),
-        fcros2() or fcrosMod(): \code{af}}
+  \item{af}{ This is an object obtained using the functions fcros(),
+        fcros2() and fcrosMod(): \code{af}}
+  \item{nbins}{ This parameter is used for the number of bins in
+                the histogram. Default setting is 50: \code{nbins = 50}}
 }
 
 \value{ This function plots a histogram on the screen.}
@@ -33,5 +35,4 @@ ri statistics obtained using function fcros(), fcros2() or fcrosMod().}
    
    # Volcano plot
    fcrosHistoPlot(af);
-
 }

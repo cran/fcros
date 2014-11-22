@@ -1,7 +1,7 @@
 fcrosFCmat <-
 function(xdata, cont, test, log2.opt = 0, trim.opt = 0.25) {
     n <- nrow(xdata);
-
+    idnames <- xdata[,1]; # first column is unique ID
     xcol <- colnames(xdata);
     n.xcol <- length(xcol);
     idx1 <- xcol %in% cont;
@@ -46,5 +46,5 @@ function(xdata, cont, test, log2.opt = 0, trim.opt = 0.25) {
     }
     FC2 = apply(2^fcMat, 1, mean, trim = trim.opt);
 
-    list(fcMat = fcMat, FC = FC, FC2 = FC2);
+    list(idnames=idnames, fcMat = fcMat, FC = FC, FC2 = FC2);
 }

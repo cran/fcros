@@ -1,7 +1,7 @@
 fcros <-
 function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     n <- nrow(xdata);
-
+    idnames <- xdata[,1];   # first column is unique ID for genes
     xcol <- colnames(xdata);
     n.xcol <- length(xcol);
     idx1 <- xcol %in% cont;
@@ -62,9 +62,9 @@ function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     moy <- mean(ri);
     std <- sd(ri);
     f.value <- pnorm(ri, mean = moy, sd = std);
-    p.value <- 2*f.value;
-    idx <- (p.value > 1);
-    p.value[idx] <- (2.0-p.value[idx]);
+    p.value <- f.value;
+    idx <- (p.value > 0.5);
+    p.value[idx] <- (1.0-p.value[idx]);
     moy_t <- (lb+ub)/(2*n);
     delta_t <- (ub-lb)/(n-1);
     std_t <- delta_t/sqrt(12);
@@ -72,5 +72,6 @@ function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     params <- c(delta,moy,std);
     params_t <- c(delta_t,moy_t,std_t);
 
-    list(FC=FC, FC2=FC2, ri=ri, p.value=p.value, f.value=f.value, bounds=bounds, params=params, params_t=params_t);
+    list(idnames=idnames, FC=FC, FC2=FC2, ri=ri, p.value=p.value, 
+    f.value=f.value, bounds=bounds, params=params, params_t=params_t);
 }

@@ -3,9 +3,10 @@
 
 \docType{data}
 
-\title{Example of dataset for the FCROS method.}
+\title{Example of dataset for the fcros package.}
 
-\description{This is a synthetic dataset generated using package "madsim".
+\description{This is a synthetic dataset generated using the R package "madsim"
+(available from the CRAN web site).
 It is a two biological conditions data matrix using 10,000 genes and 20 
 samples (10 control and 10 test samples). 108 and 102 genes of this 
 dataset are down- and up-regulated, respectively.}
@@ -41,10 +42,10 @@ dataset are down- and up-regulated, respectively.}
 }
 
 \details{This dataset is obtained using the microarray data simulation model
-implemented in package "madsim". A real microarray data, "madsim_test", was 
-used as seed and the number of control and test samples were set to 10. 
-Parameter "sdn" was set to 0.3 and all other parameters were set to their 
-default settings.}
+implemented in the package "madsim". A real microarray data, "madsim_test", was
+used as seed and the number of the control and the test samples were set to 10.
+The parameter "sdn" was set to 0.3 and all the other parameters in the madsim package
+were set to their default settings.}
 
 \references{Dembele D, A flexible microarray data simulation model.
 Microarrays 2013, v.2, n.2, pp.115-130}

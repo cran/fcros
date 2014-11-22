@@ -1,22 +1,21 @@
 fcrosTtest <-
 function(xdata, cont, test, log2.opt = 0) {
     n <- nrow(xdata);
-
+    idnames <- xdata[,1];
     xcol <- colnames(xdata);
     n.xcol <- length(xcol);
     idx1 <- xcol %in% cont;
-    m1 <- sum(idx1==TRUE);
+    m1 <- sum(idx1 == TRUE);
     idx2 <- xcol %in% test;
-    m2 <- sum(idx2==TRUE);
+    m2 <- sum(idx2 == TRUE);
     m <- m1+m2;
-    m1m2 <- m1*m2;
 
     # form ttest data matrix
     dmat <- matrix(c(rep(0,n*m)), ncol = m);
     if (log2.opt) {
        x1 <- log2(xdata[, idx1 == TRUE]);
     } else {
-       x1 <- xdata[,idx1==TRUE];
+       x1 <- xdata[,idx1 == TRUE];
     }
     dmat[,1:m1] <- as.matrix(x1);
     if (log2.opt) {
@@ -43,5 +42,5 @@ function(xdata, cont, test, log2.opt = 0) {
         }
         FC[i] <- mean(2^x2)/mean(2^x1);
     }
-     list(FC = FC, p.value = p.value, stat = stat);
+     list(idnames=idnames, FC = FC, p.value = p.value, stat = stat);
 }

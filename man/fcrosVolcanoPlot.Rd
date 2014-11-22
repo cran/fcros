@@ -1,22 +1,24 @@
 \name{fcrosVolcanoPlot}
 \alias{fcrosVolcanoPlot}
 
-\title{fcrosVolcanoPlot: Performs Volcano plot of dataset}
+\title{fcrosVolcanoPlot(): Performs a volcano plot of the fcros statistics}
 
-\description{This function allows to have a Volcano like plot of dataset.
-It uses the p-values obtained using fcros(), fcros2() or fcrosMod().}
+\description{This function allows to have a volcano like plot using the output 
+results the functions fcros(), fcros2() or fcrosMod(): p-values versus robust
+fold changes (FC2). The p-value are transformed using -log10(), while FC2 are
+transformed using log2().}
 
 \usage{fcrosVolcanoPlot(af, thr = 0.05)}
 
 \arguments{
-  \item{af}{ This is an object obtained using functions fcros(),
+  \item{af}{ This is an object obtained using the functions fcros(),
         fcros2() or fcrosMod(): \code{af}}
-  \item{thr}{ Threshold to get the DE genes in the dataset (red plots):
+  \item{thr}{ The threshold to obtain the DE genes in the dataset (red plots):
               \code{thr = 0.05}}
 }
 
-\value{ This function performs a volcano plot on the screen using p-values
-        and fold changes computed from the dataset.}
+\value{ This function displays on the screen a volcano like plot using the p-values
+        and the robust fold changes (FC2).}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 

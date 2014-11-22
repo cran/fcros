@@ -1,23 +1,24 @@
 \name{fcrosTopN}
 \alias{fcrosTopN}
 
-\title{fcrosTopN: Search for the "top N" differentially expressed genes}
+\title{fcrosTopN(): Search for the top N differentially expressed genes}
 
-\description{This function allows to seach for the "top N" DE genes.
-It uses the output results obtained using function fcros(), fcros2() or 
+\description{This function allows to seach for the top N DE genes.
+It uses the output results obtained using the functions fcros(), fcros2() or
 fcrosMod().}
 
 \usage{fcrosTopN(fvalue, topN)}
 
 \arguments{
-  \item{fvalue}{ This is an output object obtained using functions fcros(),
+  \item{fvalue}{ This is an output object obtained using the functions fcros(),
         fcros2() or fcrosMod(): \code{fvalue}}
-  \item{topN}{ Expected number of DE genes in the data used: \code{topN}}
+  \item{topN}{ The expected number of the DE genes in the dataset used: \code{topN}}
 }
 
 \value{ This function returns a data frame containing 2 components
-    \item{alpha }{Two threshold values allowing to have "top N" DE genes}
-    \item{index }{Indexes of the "top N" DE genes}
+    \item{alpha }{Two threshold values for the down- and the up-regulated allowing
+                to have the top N DE genes}
+    \item{index }{The indexes of the top N DE genes}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
@@ -37,13 +38,13 @@ fcrosMod().}
    af <- fcros(fdata, cont, test, log2.opt);
    
    # now select top 10 down and/or up regulated genes
-   top10 <- fcrosTopN(af$f.value,10);
+   top10 <- fcrosTopN(af$f.value, 10);
 
    # display thresholds
    top10$alpha
    
    # display index of top10 genes
-   fdata[top10$index,1]
+   fdata[top10$index, 1]
    
    # display fvalue of the top10 genes
    (af$f.value)[top10$index]

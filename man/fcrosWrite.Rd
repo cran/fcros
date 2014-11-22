@@ -1,25 +1,29 @@
 \name{fcrosWrite}
 \alias{fcrosWrite}
 
-\title{This function allows to write FCROS results in a file}
+\title{This function allows to write the fcros results in a tab-delimited text file}
 
-\description{This function will create a file containing FCROS results
-This file contains values ("ri", "FC", "FC2", "f-value" and "p-value") or
-parameters ("lb", "ub", "delta", "meand" and "sd").}
+\description{This function creates a tab-delimited text file containing
+with the results of the functions fcros(), fcros2() or fcrosMod().
+Two kind of file can be obtained. In the first, the results of the parameters
+"idnames", "ri", "FC", "FC2", "f-value" and "p-value" are saved. In the second,
+the results of the parameters "lb", "ub", "delta", "meand" and "sd" are saved.}
 
-\usage{fcrosWrite(af, file = "filename", values = TRUE)}
+\usage{fcrosWrite(af, file = "fcrosResults.txt", values = TRUE, thr = 1)}
 
 \arguments{
-  \item{af}{ An output object of the functions fcros() or fcros2():
-             \code{af} = fcros(x$xdata, cont, test, log2.opt, trim.opt)}
+  \item{af}{ An output object of the functions fcros(), fcros2() or fcrosMod():
+             \code{af} = fcros(xdata, cont, test, log2.opt, trim.opt)}
   \item{file}{ The output file name:
-             \code{file} = "test2delete_values.txt"}
-  \item{values}{ A flag allowing to create a file with values "ri", "FC", 
-                 "FC2", "f-value" and "p-value" (default) or with parameters
-                 "lb", "ub", "delta", "meand" and "sd": \code{value} = TRUE}
+             \code{file} = "fcrosResults.txt"}
+  \item{values}{ A flag allowing to create a file with the parameters "ri", "FC",
+                 "FC2", "f-value" and "p-value" (default) or with the parameters
+                 "lb", "ub", "delta", "meand" and "sd": \code{values} = TRUE}
+  \item{thr}{ A threshold allowing to filter data based on p-values. Default
+              setting is 1 (no filtering) \code{thr} = 1}
 }
 
-\value{ This function creates and saves a tab delimited text file on the 
+\value{ This function creates and saves a tab-delimited text file on the
 current disk.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
