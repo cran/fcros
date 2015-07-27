@@ -2,19 +2,17 @@
 \alias{fcrosMod}
 
 \title{fcrosMod() to search for differentially expressed genes or to detect
-                  recurrent copy number aberrations}
+                  recurrent copy number aberration probes}
 
 \description{Implementation of a method based on fold change rank ordering
              statistics to search for differentially expressed genes or to 
-             detect chromosomal recurrent copy number aberrations. This
+             detect chromosomal recurrent copy number aberration probes. This
              function should be used with a matrix of fold changes or ratios
              from biological dataset (microarray, RNA-seq, ...). The function
              fcrosMod() is an extention of the function fcros() to a
              dataset which does not contain replicate samples or to a
-             dataset with one biological condition dataset. Hence, the FCROS
-             method can be applied to experiment over time or to array
-             Comparative Genomic Hybridization (aCGH) datasets. Statistics
-             are associated with genes to characterize their change level.}
+             dataset with one biological condition dataset. Statistics
+             are associated with genes/probes to characterize their change levels.}
 
 \usage{fcrosMod(fcMat, samp, log2.opt = 0, trim.opt = 0.25)}
 
@@ -67,7 +65,7 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
               a new method for detecting differentially expressed genes,
-              BMC Bioinformatics 2014, 15:14}
+              BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);

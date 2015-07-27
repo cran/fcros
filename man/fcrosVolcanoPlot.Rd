@@ -4,7 +4,7 @@
 \title{fcrosVolcanoPlot(): Performs a volcano plot of the fcros statistics}
 
 \description{This function allows to have a volcano like plot using the output 
-results the functions fcros(), fcros2() or fcrosMod(): p-values versus robust
+results of the function fcros(), fcros2() or fcrosMod(): p-values versus robust
 fold changes (FC2). The p-value are transformed using -log10(), while FC2 are
 transformed using log2().}
 
@@ -12,7 +12,7 @@ transformed using log2().}
 
 \arguments{
   \item{af}{ This is an object obtained using the functions fcros(),
-        fcros2() or fcrosMod(): \code{af}}
+        fcros2() or fcrosMod(): \code{af = fcros(xdata, cont, test)}}
   \item{thr}{ The threshold to obtain the DE genes in the dataset (red plots):
               \code{thr = 0.05}}
 }
@@ -24,7 +24,7 @@ transformed using log2().}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
             a new method for detecting differentially expressed genes,
-            BMC Bioinformatics 2014, 15:14}
+            BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);

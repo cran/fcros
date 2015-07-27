@@ -1,13 +1,11 @@
 \name{fcrosFCmat}
 \alias{fcrosFCmat}
 
-\title{fcrosFCmat(): Computation of a matrix of changes using pairwise
-                     comparisons of samples from two biological conditions 
-                     dataset}
+\title{fcrosFCmat(): Computation of a matrix of change values}
 
 \description{This function allows to compute a matrix of
-pairwise fold changes from a two biological conditions dataset.
-This function is used by the function fcros2()}
+pairwise fold changes from a two biological conditions dataset and
+is used internally by fcros2()}
 
 \usage{fcrosFCmat(xdata, cont, test, log2.opt=0, trim.opt=0.25)}
 
@@ -32,7 +30,7 @@ This function is used by the function fcros2()}
 }
 
 \details{The label names appearing in the parameters "cont" and "test" should match
-some label names of the columns in the matrix "xdata". This matrix can
+some label names of the columns in the matrix "xdata". The matrix xdata can
 contain other label names not used.}
 
 \value{ This function returns a data frame containing 3 components
@@ -54,7 +52,7 @@ contain other label names not used.}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
                     a new method for detecting differentially expressed 
-                    genes, BMC Bioinformatics 2014, 15:14}
+                    genes, BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);

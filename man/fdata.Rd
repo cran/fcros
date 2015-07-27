@@ -48,7 +48,7 @@ The parameter "sdn" was set to 0.3 and all the other parameters in the madsim pa
 were set to their default settings.}
 
 \references{Dembele D, A flexible microarray data simulation model.
-Microarrays 2013, v.2, n.2, pp.115-130}
+Microarrays, 2013, v.2, n.2, pp.115-130}
 
 \examples{
    data(fdata)

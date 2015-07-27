@@ -10,7 +10,9 @@ read.csv2(), read.delim() or read.delim2()) to read your dataset.}
 
 \usage{fcrosRead(filename)}
 
-\arguments{\item{filename}{ "filename" is a tab delimited text file to read}}
+\arguments{\item{filename}{ "filename" is a tab delimited text file to read.
+                            The first line of this file should contain labels.}
+}
 
 \value{Output is a matrix or a table containing data.}
 

@@ -1,7 +1,7 @@
 \name{fcros}
 \alias{fcros}
 
-\title{fcros() to search for differentially expressed genes}
+\title{fcros() to search for differentially expressed genes/probes}
 
 \description{Implementation of a method based on fold change rank ordering
              statistics for detecting differentially expressed genes in a
@@ -13,7 +13,7 @@
              For each combination, the FC obtained are sorted in increasing
              order and corresponding rank values are associated with genes. 
              Then, a statistic is assigned to the robust average ordered rank
-             values for each gene.}
+             values for each gene/probe.}
 
 \usage{fcros(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
 
@@ -70,7 +70,7 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
                     a new method for detecting differentially expressed 
-                    genes, BMC Bioinformatics 2014, 15:14}
+                    genes, BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);

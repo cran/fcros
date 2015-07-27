@@ -1,1 +1,5 @@
-export(fcros,fcros2,fcrosMod,fcrosFCmat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN,fcrosVolcanoPlot,fcrosHistoPlot)
+export(fcros,fcros2,fcrosMod,fcrosFCmat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN,
+fcrosVolcanoPlot,fcrosHistoPlot,fcrosChrSummary,fcrosChrSegment,fcrosChrPlot,fcrosChrPlot2)
+importFrom("graphics", "abline", "hist", "lines", "plot", "points")
+importFrom("stats", "mad", "pnorm", "sd", "t.test")
+importFrom("utils", "read.table", "write.table")

@@ -1,7 +1,7 @@
 \name{fcros2}
 \alias{fcros2}
 
-\title{fcros2() to search for differentially expressed genes}
+\title{fcros2() to search for differentially expressed genes/probes}
 
 \description{Implementation of a method based on fold change or ratio rank
              ordering statistics for detecting differentially expressed 
@@ -11,17 +11,18 @@
              the two biological conditions are used to obtain a matrix of
              fold changes. For each combination, the FCs obtained are
              sorted in an increasing order and the corresponding rank values are
-             associated with genes. Then, a statistic is associated with each gene.}
+             associated with genes/probes. 
+             Then, a statistic is associated with each gene/probe.}
 
 \usage{fcros2(xdata1, xdata2, cont, test, log2.opt = 0, trim.opt = 0.25)}
 
 \arguments{
-    \item{xdata1}{ A matrix or a table containing two biological condition
-                   datasets to process to detect differentially expressed
+    \item{xdata1}{ A matrix or a table containing two biological conditions
+                   dataset to process for detecting differentially expressed
                    genes: \code{xdata1}. The first column of the matrix "xdata1" 
                    should contain the gene IDs or symbols.}
-    \item{xdata2}{ A matrix or a table containing two biological condition
-                   datasets to process to detect differentially expressed
+    \item{xdata2}{ A matrix or a table containing two biological conditions
+                   dataset to process fordetecting differentially expressed
                    genes: \code{xdata2}. The first column of the matrix "xdata2" 
                    should contain the gene IDs or symbols.}
   \item{cont}{ A vector containing the label names of the control samples:
@@ -38,9 +39,11 @@
                    rank values are averaged: \code{trim.opt} = 0.25}
 }
 
-\details{The label names appearing in the parameters "cont" and "test" should match
-some label names in the columns of the data matrices "xdata1" and "xdata2". It is
-not necessary to use all column label names appearing in matrices "xdata1" and "xdata2".}
+\details{The label names appearing in the parameters "cont" and "test" should 
+match some label names in the columns of the data matrices "xdata1" and "xdata2". 
+It is not necessary to use all column label names appearing in matrices "xdata1" 
+and "xdata2". However, it is assumed that the same genes (same IDs or symbol) are 
+used in xdata1 and xdata2.}
 
 \value{ This function returns a data frame containing 9 components
     \item{idnames}{ A vector containing the list of the IDs or symbols associated with genes}
@@ -74,7 +77,7 @@ not necessary to use all column label names appearing in matrices "xdata1" and "
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
              a new method for detecting differentially expressed genes, 
-             BMC Bioinformatics 2014, 15:14}
+             BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);

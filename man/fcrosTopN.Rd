@@ -1,11 +1,12 @@
 \name{fcrosTopN}
 \alias{fcrosTopN}
 
-\title{fcrosTopN(): Search for the top N differentially expressed genes}
+\title{fcrosTopN(): Search for the top N changed genes/probes}
 
-\description{This function allows to seach for the top N DE genes.
-It uses the output results obtained using the functions fcros(), fcros2() or
-fcrosMod().}
+\description{This function allows to seach for the top N DE genes
+or changed probes.
+It uses the output results obtained using one of the following functions 
+fcros(), fcros2() and fcrosMod().}
 
 \usage{fcrosTopN(fvalue, topN)}
 
@@ -25,7 +26,7 @@ fcrosMod().}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
             a new method for detecting differentially expressed genes,
-            BMC Bioinformatics 2014, 15:14}
+            BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);

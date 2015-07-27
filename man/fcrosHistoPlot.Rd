@@ -4,13 +4,14 @@
 \title{fcrosHistoPlot(): Histogram plot function of the fcros results}
 
 \description{This function allows to have a histogram plot. It uses the 
-statistics ri obtained using the functions fcros(), fcros2() and fcrosMod().}
+statistics ri obtained using one of the following functions: fcros(), 
+fcros2() and fcrosMod().}
 
 \usage{fcrosHistoPlot(af, nbins = 50)}
 
 \arguments{
-  \item{af}{ This is an object obtained using the functions fcros(),
-        fcros2() and fcrosMod(): \code{af}}
+  \item{af}{ This is an object obtained using the function fcros(),
+        fcros2() or fcrosMod(): \code{af = fcrosMod(xdata, samp)}}
   \item{nbins}{ This parameter is used for the number of bins in
                 the histogram. Default setting is 50: \code{nbins = 50}}
 }
@@ -21,7 +22,7 @@ statistics ri obtained using the functions fcros(), fcros2() and fcrosMod().}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics:
             a new method for detecting differentially expressed genes,
-            BMC Bioinformatics 2014, 15:14}
+            BMC bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);
