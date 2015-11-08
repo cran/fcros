@@ -39,6 +39,6 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     if (log2.opt) { FC2 <- apply(fc.mat, 1, mean, trim = trim.opt); }
     else {FC2 <- apply(2^fc.mat, 1, mean, trim = trim.opt);}
 
-    list(idnames=idnames, FC2=FC2, ri=ri, p.value=p.value, f.value=f.value, 
-    bounds=bounds, params=params, params_t=params_t)
+    list(idnames = idnames, FC2 = FC2, ri = ri, p.value = p.value, f.value = f.value,
+    bounds = bounds, params = params, params_t = params_t)
 }

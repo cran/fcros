@@ -33,7 +33,7 @@ GSE17907.}
 Hybridization technology. Agilent 244K design arrays have been used
 to monitor breast cancer patients, see reference below for details.}
 
-\references{Sircoulomb et al. BMC cancer, 2010, 10:539}
+\references{Sircoulomb et al. BMC Cancer, 2010, 10:539}
 
 \examples{
    data(cghData)

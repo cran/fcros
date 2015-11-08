@@ -1,5 +1,5 @@
-\name{fcros}
-\alias{fcros}
+\name{fcrosC}
+\alias{fcrosC}
 
 \title{fcros() to search for differentially expressed genes/probes}
 
@@ -15,7 +15,7 @@
              Then, a statistic is assigned to the robust average ordered rank
              values for each gene/probe.}
 
-\usage{fcros(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
+\usage{fcrosC(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
 
 \arguments{
   \item{xdata}{ A matrix or a table containing two biological conditions

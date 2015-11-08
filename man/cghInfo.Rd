@@ -28,7 +28,7 @@ Omnibus website and accession number GSE17907.}
 \details{These information data are obtained from the Agilent 244K design array
 probes description file, see reference below for details.}
 
-\references{Sircoulomb et al. BMC cancer, 2010, 10:539}
+\references{Sircoulomb et al. BMC Cancer, 2010, 10:539}
 
 \examples{
    data(cghInfo)

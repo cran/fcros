@@ -27,9 +27,9 @@ output results of the segmentation function fcrosChrSegment().}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, Detection of recurrent chromosomal copy number
+\references{Dembele D and al, A method for detection of recurrent chromosomal copy number 
                     aberrations from high-throughput biological data,
-                    Manuscript in preparation}
+                    Manuscript submitted}
 
 \examples{
     # load CGH data and info files
@@ -49,8 +49,8 @@ output results of the segmentation function fcrosChrSegment().}
     xinfo2 = fcrosChrSummary(af, cghInfo, chromosomes, alpha)
 
     # focused on chromosome 7 data
-    idx = which(xinfo2$chrData$Chromosome == "chr7")
-    chrData = xinfo2$chrData[idx, ]
+    idx = which(xinfo2$xinfo.s$Chromosome == "7")
+    chrData = xinfo2$xinfo.s[idx, ]
 
     # segment chromosome 7 data
     chrSeg = fcrosChrSegment(chrData, nd = 15)

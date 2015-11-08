@@ -3,8 +3,8 @@
 
 \docType{package}
 
-\title{A method to search for differentially expressed genes and to detect recurrent 
-             chromosomal copy number aberrations}
+\title{A Method to Search for Differentially Expressed Genes and to Detect Recurrent
+             Chromosomal Copy Number Aberrations}
 
 \description{Implementation of a method based on fold change rank ordering
              statistics to search for differentially expressed genes or to
@@ -18,9 +18,9 @@
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.4\cr
+        Version: \tab 1.5\cr
         Date: \tab 2015-07-27\cr
-        License: \tab GPL (>=2.0)\cr
+        License: \tab GPL (>= 2)\cr
     }
        
     Package fcros has the following functions:
@@ -62,11 +62,11 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
                     a new method for detecting differentially expressed 
-                    genes, BMC bioinformatics, 2014, 15:14\cr
+                    genes, BMC Bioinformatics, 2014, 15:14\cr
 
-            Dembele D, Detection of recurrent chromosomal copy number
-                    aberrations from high-throughput biological data,
-                    Manuscript in preparation}
+            Dembele D, A method for detection of recurrent chromosomal copy 
+                    number aberrations from high-throughput biological data,
+                    Manuscript submitted}
 
 \keyword{ package }
 

@@ -26,7 +26,7 @@ fcros(), fcros2() and fcrosMod().}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
             a new method for detecting differentially expressed genes,
-            BMC bioinformatics, 2014, 15:14}
+            BMC Bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);
