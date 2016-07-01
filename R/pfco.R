@@ -1,4 +1,4 @@
-fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
+pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     n <- nrow(xdata);
     idnames <- xdata[,1];   # first column is unique ID for genes
     xcol <- colnames(xdata);
@@ -10,7 +10,7 @@ fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     m <- m1+m2;
     m1m2 <- m1*m2;
 
-    # form fcros data matrix
+    # form data matrix
     fmat <- matrix(c(rep(0,n*m)), ncol = m);
     x1 <- matrix(c(rep(0,n*m1)), ncol = m1);
     x2 <- matrix(c(rep(0,n*m2)), ncol = m2);
@@ -28,7 +28,7 @@ fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     fmat[,(m1+1):m] <- as.matrix(x2);
 
     # compute matrix containing pairwise fold changes
-    rvect <- c(rep(0,n*m1m2));
+    rvect <- c(rep(0, n*m1m2));
     FC <- matrix(c(rep(0,n)), ncol = 1);
     fvect <- c(fmat[, 1:m])
 
@@ -38,9 +38,9 @@ fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     rvectFC <- rmat.val$rvectC;
 
     # compute sorted ranks matrix
-    rmat.s <- apply(rmat, 2, rank, ties.method = "average")/n;
+    rmat.s <- (apply(rmat, 2, rank, ties.method = "average"))/n;
 
-   # if (trim.opt), reduce sorted rank matrix
+    # if (trim.opt), reduce sorted rank matrix
     if ((trim.opt > 0) & (trim.opt < 0.5)) {
        deb <- round(trim.opt * m1m2) + 1;
        fin <- m1m2 - deb + 1;
@@ -81,33 +81,29 @@ fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
          rm(rvectFC);
     }
 
-    # compute averages ranks
-    ri <- apply(rmat.sr, 1, mean);
-    ris <- sort(ri);
+    # compute symmetric matrix from rank values and its eigen values
+    smat <- (t(rmat.sr) %*% rmat.sr)/n;
+    smat.eig <- eigen(smat);
+    v1 <- smat.eig$vectors[,1];
+    if (v1[1] < 0) v1 <- -v1;
+    u1 <- rmat.sr %*% v1;
 
-    # compute parameters
-    lb <- n*ris[1];
-    ub <- n*ris[n];
-    delta <- (n-1)*mean(ris[-1]-ris[-n]);
+    # compute probabilities for u1 components using normal distribution
+    moy <- mean(u1);
+    std <- sd(u1);
+    f.value <- pnorm(u1, mean = moy, sd = std)
 
-    # compute f-value
-    moy <- mean(ri);
-    std <- sd(ri);
-    f.value <- pnorm(ri, mean = moy, sd = std);
-
-    # perform the Student one sample test to get p-values
+    # perform the Student one sample test
     em <- 0.5;
     prob <- c(rep(0,n));
     pval <- tprobaCalc(moyV, stdV, n, m2-1, em, prob);
     p.value <- pval$probaC;
 
-    moy_t <- (lb+ub)/(2*n);
-    delta_t <- (ub-lb)/(n-1);
-    std_t <- delta_t/sqrt(12);
-    bounds <- c(lb,ub);
-    params <- c(delta,moy,std);
-    params_t <- c(delta_t,moy_t,std_t);
+    # decomposition parameters
+    comp <- sqrt(smat.eig$values);
+    comp.w <- comp / sum(comp);
+    comp.wcum <- cumsum(comp.w);
 
-    list(idnames=idnames, FC=FC, FC2=FC2, ri=ri, f.value=f.value,
-    p.value=p.value, bounds=bounds, params=params, params_t=params_t);
+    list(idnames=idnames, FC=FC, FC2=FC2, u1=u1, f.value=f.value,
+    p.value=p.value, comp=comp, comp.w=comp.w, comp.wcum=comp.wcum);
 }

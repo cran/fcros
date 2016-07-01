@@ -1,7 +1,8 @@
 fcrosTopN <-
-function(fvalue,topN) {
-      n <- length(fvalue);
-      s.fvalue <- sort(fvalue, method = "sh", index.return = TRUE);
+function(af, topN) {
+      f.value <- af$f.value;
+      n <- length(f.value);
+      s.fvalue <- sort(f.value, method = "sh", index.return = TRUE);
       i <- 1;
       j <- 1;
       while ((i+j) < topN) {

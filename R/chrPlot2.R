@@ -1,4 +1,4 @@
-fcrosChrPlot2 <- function(chrData, chrSeg, deb = 100, fin = 1e7) {
+chrPlot2 <- function(chrData, chrSeg, deb = 100, fin = 1e10) {
     positions <- chrData$Position
     ndata <- length(positions)
     mega <- 1e6

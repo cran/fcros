@@ -1,7 +1,7 @@
 \name{fcrosC}
 \alias{fcrosC}
 
-\title{fcros() to search for differentially expressed genes/probes}
+\title{Search for differentially expressed genes/probes}
 
 \description{Implementation of a method based on fold change rank ordering
              statistics for detecting differentially expressed genes in a
@@ -80,11 +80,11 @@ necessary to use all label names appearing in the columns of the dataset matrix.
    log2.opt <- 0;
    trim.opt <- 0.25;
 
-   # perform fcros
+   # perform fcros()
    af <- fcros(fdata, cont, test, log2.opt, trim.opt);
 
    # now select top 20 down and/or up regulated genes
-   top20 <- fcrosTopN(af$f.value, 20);
+   top20 <- fcrosTopN(af, 20);
    alpha1 <- top20$alpha[1];
    alpha2 <- top20$alpha[2];
    id.down  <- matrix(0, 1);

@@ -1,8 +1,8 @@
 useDynLib(fcros)
 
 export(fcros,fcrosC,fcros2,fcrosMod,fcrosFCmat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN,
-fcrosVolcanoPlot,fcrosHistoPlot,fcrosChrSummary,fcrosChrSegment,fcrosChrSegmentC,
-fcrosChrPlot,fcrosChrPlot2,fcrosChrMerge,rmatCalc)
+fvalVolcanoPlot,histoPlot,dataSummary,chrSegment,chrPlot,chrPlot2,chrMerge,rmatCalc,
+rmatTrim,moyStdCalc,pfco,pfcoMod,tprobaCalc,fc2Calc,fvalTopN,pvalTopN,voomReads,pvalVolcanoPlot)
 
 importFrom("graphics", "abline", "hist", "lines", "plot", "points")
 importFrom("stats", "mad", "pnorm", "sd", "t.test")

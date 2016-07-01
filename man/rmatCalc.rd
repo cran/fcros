@@ -1,20 +1,21 @@
 \name{rmatCalc}
 \alias{rmatCalc}
 
-\title{Using a C code for calculatin the pairwise matrix of FC}
+\title{Calculation the matrix of FC using pairwise comparisons}
 
-\description{This is an internal function for using the C code while
-calculating the pairwise comparison of data samples.}
+\description{This is an internal function for using a C code to
+calculate the matrix of fold changes using pairwise comparison of data samples.}
 
 \usage{rmatCalc(fvect, n, m1, m2, rvect, FC)}
 
 \arguments{
-  \item{fvect}{ Two biological conditions data matrix}
-  \item{n}{ Number of genes/probes in the dataset}
+  \item{fvect}{ Two biological conditions dataset matrix}
+  \item{n}{ Number of genes or probes in the dataset}
   \item{m1}{ Number of samples in the first biological condition}
   \item{m2}{ Number of samples in the second biological condition}
-  \item{rvect}{ Matrix with pairwise comparison fold change}
-  \item{FC}{ Fold Change values associated with genes/probes}
+  \item{rvect}{ Vector with the matrix elements that result from the
+                pairwise comparison of samples}
+  \item{FC}{ Fold Change values associated with genes or probes}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}

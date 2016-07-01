@@ -7,36 +7,37 @@
 
 \description{This is a synthetic dataset generated using the R package "madsim"
 (available from the CRAN web site).
-It is a two biological conditions data matrix using 10,000 genes and 20 
-samples (10 control and 10 test samples). 108 and 102 genes of this 
+Two biological conditions data matrix using 10,000 genes and 20
+samples (10 control and 10 test samples) were simulated.
+108 and 102 genes of this
 dataset are down- and up-regulated, respectively.}
 
 \usage{data(fdata)}
 \format{
   A data frame with 10,000 observations on the following 22 variables.
   \describe{
-    \item{\code{index}}{a text for the genes, unique ID}
-    \item{\code{cont01}}{a numeric vector with log2 intensities for control sample 01}
-    \item{\code{cont02}}{a numeric vector with log2 intensities for control sample 02}
-    \item{\code{cont03}}{a numeric vector with log2 intensities for control sample 03}
-    \item{\code{cont04}}{a numeric vector with log2 intensities for control sample 04}
-    \item{\code{cont05}}{a numeric vector with log2 intensities for control sample 05}
-    \item{\code{cont06}}{a numeric vector with log2 intensities for control sample 06}
-    \item{\code{cont07}}{a numeric vector with log2 intensities for control sample 07}
-    \item{\code{cont08}}{a numeric vector with log2 intensities for control sample 08}
-    \item{\code{cont09}}{a numeric vector with log2 intensities for control sample 09}
-    \item{\code{cont10}}{a numeric vector with log2 intensities for control sample 10}
-    \item{\code{test01}}{a numeric vector with log2 intensities for test sample 01}
-    \item{\code{test02}}{a numeric vector with log2 intensities for test sample 02}
-    \item{\code{test03}}{a numeric vector with log2 intensities for test sample 03}
-    \item{\code{test04}}{a numeric vector with log2 intensities for test sample 04}
-    \item{\code{test05}}{a numeric vector with log2 intensities for test sample 05}
-    \item{\code{test06}}{a numeric vector with log2 intensities for test sample 06}
-    \item{\code{test07}}{a numeric vector with log2 intensities for test sample 07}
-    \item{\code{test08}}{a numeric vector with log2 intensities for test sample 08}
-    \item{\code{test09}}{a numeric vector with log2 intensities for test sample 09}
-    \item{\code{test10}}{a numeric vector with log2 intensities for test sample 10}
-    \item{\code{DE_status}}{a numeric vector with values -1, 0 and 1. Value 0 is used for
+    \item{\code{index}:}{a text for the genes, unique ID}
+    \item{\code{cont01}:}{a numeric vector with log2 intensities for control sample 01}
+    \item{\code{cont02}:}{a numeric vector with log2 intensities for control sample 02}
+    \item{\code{cont03}:}{a numeric vector with log2 intensities for control sample 03}
+    \item{\code{cont04}:}{a numeric vector with log2 intensities for control sample 04}
+    \item{\code{cont05}:}{a numeric vector with log2 intensities for control sample 05}
+    \item{\code{cont06}:}{a numeric vector with log2 intensities for control sample 06}
+    \item{\code{cont07}:}{a numeric vector with log2 intensities for control sample 07}
+    \item{\code{cont08}:}{a numeric vector with log2 intensities for control sample 08}
+    \item{\code{cont09}:}{a numeric vector with log2 intensities for control sample 09}
+    \item{\code{cont10}:}{a numeric vector with log2 intensities for control sample 10}
+    \item{\code{test01}:}{a numeric vector with log2 intensities for test sample 01}
+    \item{\code{test02}:}{a numeric vector with log2 intensities for test sample 02}
+    \item{\code{test03}:}{a numeric vector with log2 intensities for test sample 03}
+    \item{\code{test04}:}{a numeric vector with log2 intensities for test sample 04}
+    \item{\code{test05}:}{a numeric vector with log2 intensities for test sample 05}
+    \item{\code{test06}:}{a numeric vector with log2 intensities for test sample 06}
+    \item{\code{test07}:}{a numeric vector with log2 intensities for test sample 07}
+    \item{\code{test08}:}{a numeric vector with log2 intensities for test sample 08}
+    \item{\code{test09}:}{a numeric vector with log2 intensities for test sample 09}
+    \item{\code{test10}:}{a numeric vector with log2 intensities for test sample 10}
+    \item{\code{DE_status}:}{a numeric vector with values -1, 0 and 1. Value 0 is used for
     no change genes, while -1 and 1 are used for down- and up-regulated genes, respectively.}
   }
 }

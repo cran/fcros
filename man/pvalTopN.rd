@@ -1,19 +1,21 @@
-\name{fcrosTopN}
-\alias{fcrosTopN}
+\name{pvalTopN}
+\alias{pvalTopN}
 
-\title{Search for the top N changed genes or probes}
+\title{Search for the top N changed genes or probes using p-values}
 
 \description{This function allows to seach for the top N 
 differentially expressed genes or changed probes.
-It uses the output results obtained using one of the following functions
-fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().}
+It uses the p-value. These p-values can be obtained using one of
+the following functions fcros(), fcros2(), fcrosMod(), pfco(),
+pfcoMod() or another statistical method.}
 
-\usage{fcrosTopN(af, topN)}
+\usage{pvalTopN(pval, topN)}
 
 \arguments{
-  \item{af}{ This is an output object obtained using the functions fcros(),
-        fcros2(), fcrosMod(), pfco() or pfcoMod(): \code{f.value}}
-  \item{topN}{ The expected number of the top DE genes in the dataset used: 
+  \item{pval}{ This is vector with p-values obtained using the functions fcros(),
+        fcros2(), fcrosMod(), pfco(), pfcoMod() or another statistical method:
+        \code{pval = af$p.value}}
+  \item{topN}{ The expected number of the top DE genes/probes in the dataset used:
                \code{topN}}
 }
 
@@ -40,7 +42,7 @@ fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().}
    af <- fcros(fdata, cont, test, log2.opt);
    
    # now select top 10 down and/or up regulated genes
-   top10 <- fcrosTopN(af, 10);
+   top10 <- pvalTopN(af$p.value, 12);
 
    # display thresholds
    top10$alpha

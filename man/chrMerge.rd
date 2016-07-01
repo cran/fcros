@@ -1,12 +1,12 @@
-\name{fcrosChrMerge}
-\alias{fcrosChrMerge}
+\name{chrMerge}
+\alias{chrMerge}
 
-\title{Using a C code for merging}
+\title{Using a C code for merging chromosome segments}
 
-\description{This is an internal function for using the C code while merging
+\description{This is an internal function for using a C code while merging
 chromosome segments in the segmentation step.}
 
-\usage{fcrosChrMerge(nbSeg, idStart, idEnd, lBound, uBound, segVal, segProba,
+\usage{chrMerge(nbSeg, idStart, idEnd, lBound, uBound, segVal, segProba,
                          fcall, L2R, nd, dm, sigma)}
 
 \arguments{
@@ -26,18 +26,9 @@ chromosome segments in the segmentation step.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, Detection of recurrent chromosomal copy number
-                    aberrations from high-throughput data,
+\references{Dembele D and al, title,
                     Manuscript submitted}
 
 \examples{
 #    data(fdata);
-#    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
-#    test <- c("test01", "test02", "test08", "test09", "test05");
-#    log2.opt <- 0;
-#    trim.opt <- 0.25;
-#    af <- fcros(fdata, cont, test, log2.opt, trim.opt);
-#
-#    fcrosWrite(af, file = "test2delete_values.txt");
-#    fcrosWrite(af, file = "test2delete_params.txt", values = FALSE);
 }

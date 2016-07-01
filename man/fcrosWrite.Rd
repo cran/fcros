@@ -1,24 +1,30 @@
 \name{fcrosWrite}
 \alias{fcrosWrite}
 
-\title{fcrosWrite(): to write the fcros results in file}
+\title{Writing the fcros() or pfco() results in a tab delimited text file}
 
 \description{This function creates a tab-delimited text file with the
-results of the function fcros(), fcros2() or fcrosMod().
-Two kind of file can be obtained. In the first, the results of the parameters
-"idnames", "ri", "FC", "FC2", "f-value" and "p-value" are saved. In the second,
-the results of the parameters "lb", "ub", "delta", "meand" and "sd" are saved.}
+results of the function fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().
+Two kind of files can be obtained. In the first, the results of the parameters
+"idnames", "ri" ("u1"), "FC", "FC2", "f.value" and "p.value" are saved. 
+In the second, the results of the parameters "lb", "ub", "delta", "meand" 
+and "sd" (fcros) or "comp", "comp.w" and "comp.wcum" (pfco()) are saved.}
 
 \usage{fcrosWrite(af, file = "fcrosResults.txt", values = TRUE, thr = 1)}
 
 \arguments{
-  \item{af}{ An output object of the functions fcros(), fcros2() or fcrosMod():
-             \code{af = fcros(xdata, cont, test, log2.opt, trim.opt)}}
+  \item{af}{ An output object of the functions fcros(), fcros2(), fcrosMod(), 
+             pfco()\cr
+             or pfcoMod():
+             \code{af = fcros(xdata, cont, test, log2.opt, trim.opt)}\cr
+             \code{af = pfco(xdata, cont, test, log2.opt, trim.opt)}}
   \item{file}{ The output file name:
              \code{file = "fcrosResults.txt"}}
-  \item{values}{ A flag allowing to create a file with the parameters "ri", "FC",
-                 "FC2", "f-value" and "p-value" (default) or with the parameters
-                 "lb", "ub", "delta", "meand" and "sd": \code{values} = TRUE}
+  \item{values}{ A flag allowing to create a file with the parameters "ri" (or "u1"), 
+                 "FC", "FC2", "f.value" and "p.value" (default) or with the parameters
+                 "lb", "ub", "delta", "meand" and "sd" (fcros() case) or with the
+                 parameters "comp", "comp.w" and "comp.wcum" (pfco() case):
+                 \code{values} = TRUE}
   \item{thr}{ A threshold allowing to filter data based on p-values. Default
               setting is 1 (no filtering) \code{thr = 1}}
 }
@@ -34,7 +40,10 @@ the results of the parameters "lb", "ub", "delta", "meand" and "sd" are saved.}
     log2.opt <- 0;
     trim.opt <- 0.25;
     af <- fcros(fdata, cont, test, log2.opt, trim.opt);
+    af2 <- pfco(fdata, cont, test, log2.opt, trim.opt);
 
     fcrosWrite(af, file = "test2delete_values.txt");
     fcrosWrite(af, file = "test2delete_params.txt", values = FALSE);
+    fcrosWrite(af2, file = "test2delete2_values.txt");
+    fcrosWrite(af2, file = "test2delete2_params.txt", values = FALSE);
 }

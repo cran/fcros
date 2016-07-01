@@ -1,10 +1,11 @@
 \name{fcrosRead}
 \alias{fcrosRead}
 
-\title{fcrosRead(): for reading a tab delimited text file}
+\title{Read a tab delimited text file}
 
 \description{This function can be used to read a tab delimited text
-file to be used as input for the functions fcros(), fcros2() or fcrosMod().
+file to be used as input for the functions fcros(), fcros2(), fcrosMod()
+pfco() or pfcoMod().
 You may also use other functions (read.csv(),
 read.csv2(), read.delim() or read.delim2()) to read your dataset.}
 

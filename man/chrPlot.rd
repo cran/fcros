@@ -1,17 +1,17 @@
-\name{fcrosChrPlot}
-\alias{fcrosChrPlot}
+\name{chrPlot}
+\alias{chrPlot}
 
 \title{Plot a chromosome data}
 
-\description{This function generates a picture using the chromosome data.}
+\description{This function generates a picture using a chromosome data.}
 
-\usage{fcrosChrPlot(chrData, thr = 0.05, deb = 100, fin = 1e7)}
+\usage{chrPlot(chrData, thr = 0.05, deb = 100, fin = 1e10)}
 
 \arguments{
   \item{chrData}{ A chromosome data obtained from an output of the function
-             fcrosChrSummary(): \code{xinfo2} = chrSummary(af, xinfo, chromosomes, alpha)\cr
-                                \code{idx} = which(xinfo2$chrData$Chromosome == "chr1")\cr
-                                \code{chrData} = xinfo2$chrData[idx, ]}
+             dataSummary(): \code{xinfo2} = dataSummary(af, xinfo, chromosomes, alpha)\cr
+                                \code{idx} = which(xinfo2$xinfo.s$Chromosome == "chr1")\cr
+                                \code{chrData} = xinfo2$xinfo.s[idx, ]}
   \item{thr}{ The probability threshold leading to the selection of the significant probes:
               \code{thr} = 0.05}
   \item{deb}{ This parameter allows to specify the start position of the chromosome region
@@ -26,8 +26,7 @@
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, A method for detection of recurrent chromosomal copy number 
-                    aberrations from high-throughput biological data,
+\references{Dembele D, title,
                     Manuscript submitted}
 
 \examples{
@@ -45,12 +44,12 @@
     alpha = 0.05
     
     # summarize results for each chromosome
-    xinfo2 = fcrosChrSummary(af, cghInfo, chromosomes, alpha)
+    xinfo2 = dataSummary(af, cghInfo, chromosomes, alpha)
 
     # focused on chromosome 7 data
     idx = which(xinfo2$xinfo.s$Chromosome == "7")
     chrData = xinfo2$xinfo.s[idx, ]
 
     # Plot chromosome 7 data
-    fcrosChrPlot(chrData, thr = alpha)
+    chrPlot(chrData, thr = alpha)
 }

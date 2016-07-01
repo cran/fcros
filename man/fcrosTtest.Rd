@@ -12,10 +12,10 @@
 \usage{fcrosTtest(xdata, cont, test, log2.opt = 0)}
 
 \arguments{
-  \item{xdata}{ A matrix or a table containing a two biological conditions
+  \item{xdata}{ A table containing a two biological conditions
           dataset to process for detecting differentially expressed genes:
-          \code{xdata}. The first column of this dataset matrix "xdata" 
-          should gene IDs or symbols}
+          \code{xdata}. The first column of the dataset "xdata"
+          should be gene IDs or symbols}
   \item{cont}{ A vector containing the label names of the control samples:
        \code{cont} = c("cont01", "cont02", ...)}
   \item{test}{ A vector containing the label names of the test samples:
@@ -26,7 +26,7 @@
 
 \details{Label names appearing in the parameters "cont" and "test" should match
 column label names of the data matrix "xdata". It is not necessary to use all
-column label names of the data matrix "xdata".}
+column label names of the dataset "xdata".}
 
 \value{     
     \item{FC }{The fold changes for the genes in the dataset.}
@@ -43,7 +43,7 @@ column label names of the data matrix "xdata".}
    test <- c("test01", "test02", "test08", "test09", "test05");
    log2.opt <- 0;
 
-   # perform fcros
+   # perform fcrosTtest()
    at <- fcrosTtest(fdata, cont, test, log2.opt);
    
    # now select some differentially expressed genes

@@ -1,17 +1,17 @@
-\name{fcrosHistoPlot}
-\alias{fcrosHistoPlot}
+\name{histoPlot}
+\alias{histoPlot}
 
-\title{fcrosHistoPlot(): Histogram plot function of the fcros results}
+\title{Histogram plot function of the fcros package results}
 
 \description{This function allows to have a histogram plot. It uses the 
-statistics ri obtained using one of the following functions: fcros(), 
-fcros2() and fcrosMod().}
+statistics "ri" or "u1" obtained using one of the following functions: fcros(),
+fcros2(), fcrosMod(), pfco() or pfcoMod().}
 
-\usage{fcrosHistoPlot(af, nbins = 50)}
+\usage{histoPlot(af, nbins = 50)}
 
 \arguments{
   \item{af}{ This is an object obtained using the function fcros(),
-        fcros2() or fcrosMod(): \code{af = fcrosMod(xdata, samp)}}
+        fcros2(), fcrosMod(), pfco() or pfcoMod()}
   \item{nbins}{ This parameter is used for the number of bins in
                 the histogram. Default setting is 50: \code{nbins = 50}}
 }
@@ -31,9 +31,13 @@ fcros2() and fcrosMod().}
    test <- c("test01", "test02", "test08", "test09", "test05");
    log2.opt <- 0;
 
-   # perform fcros
+   # perform fcros() and pfco()
    af <- fcros(fdata, cont, test, log2.opt);
-   
-   # Volcano plot
-   fcrosHistoPlot(af);
+   af2 <- pfco(fdata, cont, test, log2.opt);
+
+   # Histogram plots
+   op <- par(mfrow = c(1,2))
+      histoPlot(af);
+      histoPlot(af2);
+   par(op);
 }

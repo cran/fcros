@@ -1,4 +1,4 @@
-fcrosChrMerge = function(nbSeg, idStart, idEnd, lBound, uBound, segVal, segProba,
+chrMerge = function(nbSeg, idStart, idEnd, lBound, uBound, segVal, segProba,
                          fcall, L2R, nd, dm, sigma) {
     .C("merge", nSeg = as.integer(nbSeg),
                 segIdS = as.integer(idStart),

@@ -29,7 +29,7 @@ void rmat(double *fvectC, int *nC, int *m1C, int *m2C,
             FCC[i] = (nume*mm1)/(deno*mm2);
          else FCC[i] = 1000;
      }
-}
+}// end of function rmat()
 
 void merge(int *nSeg, int *segIdS, int *segIdE, double *segLB, double *segUB,
            double *segVal, double *segProba, int *fcall, double *L2R, int *nd,
@@ -85,5 +85,107 @@ void merge(int *nSeg, int *segIdS, int *segIdE, double *segLB, double *segUB,
            }
      }
      (*nSeg) = nbSeg;
-}
+}// end of function merge()
+
+void qSort(double *table, int p, int r) {
+     int i, j, itmp;
+     double x, tmp;
+
+     i=p;   j=r;     itmp = (i+j+1) / 2;
+     x = table[itmp];
+     do	{
+        while (table[i] < x) 	i++;
+        while (table[j] > x) 	j--;
+        if (i<=j)       {
+           tmp = table[i];    
+           table[i] = table[j];
+           table[j] = tmp;
+           i++; j--;
+        }
+     } while (i<=j);
+     if (p<j)	qSort(table,p,j);
+     if (r>i)	qSort(table,i,r);
+}// end of function qSort()
+
+void rmat2(double *rvectC, int *nC, int *mC,
+                  int *idxC, int *m2C, double *rvect2C) {
+     int i, j, n, m, m2;
+     double *vect;
+
+     n = (*nC);
+     m = (*mC);
+     m2 = (*m2C);
+     vect = new double[m];
+
+     // calculation of rvect2C
+     for (i=0; i<n; i++) {
+         for (j=0; j<m; j++)  vect[j] = rvectC[j*n+i];
+         qSort(vect, 0, m-1);
+         for (j=0; j<m2; j++) rvect2C[j*n+i] = vect[idxC[j]-1];
+     }
+     delete[] vect;
+}// end of function rmat2()
+
+void moyStd(double *rvectC, int *nC, int *mC, double *moyC, double *stdC) {
+     int i, j, n, m;
+     double tmp, *vect;
+
+     n = (*nC);
+     m = (*mC);
+     vect = new double[m];
+
+     // calculation of moyC and stdC
+     for (i=0; i<n; i++) {
+         tmp = 0.0;
+         for (j=0; j<m; j++)  {
+             vect[j] = rvectC[j*n+i];
+             tmp += vect[j];
+         }
+         moyC[i] = tmp/(double)m;
+         tmp = 0.0;
+         for (j=0; j<m; j++) tmp += (vect[j]-moyC[i]) * (vect[j]-moyC[i]);
+         stdC[i] = sqrt(tmp/(double)(m-1));
+     }
+     delete[] vect;
+}// end of function moyStd()
+
+void tproba(double *moyC, double *stdC, int *nC, int *dlC, double *emC, 
+                   double *probaC) {
+     int i, n, dl;
+     double tval, em;
+
+     n = (*nC);
+     em = (*emC);
+     dl = (*dlC);
+
+     // calculation of probaC
+     for (i=0; i<n; i++) {
+         tval = fabs(sqrt(dl+1.0)*((moyC[i]-em)/stdC[i]));
+         GetRNGstate();
+         probaC[i] = 2.0*(pt(tval, dl, 0, 0));
+         PutRNGstate();
+     }
+}// end of function tproba()
+
+void fc2(double *rvectC, int *nC, int *mC,
+                  int *idxC, int *m2C, double *fc2C) {
+     int i, j, n, m, m2;
+     double *vect, tmp;
+
+     n = (*nC);
+     m = (*mC);
+     m2 = (*m2C);
+     vect = new double[m];
+
+     // calculation of fc2C
+     for (i=0; i<n; i++) {
+         for (j=0; j<m; j++)  vect[j] = rvectC[j*n+i];
+         qSort(vect, 0, m-1);
+         tmp = 0.0;
+         for (j=0; j<m2; j++) tmp += pow(2.0, vect[idxC[j]-1]);
+         fc2C[i] = tmp / (double)m2;
+     }
+     delete[] vect;
+}// end of function fc2()
+
 }  // extern "C"

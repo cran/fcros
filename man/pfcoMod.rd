@@ -1,20 +1,21 @@
-\name{fcrosMod}
-\alias{fcrosMod}
+\name{pfcoMod}
+\alias{pfcoMod}
 
-\title{Search for differentially expressed genes or to detect
-                  recurrent copy number aberration probes}
+\title{Searching for differentially expressed genes or detecting
+                  recurrent copy number aberration probes using
+                  an approach based on the Perron-Frobenius theorem}
 
-\description{Implementation of a method based on fold change rank ordering
-             statistics to search for differentially expressed genes or to 
+\description{Implementation of a method based on fold change rank and the Perron 
+             theorem to search for differentially expressed genes or to
              detect chromosomal recurrent copy number aberration probes. This
              function should be used with a matrix of fold changes or ratios
              from biological dataset (microarray, RNA-seq, ...). The function
-             fcrosMod() is an extention of the function fcros() to a
+             pfcoMod() is an extention of the function pfco() to a
              dataset which does not contain replicate samples or to a
              dataset with one biological condition dataset. Statistics
              are associated with genes/probes to characterize their change levels.}
 
-\usage{fcrosMod(fcMat, samp, log2.opt = 0, trim.opt = 0.25)}
+\usage{pfcoMod(fcMat, samp, log2.opt = 0, trim.opt = 0.25)}
 
 \arguments{
   \item{fcMat}{ A matrix containing fold changes or ratios from a biological
@@ -40,7 +41,7 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \value{ This function returns a data frame containing 8 components
     \item{idnames}{ A vector containing the list of IDs or symbols associated with genes}
-    \item{ri }{The average of ordered rank values associated with genes in the
+    \item{u1 }{The average of ordered rank values associated with genes in the
              dataset. These values are rank statistics leading to the f-values
              and the p-values.}
     \item{FC2 }{The robust fold changes for genes in matrix "fcMat". These fold
@@ -50,20 +51,15 @@ necessary to use all label names appearing in the columns of the dataset matrix.
              the "mean" and the "standard deviation" ("sd") of values in "ri". 
              The "mean" and "sd" are used as a normal distribution parameters.}
     \item{p.value }{The p-values associated with genes. The p-values are obtained
-             using a one sample t-test on the fold change rank values.}
-    \item{bounds }{Two values, which are the lower and the upper bounds or
-             the minimum and the maximum values of the non standardized "ri".}
-    \item{params }{Three values, which are the estimates for the parameters "delta"
-             (average difference between consecutive ordered average of 
-             rank) "mean" (mean value of the "ri") and the standard deviation
-             ("sd") of the "ri".}
-    \item{params_t }{Three values, which are theoretical levels for
-             the parameters "delta", "mean" and "sd".}
+             from the fold change ranks using a one sample t-test.}
+    \item{comp }{Singular values.}
+    \item{comp.w }{Singular values weights.}
+    \item{comp.wcum }{Cumulative sum of the singular values weights.}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, Mansucript submitted}
+\references{Dembele D and al, Manuscript submitted}
 
 \examples{
    data(fdata);
@@ -73,14 +69,14 @@ necessary to use all label names appearing in the columns of the dataset matrix.
    log2.opt <- 0;
    trim.opt <- 0.25;
 
-   # perform fcrosMod()
+   # perform pfcoMod()
    fc <- fcrosFCmat(fdata, cont, test, log2.opt, trim.opt);
    m <- ncol(fc$fcMat)
    samp <- paste("Col",as.character(1:m), sep = "");
    fc.val <- cbind(fdata[,1], data.frame(fc$fcMat))
    colnames(fc.val) <- c("ID", samp)
 
-   af <- fcrosMod(fc.val, samp, log2.opt, trim.opt);
+   af <- pfcoMod(fc.val, samp, log2.opt, trim.opt);
 
    # now select top 20 down and/or up regulated genes
    top20 <- fcrosTopN(af, 20);

@@ -1,4 +1,4 @@
-fcrosChrSummary <- function(af, xinfo, chromosomes = c(1:22,"X","Y"), alpha = 0.05) {
+dataSummary <- function(af, xinfo, chromosomes = c(1:22,"X","Y"), alpha = 0.05) {
    tmp <- xinfo
    n <- nrow(tmp)
    tmp$Position <- 0.5*(as.numeric(xinfo$Start) + as.numeric(xinfo$End))

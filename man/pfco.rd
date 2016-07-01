@@ -1,21 +1,22 @@
-\name{fcros}
-\alias{fcros}
+\name{pfco}
+\alias{pfco}
 
-\title{Search for differentially expressed genes/probes}
+\title{Searching for differentially expressed genes/probes using an
+                 approach based on the Perron-Frobenius theorem}
 
-\description{Implementation of a method based on fold change rank ordering
-             statistics for detecting differentially expressed genes in a
+\description{Implementation of a method based on fold change and the Perron
+             theorem for detecting differentially expressed genes in a
              dataset.
              This function should be used with two biological conditions
              dataset (microarray or RNA-seq, ...).
              Using pairwise combinations of samples from the
              two biological conditions, fold changes (FC) are calculated.
              For each combination, the FC obtained are sorted in increasing
-             order and corresponding rank values are associated with genes. 
+             order and corresponding rank values are associated with genes.
              Then, a statistic is assigned to the robust average ordered rank
              values for each gene/probe.}
 
-\usage{fcros(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
+\usage{pfco(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
 
 \arguments{
   \item{xdata}{ A matrix or a table containing two biological conditions
@@ -35,13 +36,13 @@
               rank values are averaged: \code{trim.opt} = 0.25}
 }
 
-\details{Label names appearing in the parameters "cont" and "test" should match
+\details{Label names appearing in the parameter "samp" should match
 with some label names in the columns of the data matrix "xdata". It is not 
 necessary to use all label names appearing in the columns of the dataset matrix.}
 
 \value{ This function returns a data frame containing 9 components
     \item{idnames}{ A vector containing the list of IDs or symbols associated with genes}
-    \item{ri }{The average of rank values associated with genes.
+    \item{u1 }{The average of rank values associated with genes.
              These values are rank values statistics leading to f-values
              and p-values.}
     \item{FC }{The fold changes for genes in the dataset. These fold changes are
@@ -55,22 +56,15 @@ necessary to use all label names appearing in the columns of the dataset matrix.
              the "mean" and the "standard deviation" ("sd") of the statistics "ri".
              The "mean" and "sd" are used as a normal distribution parameters.}
     \item{p.value }{The p-values associated with genes. These values are obtained
-             from the fold change rank values and one sample t-test.}
-    \item{bounds }{Two values, which are the lower and the upper bounds or
-             the minimum and the maximum values of the non standardized "ri".}
-    \item{params }{Three values, which are the estimates for the parameters "delta"
-            (average difference between consecutive ordered average of rank values)
-            "mean" (mean value of "ri") and the standard deviation ("sd")
-            of "ri".}
-    \item{params_t }{Three values which are theoretical levels for 
-                   parameters "delta", "mean" and "sd".}
+             using a one sample Student t-test on the fold change rank values.}
+    \item{comp }{Singular values.}
+    \item{comp.w }{Singular values weights.}
+    \item{comp.wcum }{Cumulative sum of the singular values weights.}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and Kastner P, Fold change rank ordering statistics: 
-                    a new method for detecting differentially expressed 
-                    genes, BMC Bioinformatics, 2014, 15:14}
+\references{Dembele D and al, submitted}
 
 \examples{
    data(fdata);
@@ -80,8 +74,8 @@ necessary to use all label names appearing in the columns of the dataset matrix.
    log2.opt <- 0;
    trim.opt <- 0.25;
 
-   # perform fcros()
-   af <- fcros(fdata, cont, test, log2.opt, trim.opt);
+   # perform pfco()
+   af <- pfco(fdata, cont, test, log2.opt, trim.opt);
 
    # now select top 20 down and/or up regulated genes
    top20 <- fcrosTopN(af, 20);

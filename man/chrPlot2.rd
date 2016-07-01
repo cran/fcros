@@ -1,20 +1,20 @@
-\name{fcrosChrPlot2}
-\alias{fcrosChrPlot2}
+\name{chrPlot2}
+\alias{chrPlot2}
 
 \title{Plot a chromosome segmentation results}
 
 \description{This function generates a picture. It uses a chromosome data and the 
-output results of the segmentation function fcrosChrSegment().}
+output results of the segmentation function chrSegment().}
 
-\usage{fcrosChrPlot2(chrData, chrSeg, deb = 100, fin = 1e7)}
+\usage{chrPlot2(chrData, chrSeg, deb = 100, fin = 1e10)}
 
 \arguments{
   \item{chrData}{ A chromosome data obtained from an output of the function
-              fcrosChrSummary(): \code{xinfo2} = chrSummary(af, xinfo, chromosomes, alpha)\cr
-                                 \code{idx} = which(xinfo2$chrData$Chromosome == "chr1")\cr
-                                 \code{chrData} = xinfo2$chrData[idx, ]}
-  \item{chrSeg}{ An output object of the function fcrosChrSegment():
-              \code{chrSeg} = fcrosChrSegment(chrData, nd = 10)}
+              dataSummary(): \code{xinfo2} = dataSummary(af, xinfo, chromosomes, alpha)\cr
+                                 \code{idx} = which(xinfo2$xinfo.s$Chromosome == "chr1")\cr
+                                 \code{chrData} = xinfo2$xinfo.s[idx, ]}
+  \item{chrSeg}{ An output object of the function chrSegment():
+              \code{chrSeg} = chrSegment(chrData, nd = 10)}
   \item{deb}{ This parameter allows to specify the start position of the chromosome region 
               for plotting. It can be used for zooming. Negative value will lead to the plot
               of all chromosome data. \code{deb} = 100}
@@ -27,8 +27,7 @@ output results of the segmentation function fcrosChrSegment().}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, A method for detection of recurrent chromosomal copy number 
-                    aberrations from high-throughput biological data,
+\references{Dembele D and al, title,
                     Manuscript submitted}
 
 \examples{
@@ -40,24 +39,24 @@ output results of the segmentation function fcrosChrSegment().}
     samp  <- noms[2:m]
 
     # associate statistics with probes in the dataset
-    af <- fcrosMod(cghData, samp, log2.opt = 0, trim.opt = 0.25)
+    af <- pfcoMod(cghData, samp, log2.opt = 0, trim.opt = 0.25)
 
     chromosomes = c(7:9)
     alpha = 0.05
     
     # summarize results for each chromosome
-    xinfo2 = fcrosChrSummary(af, cghInfo, chromosomes, alpha)
+    xinfo2 = dataSummary(af, cghInfo, chromosomes, alpha)
 
     # focused on chromosome 7 data
     idx = which(xinfo2$xinfo.s$Chromosome == "7")
     chrData = xinfo2$xinfo.s[idx, ]
 
     # segment chromosome 7 data
-    chrSeg = fcrosChrSegment(chrData, nd = 15)
+    chrSeg = chrSegment(chrData, nd = 15)
 
     # plot chromosome 7 results
     op = par(mfrow = c(2,1))
-    fcrosChrPlot(chrData, thr = alpha, deb =-1, fin = 3.5e7)
-    fcrosChrPlot2(chrData, chrSeg, -1, fin = 3.5e7)
+    chrPlot(chrData, thr = alpha, deb =-1, fin = 3.5e7)
+    chrPlot2(chrData, chrSeg, -1, fin = 3.5e7)
     par(op)
 }

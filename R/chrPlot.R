@@ -1,4 +1,4 @@
-fcrosChrPlot <- function(chrData, thr = 0.05, deb = 100, fin = 1e7) {
+chrPlot <- function(chrData, thr = 0.05, deb = 100, fin = 1e10) {
     a1 <- 0.5*thr
     a2 <- 1 - 0.5*thr
     positions <- chrData$Position

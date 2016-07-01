@@ -1,4 +1,4 @@
-fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
+pfcoMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
     # compute matrix of sorted FC ranks
     n <- nrow(fcMat);
     idnames <- fcMat[,1];      # first column is ID names
@@ -15,7 +15,8 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     fc.mat[,1:m] <- as.matrix(fc);
     rvectFC <- c(fc.mat[,1:m]);
 
-    rmat <- apply(fc.mat, 2, rank, ties.method = "average")/n
+    # Compute sorted ranks matrix
+    rmat.s <- (apply(fc.mat, 2, rank, ties.method = "average"))/n;
 
     # if trim.opt > 0, reduce sorted rank matrix
     if ((trim.opt > 0) & (trim.opt < 0.5)) {
@@ -23,7 +24,7 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
        fin <- m - deb + 1;
        idx <- deb:fin;
        m2 <- length(idx);
-       rvect <- c(rmat[,1:m]);
+       rvect <- c(rmat.s[,1:m]);
        rvect2 <- c(rep(0, n*m2));
        rmat.val <- rmatTrim(rvect, n, m, idx, m2, rvect2);
        rmat.sr <- matrix(rmat.val$rvect2, ncol = m2);
@@ -41,7 +42,7 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
        rm(rvectFC);
     }
     else {
-         rmat.sr <- rmat;
+         rmat.sr <- rmat.s;
          m2 <- m;
          idx <- 1:m2;
          rvect <- c(rmat.sr[,1:m2]);
@@ -58,18 +59,17 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
          rm(rvectFC);
     }
 
-    # compute vectors of f-values and p-values
-    ri <- apply(rmat.sr, 1, mean);
-    ris <- sort(ri);
+    # compute the symmetric matrix with sorted rank values and its eigen values
+    smat <- (t(rmat.sr) %*% rmat.sr)/n;
+    smat.eig <- eigen(smat);
+    v1 <- smat.eig$vectors[,1];
+    if (v1[1] < 0) v1 <- -v1;
+    u1 <- rmat.sr %*% v1;
 
-    # compute parameters
-    lb <- n*ris[1];
-    ub <- n*ris[n];
-    delta <- (n-1)*mean(ris[-1]-ris[-n]);
-
-    moy <- mean(ri);
-    std <- sd(ri);
-    f.value <- pnorm(ri, moy, std);
+    # compute probabilitie for u1 values using normal distribution
+    moy <- mean(u1);
+    std <- sd(u1);
+    f.value <- pnorm(u1, mean = moy, sd = std)
 
     # perform the Student one sample test
     em <- 0.5;
@@ -77,15 +77,11 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     pval <- tprobaCalc(moyV, stdV, n, m2-1, em, prob);
     p.value <- pval$probaC;
 
-    moy_t <- (lb+ub)/(2*n);
-    delta_t <- (ub-lb)/(n-1);
-    std_t <- delta_t/sqrt(12);
-    bounds <- c(lb,ub);
-    params <- c(delta,moy,std);
-    params_t <- c(delta_t,moy_t,std_t);
-    if (log2.opt) { FC2 <- apply(fc.mat, 1, mean, trim = trim.opt); }
-    else {FC2 <- apply(2^fc.mat, 1, mean, trim = trim.opt);}
+    # decomposition parameters
+    comp <- sqrt(smat.eig$values);
+    comp.w <- comp / sum(comp);
+    comp.wcum <- cumsum(comp.w);
 
-    list(idnames = idnames, FC2 = FC2, ri = ri, p.value = p.value, f.value = f.value,
-    bounds = bounds, params = params, params_t = params_t)
+    list(idnames=idnames, u1=u1, FC2=FC2, f.value=f.value, p.value=p.value,
+                          comp=comp, comp.w=comp.w, comp.wcum=comp.wcum);
 }

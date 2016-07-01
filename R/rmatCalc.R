@@ -1,4 +1,4 @@
-rmatCalc = function(fvect, n, m1, m2, rvect, FC) {
+rmatCalc <- function(fvect, n, m1, m2, rvect, FC) {
     .C("rmat", fvectC = as.double(fvect),
                nC = as.integer(n),
                m1C = as.integer(m1),

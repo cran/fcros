@@ -1,5 +1,5 @@
-fcrosChrSegmentC = function(chrData, nd = 10) {
-    ## get fcros segmentation values
+chrSegment = function(chrData, nd = 10) {
+    #### get fcros/pfco segmentation values
     fcall <- chrData$f.call
     idx_d <- which(fcall == -1)
     idx_g <- which(fcall == 1)
@@ -16,8 +16,8 @@ fcrosChrSegmentC = function(chrData, nd = 10) {
     sigma <- mad((L2R[-1] - L2R[-ndata])/sqrt(2))
     dm <- (positions[ndata] - positions[1]) / (ndata-1)
 
-    ############################## first merge of segments
-    segMerge <- fcrosChrMerge(nbSeg, idStart, idEnd, lBound, uBound, segVal,
+    #### first merge of segments
+    segMerge <- chrMerge(nbSeg, idStart, idEnd, lBound, uBound, segVal,
                                      segProba, fcall, L2R, nd, dm, sigma)
     nbSeg <- segMerge$nSeg
     lBound <- segMerge$segLB[1:nbSeg]
@@ -27,7 +27,7 @@ fcrosChrSegmentC = function(chrData, nd = 10) {
     idStart <- segMerge$segIdS[1:nbSeg]
     idEnd <- segMerge$segIdE[1:nbSeg]
 
-    ############################## single probe segment treatment
+    #### single probe segment treatment
     ## check if last probe is single region
     tmp <- idEnd[nbSeg] - idStart[nbSeg]
     dtmp <- positions[idStart[nbSeg]] - positions[idStart[nbSeg]-1]
@@ -68,8 +68,8 @@ fcrosChrSegmentC = function(chrData, nd = 10) {
     idStart <- idStart[1:nbSeg]
     idEnd <- idEnd[1:nbSeg]
 
-    ############################## second merge of segments
-    segMerge <- fcrosChrMerge(nbSeg, idStart, idEnd, lBound, uBound, segVal,
+    #### second merge of segments
+    segMerge <- chrMerge(nbSeg, idStart, idEnd, lBound, uBound, segVal,
                                      segProba, fcall, L2R, nd, dm, sigma)
     nbSeg <- segMerge$nSeg
     lBound <- segMerge$segLB[1:nbSeg]
