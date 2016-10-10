@@ -1,4 +1,4 @@
-788c89fc72ec8c4a0e48deefbb26d567 *DESCRIPTION
+ecda9ed7f741f18632849324f6b518b4 *DESCRIPTION
 bfb7a5d01cc75687943b4e1438322aec *NAMESPACE
 4761a3fbb132adaa66e5f83feedf7a2b *R/chrMerge.R
 001bf7f52772ca871fe8183b5d59e446 *R/chrPlot.R
@@ -39,7 +39,7 @@ f8147e489774e12fa9c81f5b4a61c73d *man/cghData.Rd
 f3d15ae8e9cbb85e41b83f5bf080b43a *man/chrSegment.rd
 f20fd5614286841e189fc7a5acf38516 *man/dataSummary.rd
 31beac8a21fe6b316df32d77bb2dadc8 *man/fc2Calc.rd
-f71c58f4786f2722dade685de52f7bd8 *man/fcros-package.Rd
+ae19bf4e1cde1d36781677114ea7949b *man/fcros-package.Rd
 a3ecda7f1008a5fb88dd273aded7fdae *man/fcros.Rd
 a814db5f0a71d518edffd3677e09d6ea *man/fcros2.Rd
 c73aa3d7145b5dbd8fde54f258d836b6 *man/fcrosC.Rd
@@ -62,4 +62,4 @@ cd55651ddb71184dcfef81b2104476ac *man/rmatCalc.rd
 18ca24ec3b015b66b20e9c7d5bb2125d *man/rmatTrim.rd
 eec0eadb814ecc77ce6c0c9c9d0ef449 *man/tprobaCalc.rd
 738a54617ecae54bb62ceae3a6285907 *man/voomReads.rd
-19335a7095935fb8f799e85b4177cbc5 *src/fcros.cpp
+eebd27b8bef3c18dbaf2a922e419f1d6 *src/fcros.cpp

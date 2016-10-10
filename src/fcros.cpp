@@ -23,8 +23,8 @@ void rmat(double *fvectC, int *nC, int *m1C, int *m2C,
      // calculation of FCC
      for (i=0; i<nn; i++) {
          deno = nume = 0.0;
-         for (j=0; j<mm1; j++) deno += pow(2, fvectC[i+j*nn]);
-         for (j=0; j<mm2; j++) nume += pow(2, fvectC[nn*mm1+i+j*nn]);
+         for (j=0; j<mm1; j++) deno += std::pow(2, fvectC[i+j*nn]);
+         for (j=0; j<mm2; j++) nume += std::pow(2, fvectC[nn*mm1+i+j*nn]);
          if (deno != 0.0) 
             FCC[i] = (nume*mm1)/(deno*mm2);
          else FCC[i] = 1000;
@@ -67,7 +67,7 @@ void merge(int *nSeg, int *segIdS, int *segIdE, double *segLB, double *segUB,
               for (i=i1; i<=i2; i++) xbar += L2R[i-1];
               xbar /= (double) ns;
               segVal[j] = xbar;
-              stat = sqrt((double) ns)*xbar/sig;
+              stat = std::sqrt((double) ns)*xbar/sig;
               GetRNGstate();
               segProba[j] = pnorm(stat, 0, 1, 1, 0);
               PutRNGstate();
@@ -144,7 +144,7 @@ void moyStd(double *rvectC, int *nC, int *mC, double *moyC, double *stdC) {
          moyC[i] = tmp/(double)m;
          tmp = 0.0;
          for (j=0; j<m; j++) tmp += (vect[j]-moyC[i]) * (vect[j]-moyC[i]);
-         stdC[i] = sqrt(tmp/(double)(m-1));
+         stdC[i] = std::sqrt(tmp/(double)(m-1));
      }
      delete[] vect;
 }// end of function moyStd()
@@ -160,7 +160,7 @@ void tproba(double *moyC, double *stdC, int *nC, int *dlC, double *emC,
 
      // calculation of probaC
      for (i=0; i<n; i++) {
-         tval = fabs(sqrt(dl+1.0)*((moyC[i]-em)/stdC[i]));
+         tval = std::fabs(std::sqrt(dl+1.0)*((moyC[i]-em)/stdC[i]));
          GetRNGstate();
          probaC[i] = 2.0*(pt(tval, dl, 0, 0));
          PutRNGstate();
@@ -182,7 +182,7 @@ void fc2(double *rvectC, int *nC, int *mC,
          for (j=0; j<m; j++)  vect[j] = rvectC[j*n+i];
          qSort(vect, 0, m-1);
          tmp = 0.0;
-         for (j=0; j<m2; j++) tmp += pow(2.0, vect[idxC[j]-1]);
+         for (j=0; j<m2; j++) tmp += std::pow(2.0, vect[idxC[j]-1]);
          fc2C[i] = tmp / (double)m2;
      }
      delete[] vect;
