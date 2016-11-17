@@ -67,7 +67,9 @@ pfcoMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
     u1 <- rmat.sr %*% v1;
 
     # compute probabilitie for u1 values using normal distribution
-    moy <- mean(u1);
+    tt <- c(1.0, 0.9, 0.945, 0.97, 0.97, 0.97)
+    at <- floor(10*trim.opt)
+    moy <- tt[at+1] * mean(u1)
     std <- sd(u1);
     f.value <- pnorm(u1, mean = moy, sd = std)
 

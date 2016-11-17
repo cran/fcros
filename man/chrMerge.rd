@@ -26,8 +26,8 @@ chromosome segments in the segmentation step.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, title,
-                    Manuscript submitted}
+\references{Dembele D, Use of the Perron-Frobenius theorem in the analysis
+of high throughput biological data, Manuscript submitted}
 
 \examples{
 #    data(fdata);

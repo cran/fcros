@@ -20,7 +20,8 @@ matrix with sorted rank values. The calculations are performed for each row.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, Manuscript submitted}
+\references{Dembele D, Use of the Perron-Frobenius theorem in the analysis
+of high throughput biological data, Manuscript submitted}
 
 \examples{
 #    data(fdata);

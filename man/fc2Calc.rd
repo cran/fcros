@@ -23,7 +23,8 @@ calculate fold changes using pairwise comparison of samples.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D and al, Manuscript submitted}
+\references{Dembele D, Use of the Perron-Frobenius theorem in the analysis
+of high throughput biological data, Manuscript submitted}
 
 \examples{
 #    data(fdata);

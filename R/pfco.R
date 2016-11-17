@@ -37,10 +37,10 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     FC <- rmat.val$FCC;
     rvectFC <- rmat.val$rvectC;
 
-    # compute sorted ranks matrix
+    # compute the standard ranks matrix
     rmat.s <- (apply(rmat, 2, rank, ties.method = "average"))/n;
 
-    # if (trim.opt), reduce sorted rank matrix
+    # if (trim.opt), reduce the standard rank matrix
     if ((trim.opt > 0) & (trim.opt < 0.5)) {
        deb <- round(trim.opt * m1m2) + 1;
        fin <- m1m2 - deb + 1;
@@ -89,8 +89,10 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     u1 <- rmat.sr %*% v1;
 
     # compute probabilities for u1 components using normal distribution
-    moy <- mean(u1);
-    std <- sd(u1);
+    tt <- c(1.0, 0.9, 0.945, 0.97, 0.97, 0.97)
+    at <- floor(10*trim.opt)
+    moy <- tt[at+1] * mean(u1)
+    std <- sd(u1)  
     f.value <- pnorm(u1, mean = moy, sd = std)
 
     # perform the Student one sample test

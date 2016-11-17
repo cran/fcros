@@ -37,10 +37,10 @@ fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     FC <- rmat.val$FCC;
     rvectFC <- rmat.val$rvectC;
 
-    # compute sorted ranks matrix
+    # compute the standard ranks matrix
     rmat.s <- apply(rmat, 2, rank, ties.method = "average")/n;
 
-   # if (trim.opt), reduce sorted rank matrix
+   # if (trim.opt), reduce the standard rank matrix
     if ((trim.opt > 0) & (trim.opt < 0.5)) {
        deb <- round(trim.opt * m1m2) + 1;
        fin <- m1m2 - deb + 1;
