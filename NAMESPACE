@@ -1,6 +1,6 @@
-useDynLib(fcros)
+useDynLib(fcros, .registration = TRUE, .fixes = "C_")
 
-export(fcros,fcrosC,fcros2,fcrosMod,fcrosFCmat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN,
+export(fcros,fcros2,fcrosMod,fcrosFCmat,fcrosRead,fcrosWrite,fcrosTtest,fcrosTopN,
 fvalVolcanoPlot,histoPlot,dataSummary,chrSegment,chrPlot,chrPlot2,chrMerge,rmatCalc,
 rmatTrim,moyStdCalc,pfco,pfcoMod,tprobaCalc,fc2Calc,fvalTopN,pvalTopN,voomReads,pvalVolcanoPlot)
 

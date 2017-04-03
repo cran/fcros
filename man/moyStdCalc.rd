@@ -8,14 +8,12 @@
 calculation of the mean and the standard deviation of the full or reduced 
 matrix with sorted rank values. The calculations are performed for each row.}
 
-\usage{moyStdCalc(rvect, n, m, moy, std)}
+\usage{moyStdCalc(rvect, n, m)}
 
 \arguments{
   \item{rvect}{ Vector containing the full or reduced matrix with sorted rank values}
   \item{n}{ Number of genes or probes in the dataset}
   \item{m}{ Number of columns of the full or reduced matrix of sorted rank values}
-  \item{moy}{ Vector containing averages of the full or reduced matrix rows}
-  \item{std}{ Vector containing standard deviations of the full or reduced matrix rows}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}

@@ -42,7 +42,7 @@ of high throughput biological data, Manuscript submitted}
 
     chromosomes = c(7:9)
     alpha = 0.05
-    
+
     # summarize results for each chromosome
     xinfo2 = dataSummary(af, cghInfo, chromosomes, alpha)
 

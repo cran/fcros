@@ -24,18 +24,13 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
        idx <- deb:fin;
        m2 <- length(idx);
        rvect <- c(rmat[,1:m]);
-       rvect2 <- c(rep(0, n*m2));
-       rmat.val <- rmatTrim(rvect, n, m, idx, m2, rvect2);
-       rmat.sr <- matrix(rmat.val$rvect2, ncol = m2);
-       rvect <- rmat.val$rvect2;
-       moyV <- c(rep(0,n));
-       stdV <- c(rep(0,n));
-       rmat.val <- moyStdCalc(rvect, n, m2, moyV, stdV);
+       rvect2 <- rmatTrim(rvect, n, m, idx, m2);
+       rmat.sr <- matrix(rvect2, ncol = m2);
+       rvect <- rvect2;
+       rmat.val <- moyStdCalc(rvect, n, m2);
        moyV <- rmat.val$moyC;
        stdV <- rmat.val$stdC;
-       FC2 <- c(rep(0,n));
-       rmat.val <- fc2Calc(rvectFC, n, m, idx, m2, FC2)
-       FC2 <- rmat.val$fc2C;
+       FC2 <- fc2Calc(rvectFC, n, m, idx, m2)
        rm(rvect);
        rm(rmat.val);
        rm(rvectFC);
@@ -45,14 +40,10 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
          m2 <- m;
          idx <- 1:m2;
          rvect <- c(rmat.sr[,1:m2]);
-         moyV <- c(rep(0,n));
-         stdV <- c(rep(0,n));
-         rmat.val <- moyStdCalc(rvect, n, m2, moyV, stdV);
+         rmat.val <- moyStdCalc(rvect, n, m2);
          moyV <- rmat.val$moyC;
          stdV <- rmat.val$stdC;
-         FC2 <- c(rep(0,n));
-         rmat.val <- fc2Calc(rvectFC, n, m, idx, m2, FC2)
-         FC2 <- rmat.val$fc2C;
+         FC2 <- fc2Calc(rvectFC, n, m, idx, m2)
          rm(rvect);
          rm(rmat.val);
          rm(rvectFC);
@@ -73,9 +64,7 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
 
     # perform the Student one sample test
     em <- 0.5;
-    prob <- c(rep(0,n));
-    pval <- tprobaCalc(moyV, stdV, n, m2-1, em, prob);
-    p.value <- pval$probaC;
+    p.value <- tprobaCalc(moyV, stdV, n, m2-1, em);
 
     moy_t <- (lb+ub)/(2*n);
     delta_t <- (ub-lb)/(n-1);

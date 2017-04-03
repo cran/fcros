@@ -7,7 +7,7 @@
 performing a Student one sample test for each row of the full or 
 reduced matrix with sorted rank values.}
 
-\usage{tprobaCalc(moy, std, n, dl, em, proba)}
+\usage{tprobaCalc(moy, std, n, dl, em)}
 
 \arguments{
   \item{moy}{ Vector containing average of rank values for rows}
@@ -17,7 +17,6 @@ reduced matrix with sorted rank values.}
              the columns in the full or reduced matrix of sorted rank values 
              minus one}
   \item{em}{ Expected average rank values for each row}
-  \item{proba}{ Vector containing Student t-test probability for rows}
 }
 
 \author{Doulaye Dembele doulaye@igbmc.fr}

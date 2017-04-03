@@ -28,11 +28,9 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     fmat[,(m1+1):m] <- as.matrix(x2);
 
     # compute matrix containing pairwise fold changes
-    rvect <- c(rep(0, n*m1m2));
-    FC <- matrix(c(rep(0,n)), ncol = 1);
     fvect <- c(fmat[, 1:m])
 
-    rmat.val <- rmatCalc(fvect, n, m1, m2, rvect, FC);
+    rmat.val <- rmatCalc(fvect, n, m1, m2);
     rmat <- matrix(rmat.val$rvectC, ncol = m1m2);
     FC <- rmat.val$FCC;
     rvectFC <- rmat.val$rvectC;
@@ -47,18 +45,13 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
        idx <- deb:fin;
        m2 <- length(idx);
        rvect <- c(rmat.s[,1:m1m2]);
-       rvect2 <- c(rep(0, n*m2));
-       rmat.val <- rmatTrim(rvect, n, m1m2, idx, m2, rvect2);
-       rmat.sr <- matrix(rmat.val$rvect2, ncol = m2);
-       rvect <- rmat.val$rvect2;
-       moyV <- c(rep(0,n));
-       stdV <- c(rep(0,n));
-       rmat.val <- moyStdCalc(rvect, n, m2, moyV, stdV);
+       rvect2 <- rmatTrim(rvect, n, m1m2, idx, m2);
+       rmat.sr <- matrix(rvect2, ncol = m2);
+       rvect <- rvect2;
+       rmat.val <- moyStdCalc(rvect, n, m2);
        moyV <- rmat.val$moyC;
-       stdV <- rmat.val$stdC;
-       FC2 <- c(rep(0,n));
-       rmat.val <- fc2Calc(rvectFC, n, m1m2, idx, m2, FC2)
-       FC2 <- rmat.val$fc2C;
+       stdV <- rmat.val$stdV;
+       FC2 <- fc2Calc(rvectFC, n, m1m2, idx, m2)
        rm(rvect);
        rm(rmat.val);
        rm(rvectFC);
@@ -68,14 +61,10 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
          m2 <- m1m2;
          idx <- 1:m2;
          rvect <- c(rmat.sr[,1:m2]);
-         moyV <- c(rep(0,n));
-         stdV <- c(rep(0,n));
-         rmat.val <- moyStdCalc(rvect, n, m2, moyV, stdV);
+         rmat.val <- moyStdCalc(rvect, n, m2);
          moyV <- rmat.val$moyC;
          stdV <- rmat.val$stdC;
-         FC2 <- c(rep(0,n));
-         rmat.val <- fc2Calc(rvectFC, n, m1m2, idx, m2, FC2)
-         FC2 <- rmat.val$fc2C;
+         FC2 <- fc2Calc(rvectFC, n, m1m2, idx, m2)
          rm(rvect);
          rm(rmat.val);
          rm(rvectFC);
@@ -87,19 +76,18 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     v1 <- smat.eig$vectors[,1];
     if (v1[1] < 0) v1 <- -v1;
     u1 <- rmat.sr %*% v1;
+    d1 <- sqrt(n * smat.eig$values[1])
+    u1 <- u1/d1
+    u1 <- u1/max(u1)
 
     # compute probabilities for u1 components using normal distribution
-    tt <- c(1.0, 0.9, 0.945, 0.97, 0.97, 0.97)
-    at <- floor(10*trim.opt)
-    moy <- tt[at+1] * mean(u1)
-    std <- sd(u1)  
+    moy <- 0.5
+    std <- sd(u1)
     f.value <- pnorm(u1, mean = moy, sd = std)
 
     # perform the Student one sample test
     em <- 0.5;
-    prob <- c(rep(0,n));
-    pval <- tprobaCalc(moyV, stdV, n, m2-1, em, prob);
-    p.value <- pval$probaC;
+    p.value <- tprobaCalc(moyV, stdV, n, m2-1, em);
 
     # decomposition parameters
     comp <- sqrt(smat.eig$values);
