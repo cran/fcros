@@ -13,7 +13,7 @@ pfcoMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
     }
     fc.mat <- matrix(c(rep(0,n*m)), ncol = m);
     fc.mat[,1:m] <- as.matrix(fc);
-    rvectFC <- c(fc.mat[,1:m]);
+    rvectC <- c(fc.mat[,1:m]);
 
     # Compute sorted ranks matrix
     rmat.s <- (apply(fc.mat, 2, rank, ties.method = "average"))/n;
@@ -31,10 +31,10 @@ pfcoMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
        rmat.val <- moyStdCalc(rvect, n, m2);
        moyV <- rmat.val$moyC;
        stdV <- rmat.val$stdC;
-       FC2 <- fc2Calc(rvectFC, n, m, idx, m2)
+       FC2 <- fc2Calc(rvectC, n, m, idx, m2)
        rm(rvect);
        rm(rmat.val);
-       rm(rvectFC);
+       rm(rvectC);
     }
     else {
          rmat.sr <- rmat.s;
@@ -44,10 +44,10 @@ pfcoMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
          rmat.val <- moyStdCalc(rvect, n, m2);
          moyV <- rmat.val$moyC;
          stdV <- rmat.val$stdC;
-         FC2 <- fc2Calc(rvectFC, n, m, idx, m2)
+         FC2 <- fc2Calc(rvectC, n, m, idx, m2)
          rm(rvect);
          rm(rmat.val);
-         rm(rvectFC);
+         rm(rvectC);
     }
 
     # compute the symmetric matrix with sorted rank values and its eigen values
@@ -61,8 +61,8 @@ pfcoMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
     u1 <- u1/max(u1)
 
     # compute probabilitie for u1 values using normal distribution
-    moy <- 0.5
-    std <- sd(u1);
+    moy <- mean(u1)
+    std <- sd(u1)
     f.value <- pnorm(u1, mean = moy, sd = std)
 
     # perform the Student one sample test

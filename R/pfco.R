@@ -33,7 +33,7 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     rmat.val <- rmatCalc(fvect, n, m1, m2);
     rmat <- matrix(rmat.val$rvectC, ncol = m1m2);
     FC <- rmat.val$FCC;
-    rvectFC <- rmat.val$rvectC;
+    rvectC <- rmat.val$rvectC;
 
     # compute the standard ranks matrix
     rmat.s <- (apply(rmat, 2, rank, ties.method = "average"))/n;
@@ -50,11 +50,11 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
        rvect <- rvect2;
        rmat.val <- moyStdCalc(rvect, n, m2);
        moyV <- rmat.val$moyC;
-       stdV <- rmat.val$stdV;
-       FC2 <- fc2Calc(rvectFC, n, m1m2, idx, m2)
+       stdV <- rmat.val$stdC;
+       FC2 <- fc2Calc(rvectC, n, m1m2, idx, m2);
        rm(rvect);
        rm(rmat.val);
-       rm(rvectFC);
+       rm(rvectC);
     }
     else {
          rmat.sr <- rmat.s;
@@ -64,10 +64,10 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
          rmat.val <- moyStdCalc(rvect, n, m2);
          moyV <- rmat.val$moyC;
          stdV <- rmat.val$stdC;
-         FC2 <- fc2Calc(rvectFC, n, m1m2, idx, m2)
+         FC2 <- fc2Calc(rvectC, n, m1m2, idx, m2);
          rm(rvect);
          rm(rmat.val);
-         rm(rvectFC);
+         rm(rvectC);
     }
 
     # compute symmetric matrix from rank values and its eigen values
@@ -81,7 +81,7 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     u1 <- u1/max(u1)
 
     # compute probabilities for u1 components using normal distribution
-    moy <- 0.5
+    moy <- mean(u1)
     std <- sd(u1)
     f.value <- pnorm(u1, mean = moy, sd = std)
 

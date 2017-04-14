@@ -1,4 +1,4 @@
-8a091b94c21b154c9b63b680cbd7e6e2 *DESCRIPTION
+91ee08e96f94bcb5ad7f80923dca27e9 *DESCRIPTION
 996f6ba248bd29a10acc353d73736dbe *NAMESPACE
 66d90f174ac8760a02f5f0f206a41a3a *R/chrMerge.R
 001bf7f52772ca871fe8183b5d59e446 *R/chrPlot.R
@@ -6,10 +6,10 @@ ac90ada5b49306b62628c1f4f277e719 *R/chrPlot2.R
 4139f5abaf6fba0beadd2e478dd7077e *R/chrSegment.R
 dcca415044da0c97322edd1494a6d680 *R/dataSummary.R
 44cfdb7a6fb6e4225083c05f2c7cf94e *R/fc2Calc.R
-af85784511d82924d12858aac419ba9b *R/fcros.R
+3807c868669dc21a5486d683f36f4712 *R/fcros.R
 7e0ad4debc669295941c07a54d435b49 *R/fcros2.R
 eb850373066c4a164e7403a5bb1d69c3 *R/fcrosFCmat.R
-df6c4d10ff7145ebc3a184d517147e28 *R/fcrosMod.R
+6296429ace920ed24226a52927a9c3f4 *R/fcrosMod.R
 f6347cc1a69dd8ad71c5c82c02a53cfd *R/fcrosRead.R
 8bb66d59dfff8e2cd1270c817a1a9c8a *R/fcrosTopN.R
 c4531ec8476a14a2bedf6c924b3df52f *R/fcrosTtest.R
@@ -18,8 +18,8 @@ d2fa7901e94ab7acdad6926d86acc1cc *R/fvalTopN.R
 2106cc34f1cac554b3ae6fe1d410392a *R/fvalVolcanoPlot.R
 53e20770f6140eb3ef01be9271645cfe *R/histoPlot.R
 8a8d607b1cc645bab8b24085cd87f388 *R/moyStdCalc.R
-75be1a734a6a6b9d0452169d4c981605 *R/pfco.R
-43c6fa4b4e0e7ab6d50b92c3f5bd2e6b *R/pfcoMod.R
+a0790cfe56923c5fb2dab649e6d49c0f *R/pfco.R
+73e5b71ad559eafc0338433b8272af2d *R/pfcoMod.R
 e40f238244fc09bfa96dab5d1c5fcc86 *R/pvalTopN.R
 65d233c595cd0180fd19ab8a682a101d *R/pvalVolcanoPlot.R
 eb2652642483a4fe96936dba2bdf97db *R/rmatCalc.R
@@ -38,7 +38,7 @@ f8147e489774e12fa9c81f5b4a61c73d *man/cghData.Rd
 6d9d9cc4db391f23dafb468e95c6b3ff *man/chrSegment.rd
 7bb1b45b03def20db12c4590f3065ffd *man/dataSummary.rd
 569226b5faddb668555da916a0581c73 *man/fc2Calc.rd
-58d8106ab0df8ce93038bf8fb94d9f3c *man/fcros-package.Rd
+1a5e3d5f4d4a250b612772d09e90e404 *man/fcros-package.Rd
 a3ecda7f1008a5fb88dd273aded7fdae *man/fcros.Rd
 a814db5f0a71d518edffd3677e09d6ea *man/fcros2.Rd
 4945cac0d174136e43b987b30bc967c5 *man/fcrosFCmat.Rd
@@ -60,6 +60,6 @@ ff1d5b5e122c4622342aca4005b4b341 *man/rmatCalc.rd
 74a02be9809a34ad17e47d86f993c7b4 *man/rmatTrim.rd
 3716fe8005f81e6bf27b328bf244e7de *man/tprobaCalc.rd
 738a54617ecae54bb62ceae3a6285907 *man/voomReads.rd
-919ac0c509b631f00a950db6fb6a9549 *src/fcros.c
+a7aa0f7c15708a8cde602cf861ff0f17 *src/fcros.c
 afd1d463aaee643159a75679cc45f23d *src/fcros.h
 dec82ddee6248614f19e736788f941f9 *src/init.c

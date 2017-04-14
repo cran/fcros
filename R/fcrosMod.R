@@ -13,7 +13,7 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     }
     fc.mat <- matrix(c(rep(0,n*m)), ncol = m);
     fc.mat[,1:m] <- as.matrix(fc);
-    rvectFC <- c(fc.mat[,1:m]);
+    rvectC <- c(fc.mat[,1:m]);
 
     rmat <- apply(fc.mat, 2, rank, ties.method = "average")/n
 
@@ -30,10 +30,10 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
        rmat.val <- moyStdCalc(rvect, n, m2);
        moyV <- rmat.val$moyC;
        stdV <- rmat.val$stdC;
-       FC2 <- fc2Calc(rvectFC, n, m, idx, m2)
+       FC2 <- fc2Calc(rvectC, n, m, idx, m2)
        rm(rvect);
        rm(rmat.val);
-       rm(rvectFC);
+       rm(rvectC);
     }
     else {
          rmat.sr <- rmat;
@@ -43,10 +43,10 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
          rmat.val <- moyStdCalc(rvect, n, m2);
          moyV <- rmat.val$moyC;
          stdV <- rmat.val$stdC;
-         FC2 <- fc2Calc(rvectFC, n, m, idx, m2)
+         FC2 <- fc2Calc(rvectC, n, m, idx, m2)
          rm(rvect);
          rm(rmat.val);
-         rm(rvectFC);
+         rm(rvectC);
     }
 
     # compute vectors of f-values and p-values

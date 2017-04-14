@@ -68,7 +68,7 @@ void qSort(double *table, int p, int r) {
      } while (i<=j);
      if (p<j)	qSort(table,p,j);
      if (r>i)	qSort(table,i,r);
-}/* end of function qSort()  */
+} /* end of function qSort()  */
 
 SEXP rmat2(SEXP rvectC, SEXP nC, SEXP mC, SEXP idxC, SEXP m2C) {
 

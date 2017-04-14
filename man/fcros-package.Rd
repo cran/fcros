@@ -18,8 +18,8 @@
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.5.3\cr
-        Date: \tab 2017-04-03\cr
+        Version: \tab 1.5.4\cr
+        Date: \tab 2017-04-14\cr
         License: \tab GPL (>= 2)\cr
     }
        
