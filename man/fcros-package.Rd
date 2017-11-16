@@ -18,8 +18,8 @@
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.5.4\cr
-        Date: \tab 2017-04-14\cr
+        Version: \tab 1.5.5\cr
+        Date: \tab 2017-10-27\cr
         License: \tab GPL (>= 2)\cr
     }
        
@@ -72,6 +72,12 @@
          chrPlot(): \tab This function performs a plot of the chromosome probes data\cr
          chrPlot2(): \tab This function performs a plot of the chromosome segmentation results\cr
          voomReads(): \tab This function performs a transformation of the read counts\cr
+         tcnReads(): \tab This function performs a total count normalization of reads\cr
+         rankReads(): \tab The function to use with a dataset from two biological condition samples. 
+                  The\cr\tab dataset should be in a single table. The function rankReads() performs a\cr\tab 
+                  pairwise conparison of samples to obtain a matrix of fold changes. Small uniform\cr\tab
+                  values are added to read counts. This is repeated nrun time. The fold changes\cr\tab
+                  are sorted and their rank values are used to associate statistic with genes/probes.
     }
 }
 

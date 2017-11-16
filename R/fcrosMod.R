@@ -59,7 +59,7 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     delta <- (n-1)*mean(ris[-1]-ris[-n]);
 
     moy <- mean(ri);
-    std <- sd(ri);
+    std <- sqrt((n-1)/n)*sd(ri);
     f.value <- pnorm(ri, moy, std);
 
     # perform the Student one sample test

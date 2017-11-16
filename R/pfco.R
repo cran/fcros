@@ -73,17 +73,16 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     # compute symmetric matrix from rank values and its eigen values
     smat <- (t(rmat.sr) %*% rmat.sr)/n;
     smat.eig <- eigen(smat);
-    v1 <- smat.eig$vectors[,1];
-    if (v1[1] < 0) v1 <- -v1;
-    u1 <- rmat.sr %*% v1;
-    d1 <- sqrt(n * smat.eig$values[1])
-    u1 <- u1/d1
-    u1 <- u1/max(u1)
+    v <- smat.eig$vectors[,1:2];
+    if (v[1,1] < 0) v <- -v;
+    u1 <- mean(v[,1])*rmat.sr %*% v[,1];
+    u2 <- mean(v[,2])*rmat.sr %*% v[,2];
+    u1b <- u1 +  u2;
 
     # compute probabilities for u1 components using normal distribution
-    moy <- mean(u1)
-    std <- sd(u1)
-    f.value <- pnorm(u1, mean = moy, sd = std)
+    moy <- mean(u1b)
+    std <- sqrt((n-1)/n)*sd(u1b)
+    f.value <- pnorm(u1b, mean = moy, sd = std)
 
     # perform the Student one sample test
     em <- 0.5;
@@ -94,6 +93,6 @@ pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     comp.w <- comp / sum(comp);
     comp.wcum <- cumsum(comp.w);
 
-    list(idnames=idnames, FC=FC, FC2=FC2, u1=u1, f.value=f.value,
+    list(idnames=idnames, FC=FC, FC2=FC2, u1=u1b, f.value=f.value,
     p.value=p.value, comp=comp, comp.w=comp.w, comp.wcum=comp.wcum);
 }

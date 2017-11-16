@@ -83,7 +83,7 @@ fcros <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
 
     # compute f-value
     moy <- mean(ri);
-    std <- sd(ri);
+    std <- sqrt((n-1)/n)*sd(ri);
     f.value <- pnorm(ri, mean = moy, sd = std);
 
     # perform the Student one sample test to get p-values

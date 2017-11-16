@@ -2,8 +2,8 @@ Package: fcros
 Type: Package
 Title: A Method to Search for Differentially Expressed Genes and to
         Detect Recurrent Chromosomal Copy Number Aberrations
-Version: 1.5.4
-Date: 2017-04-03
+Version: 1.5.5
+Date: 2017-10-27
 Author: Doulaye Dembele
 Maintainer: Doulaye Dembele <doulaye@igbmc.fr>
 Depends: R (>= 3.1.0)
@@ -16,6 +16,6 @@ Description: A fold change rank based method is presented to search for genes wi
              probes detected.
 License: GPL (>= 2)
 NeedsCompilation: yes
-Packaged: 2017-04-14 08:23:33 UTC; doulaye
+Packaged: 2017-11-16 16:10:57 UTC; doulaye
 Repository: CRAN
-Date/Publication: 2017-04-14 14:03:46 UTC
+Date/Publication: 2017-11-16 18:29:06 UTC

@@ -54,8 +54,7 @@ void qSort(double *table, int p, int r) {
      int i, j, itmp;
      double x, tmp;
 
-     i=p;   j=r;     itmp = (i+j+1) / 2;
-     x = table[itmp];
+     i=p;   j=r;     itmp = (i+j+1) / 2;  x = table[itmp];
      do	{
         while (table[i] < x) 	i++;
         while (table[j] > x) 	j--;
