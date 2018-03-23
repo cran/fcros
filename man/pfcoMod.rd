@@ -59,8 +59,8 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Use of the Perron-Frobenius theorem in the analysis
-of high throughput biological data, Manuscript submitted}
+\references{Dembele D, Analysis of high biological data using their rank
+values, Stat Methods Med Res, 2018}
 
 \examples{
    data(fdata);

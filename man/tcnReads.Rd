@@ -23,7 +23,8 @@ in each sample.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Manuscript in Preparation}
+\references{Dembele D, Analysis of high biological data using their rank
+values, Stat Methods Med Res, 2018}
 
 \examples{
 #    data(fdata);

@@ -18,8 +18,8 @@
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.5.5\cr
-        Date: \tab 2017-10-27\cr
+        Version: \tab 1.5.6\cr
+        Date: \tab 2018-03-21\cr
         License: \tab GPL (>= 2)\cr
     }
        
@@ -88,8 +88,8 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
                     a new method for detecting differentially expressed 
                     genes, BMC Bioinformatics, 2014, 15:14\cr
 
-            Dembele D, Use of the Perron-Frobenius theorem in the analysis of the
-                    high-throughput biological data, Manuscript submitted}
+            Dembele D, Analysis of high biological data using their rank
+                    values, Stat Methods Med Res, 2018}
 
 \keyword{ package }
 

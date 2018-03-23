@@ -82,7 +82,8 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Manuscript in Preparation}
+\references{Dembele D, Analysis of high biological data using their rank
+values, Stat Methods Med Res, 2018}
 
 \examples{
 #    data(fdata);
