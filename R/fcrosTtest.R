@@ -1,7 +1,7 @@
 fcrosTtest <-
 function(xdata, cont, test, log2.opt = 0) {
     n <- nrow(xdata);
-    idnames <- xdata[,1];
+    idnames <- rownames(xdata);
     xcol <- colnames(xdata);
     n.xcol <- length(xcol);
     idx1 <- xcol %in% cont;

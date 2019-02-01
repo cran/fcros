@@ -19,7 +19,11 @@ vector form of the matrix of fold changes using pairwise comparison of data samp
 
 \references{Dembele D and Kaster P, Fold change rank ordering statistics:
                     a new method for detecting differentially expressed 
-                    genes, BMC bioinformatics, 2014, 15:14}
+                    genes, BMC bioinformatics, 2014, 15:14\cr
+
+            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
+                    a new method for detecting differentially expressed
+                    genes, BMC Bioinformatics, 2016, 17:462}
 
 \examples{
 #    data(fdata);

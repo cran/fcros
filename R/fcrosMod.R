@@ -1,53 +1,16 @@
-fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
-    # compute matrix of sorted FC ranks
+fcrosMod <-
+function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     n <- nrow(fcMat);
-    idnames <- fcMat[,1];      # first column is ID names
-    xcol <- colnames(fcMat);
-    n.xcol <- length(xcol);
-    idx <- xcol %in% samp;
-    m <- sum(idx)
-    if (log2.opt) {
-       fc <- log2(fcMat[, idx == TRUE]);
-    } else {
-       fc <- fcMat[, idx == TRUE];
-    }
-    fc.mat <- matrix(c(rep(0,n*m)), ncol = m);
-    fc.mat[,1:m] <- as.matrix(fc);
-    rvectC <- c(fc.mat[,1:m]);
+    idnames <- rownames(fcMat);
 
-    rmat <- apply(fc.mat, 2, rank, ties.method = "average")/n
+    # compute matrix of sorted FC ranks
+    fmod <- calcSRmatMod(fcMat, samp, log2.opt, trim.opt);
 
-    # if trim.opt > 0, reduce sorted rank matrix
-    if ((trim.opt > 0) & (trim.opt < 0.5)) {
-       deb <- round(trim.opt * m) + 1;
-       fin <- m - deb + 1;
-       idx <- deb:fin;
-       m2 <- length(idx);
-       rvect <- c(rmat[,1:m]);
-       rvect2 <- rmatTrim(rvect, n, m, idx, m2);
-       rmat.sr <- matrix(rvect2, ncol = m2);
-       rvect <- rvect2;
-       rmat.val <- moyStdCalc(rvect, n, m2);
-       moyV <- rmat.val$moyC;
-       stdV <- rmat.val$stdC;
-       FC2 <- fc2Calc(rvectC, n, m, idx, m2)
-       rm(rvect);
-       rm(rmat.val);
-       rm(rvectC);
-    }
-    else {
-         rmat.sr <- rmat;
-         m2 <- m;
-         idx <- 1:m2;
-         rvect <- c(rmat.sr[,1:m2]);
-         rmat.val <- moyStdCalc(rvect, n, m2);
-         moyV <- rmat.val$moyC;
-         stdV <- rmat.val$stdC;
-         FC2 <- fc2Calc(rvectC, n, m, idx, m2)
-         rm(rvect);
-         rm(rmat.val);
-         rm(rvectC);
-    }
+    rmat.sr <- fmod$rmat.sr;
+    moyV <- fmod$moyV;
+    stdV <- fmod$stdV;
+    FC2 <- fmod$FC2;
+    m2 <- fmod$m2;
 
     # compute vectors of f-values and p-values
     ri <- apply(rmat.sr, 1, mean);
@@ -72,8 +35,6 @@ fcrosMod <- function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     bounds <- c(lb,ub);
     params <- c(delta,moy,std);
     params_t <- c(delta_t,moy_t,std_t);
-    if (log2.opt) { FC2 <- apply(fc.mat, 1, mean, trim = trim.opt); }
-    else {FC2 <- apply(2^fc.mat, 1, mean, trim = trim.opt);}
 
     list(idnames = idnames, FC2 = FC2, ri = ri, p.value = p.value, f.value = f.value,
     bounds = bounds, params = params, params_t = params_t)

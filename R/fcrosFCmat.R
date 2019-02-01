@@ -1,13 +1,13 @@
 fcrosFCmat <-
 function(xdata, cont, test, log2.opt = 0, trim.opt = 0.25) {
     n <- nrow(xdata);
-    idnames <- xdata[,1]; # first column is unique ID
+    idnames <- rownames(xdata);
     xcol <- colnames(xdata);
     n.xcol <- length(xcol);
     idx1 <- xcol %in% cont;
-    m1 <- sum(idx1 == TRUE);
+    m1 <- sum(idx1);
     idx2 <- xcol %in% test;
-    m2 <- sum(idx2 == TRUE);
+    m2 <- sum(idx2);
     m <- m1+m2;
     m1m2 <- m1*m2;
 
@@ -16,15 +16,15 @@ function(xdata, cont, test, log2.opt = 0, trim.opt = 0.25) {
     x1 <- matrix(c(rep(0,n*m1)), ncol = m1);
     x2 <- matrix(c(rep(0,n*m2)), ncol = m2);
     if (log2.opt) {
-         x1 <- log2(xdata[,idx1 == TRUE]);
+         x1 <- log2(xdata[,idx1]);
     } else {
-         x1 <- xdata[,idx1 == TRUE];
+         x1 <- xdata[,idx1];
     }
     dmat[,1:m1] <- as.matrix(x1);
     if (log2.opt) {
-         x2 <- log2(xdata[,idx2 == TRUE]);
+         x2 <- log2(xdata[,idx2]);
     } else {
-         x2 <- xdata[,idx2 == TRUE];
+         x2 <- xdata[,idx2];
     }
     dmat[,(m1+1):m] <- as.matrix(x2);
 

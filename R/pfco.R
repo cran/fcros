@@ -1,98 +1,45 @@
 pfco <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
-    n <- nrow(xdata);
-    idnames <- xdata[,1];   # first column is unique ID for genes
-    xcol <- colnames(xdata);
-    n.xcol <- length(xcol);
-    idx1 <- xcol %in% cont;
-    m1 <- sum(idx1 == TRUE);
-    idx2 <- xcol %in% test;
-    m2 <- sum(idx2 == TRUE);
-    m <- m1+m2;
-    m1m2 <- m1*m2;
+   n <- nrow(xdata);
+   idnames <- rownames(xdata);
+   xcol <- colnames(xdata);
+   n.xcol <- length(xcol);
+   idx1 <- xcol %in% cont;
+   m1 <- sum(idx1);
+   idx2 <- xcol %in% test;
+   m2 <- sum(idx2);
 
-    # form data matrix
-    fmat <- matrix(c(rep(0,n*m)), ncol = m);
-    x1 <- matrix(c(rep(0,n*m1)), ncol = m1);
-    x2 <- matrix(c(rep(0,n*m2)), ncol = m2);
-    if (log2.opt) {
-         x1 <- log2(xdata[, idx1 == TRUE]);
-    } else {
-         x1 <- xdata[, idx1 == TRUE];
-    }
-    fmat[,1:m1] <- as.matrix(x1);
-    if (log2.opt) {
-         x2 <- log2(xdata[, idx2 == TRUE]);
-    } else {
-         x2 <- xdata[, idx2 == TRUE];
-    }
-    fmat[,(m1+1):m] <- as.matrix(x2);
+   # compute matrix of sorted FC ranks
+   rankmat <- calcSRmat(xdata, cont, test, log2.opt, trim.opt);
+   rmat.sr <- rankmat$rmat.sr;
+   FC <- rankmat$FC;
+   FC2 <- rankmat$FC2;
+   moyV <- rankmat$moyV;
+   stdV <- rankmat$stdV;
+   m2c <- rankmat$m2c;
 
-    # compute matrix containing pairwise fold changes
-    fvect <- c(fmat[, 1:m])
+   # compute symmetric matrix from rank values and its eigen values
+   smat <- (t(rmat.sr) %*% rmat.sr)/n;
+   smat.eig <- eigen(smat);
+   v <- smat.eig$vectors[,1:2];
+   if (v[1,1] < 0) v <- -v;
+   u1 <- mean(v[,1])*rmat.sr %*% v[,1];
+   u2 <- mean(v[,2])*rmat.sr %*% v[,2];
+   u1b <- u1 +  u2;
 
-    rmat.val <- rmatCalc(fvect, n, m1, m2);
-    rmat <- matrix(rmat.val$rvectC, ncol = m1m2);
-    FC <- rmat.val$FCC;
-    rvectC <- rmat.val$rvectC;
+   # compute probabilities for u1 components using normal distribution
+   moy <- mean(u1b)
+   std <- sqrt((n-1)/n)*sd(u1b)
+   f.value <- pnorm(u1b, mean = moy, sd = std)
 
-    # compute the standard ranks matrix
-    rmat.s <- (apply(rmat, 2, rank, ties.method = "average"))/n;
+   # perform the Student one sample test
+   em <- 0.5;
+   p.value <- tprobaCalc(moyV, stdV, n, m2c-1, em);
 
-    # if (trim.opt), reduce the standard rank matrix
-    if ((trim.opt > 0) & (trim.opt < 0.5)) {
-       deb <- round(trim.opt * m1m2) + 1;
-       fin <- m1m2 - deb + 1;
-       idx <- deb:fin;
-       m2 <- length(idx);
-       rvect <- c(rmat.s[,1:m1m2]);
-       rvect2 <- rmatTrim(rvect, n, m1m2, idx, m2);
-       rmat.sr <- matrix(rvect2, ncol = m2);
-       rvect <- rvect2;
-       rmat.val <- moyStdCalc(rvect, n, m2);
-       moyV <- rmat.val$moyC;
-       stdV <- rmat.val$stdC;
-       FC2 <- fc2Calc(rvectC, n, m1m2, idx, m2);
-       rm(rvect);
-       rm(rmat.val);
-       rm(rvectC);
-    }
-    else {
-         rmat.sr <- rmat.s;
-         m2 <- m1m2;
-         idx <- 1:m2;
-         rvect <- c(rmat.sr[,1:m2]);
-         rmat.val <- moyStdCalc(rvect, n, m2);
-         moyV <- rmat.val$moyC;
-         stdV <- rmat.val$stdC;
-         FC2 <- fc2Calc(rvectC, n, m1m2, idx, m2);
-         rm(rvect);
-         rm(rmat.val);
-         rm(rvectC);
-    }
+   # decomposition parameters
+   comp <- sqrt(smat.eig$values);
+   comp.w <- comp / sum(comp);
+   comp.wcum <- cumsum(comp.w);
 
-    # compute symmetric matrix from rank values and its eigen values
-    smat <- (t(rmat.sr) %*% rmat.sr)/n;
-    smat.eig <- eigen(smat);
-    v <- smat.eig$vectors[,1:2];
-    if (v[1,1] < 0) v <- -v;
-    u1 <- mean(v[,1])*rmat.sr %*% v[,1];
-    u2 <- mean(v[,2])*rmat.sr %*% v[,2];
-    u1b <- u1 +  u2;
-
-    # compute probabilities for u1 components using normal distribution
-    moy <- mean(u1b)
-    std <- sqrt((n-1)/n)*sd(u1b)
-    f.value <- pnorm(u1b, mean = moy, sd = std)
-
-    # perform the Student one sample test
-    em <- 0.5;
-    p.value <- tprobaCalc(moyV, stdV, n, m2-1, em);
-
-    # decomposition parameters
-    comp <- sqrt(smat.eig$values);
-    comp.w <- comp / sum(comp);
-    comp.wcum <- cumsum(comp.w);
-
-    list(idnames=idnames, FC=FC, FC2=FC2, u1=u1b, f.value=f.value,
+   list(idnames=idnames, FC=FC, FC2=FC2, ri=u1b, f.value=f.value,
     p.value=p.value, comp=comp, comp.w=comp.w, comp.wcum=comp.wcum);
 }

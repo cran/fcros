@@ -3,8 +3,8 @@
 
 \title{Calculation of the Student one sample test probabilities}
 
-\description{This is an internal function for using a C code for
-performing a Student one sample test for each row of the full or 
+\description{This is an internal function for using a C code to
+perform a Student one sample test for each row of the full or
 reduced matrix with sorted rank values.}
 
 \usage{tprobaCalc(moy, std, n, dl, em)}
@@ -21,8 +21,8 @@ reduced matrix with sorted rank values.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Analysis of high biological data using their rank 
-values, Stat Methods Med Res, 2018}
+\references{Dembele D, Analysis of high biological data using their rank
+                    values, Stat Methods Med Res, accepted for publication, 2018}
 
 \examples{
 #    data(fdata);

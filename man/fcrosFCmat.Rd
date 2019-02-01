@@ -3,18 +3,16 @@
 
 \title{Calculation of a matrix of fold changes using pairwise comparisons}
 
-\description{This function allows to compute a matrix of fold changes
-using pairwise comparisons of a two biological conditions dataset.
-This function is used internally by fcros2()}
+\description{This function is used internally by fcros2() to compute a matrix 
+of fold changes using pairwise comparisons of a two biological conditions dataset.}
 
 \usage{fcrosFCmat(xdata, cont, test, log2.opt=0, trim.opt=0.25)}
 
 \arguments{
   \item{xdata}{ A table containing a two biological conditions
                 dataset to process for obtaining a matrix of fold changes
-                that results from pairwise comparisons of samples:
-                \code{xdata}. The first column of the matrix "xdata"
-                should contain the gene IDs or symbols.}
+                that results from pairwise comparisons of samples.
+                The rownames of xdata are used for the output idnames.}
   \item{cont}{ A vector containing label names of the control samples:
        \code{cont} = c("cont01", "cont02", ...)}
   \item{test}{ A vector containing label names of the test samples:
@@ -25,7 +23,7 @@ This function is used internally by fcros2()}
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
                    that 25\% of the lower and the upper rank values of each gene
                    are not used for computing the statistic "ri" or "u1", i.e. the
-                   inter-quartile rank values are averaged: 
+                   interquartile rank values are averaged:
                    \code{trim.opt} = 0.25}
 }
 
@@ -52,10 +50,16 @@ contain other label names not used.}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
                     a new method for detecting differentially expressed 
-                    genes, BMC Bioinformatics, 2014, 15:14}
+                    genes, BMC Bioinformatics, 2014, 15:14\cr
+
+            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
+                    a new method for detecting differentially expressed
+                    genes, BMC Bioinformatics, 2016, 17:462}
 
 \examples{
    data(fdata);
+
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");

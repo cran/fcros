@@ -1,4 +1,4 @@
-chrSegment = function(chrData, nd = 10) {
+chrSegment <- function(chrData, nd = 10) {
     #### get fcros/pfco segmentation values
     fcall <- chrData$f.call
     idx_d <- which(fcall == -1)

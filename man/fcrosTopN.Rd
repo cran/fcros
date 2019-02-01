@@ -12,9 +12,8 @@ fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().}
 
 \arguments{
   \item{af}{ This is an output object obtained using the functions fcros(),
-        fcros2(), fcrosMod(), pfco() or pfcoMod(): \code{f.value}}
-  \item{topN}{ The expected number of the top DE genes in the dataset used: 
-               \code{topN}}
+        fcros2(), fcrosMod(), pfco() or pfcoMod().}
+  \item{topN}{ The expected number of the top DE genes in the dataset used.}
 }
 
 \value{ This function returns a data frame containing 2 components
@@ -31,6 +30,8 @@ fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().}
 
 \examples{
    data(fdata);
+
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");

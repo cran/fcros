@@ -30,9 +30,9 @@ number GSE17907.}
   }
 }
 
-\details{This dataset is obtained using array Comparative Genomic
-Hybridization technology. Agilent 244K design arrays have been used
-to monitor breast cancer patients, see reference below for details.}
+\details{This is a subset of a complete dataset obtained using array 
+Comparative Genomic Hybridization technology. Agilent 244K design arrays 
+have been used to monitor breast cancer patients.}
 
 \references{F Sircoulomb, I Bekhouche, P Finetti, J Adelaide, AB Hamida, 
 J Bonansea, S Raynaud, C Innocenti, E Charafe-Jauffret, C Tarpin, FB Ayed,

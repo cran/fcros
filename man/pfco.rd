@@ -21,8 +21,7 @@
 \arguments{
   \item{xdata}{ A matrix or a table containing two biological conditions
                 dataset to process for detecting differentially expressed
-                genes: \code{xdata}. The first column of the matrix "xdata" 
-                should contain the gene IDs or their names.}
+                genes. The rownames of xdata are used for the output idnames.}
   \item{cont}{ A vector containing the label names of the control samples:
                \code{cont} = c("cont01", "cont02", ...).}
   \item{test}{ A vector containing the label names of the test samples:
@@ -32,7 +31,7 @@
               \code{log2.opt} = 0}
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
               that 25\% of the lower and the upper rank values of each gene are not
-              used for computing its statistics "ri", i.e. the inter-quartile range
+              used for computing its statistics "ri", i.e. the interquartile range
               rank values are averaged: \code{trim.opt} = 0.25}
 }
 
@@ -42,7 +41,7 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \value{ This function returns a data frame containing 9 components
     \item{idnames}{ A vector containing the list of IDs or symbols associated with genes}
-    \item{u1 }{The average of rank values associated with genes.
+    \item{ri }{The average of rank values associated with genes.
              These values are rank values statistics leading to f-values
              and p-values.}
     \item{FC }{The fold changes for genes in the dataset. These fold changes are
@@ -65,10 +64,11 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
 \references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, 2018}
+values, Stat Methods Med Res, accepted for publication, 2018}
 
 \examples{
    data(fdata);
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");

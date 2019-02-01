@@ -21,7 +21,7 @@ read.csv2(), read.delim() or read.delim2()) to read your dataset.}
 
 \examples{
   # generate random dataset of size 100 x 5
-  xdata = matrix(c(rep(0,600)), ncol = 6);
+  xdata <- matrix(c(rep(0,600)), ncol = 6);
 
   xdata[,2:6] <- matrix(rnorm(500,0,1), ncol = 5);
 

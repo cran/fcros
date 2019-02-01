@@ -6,7 +6,7 @@
 \description{Given a data table x with count reads, one column for each
 sample, this function adjust values in such a way they become comparable
 between samples. User can specify the maximum value for total count reads
-in each sample.}
+to be used for each sample.}
 
 \usage{tcnReads(x, maxVal=0)}
 
@@ -24,7 +24,9 @@ in each sample.}
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
 \references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, 2018}
+                    values, Stat Methods Med Res, accepted for publication, 2018\cr
+
+        Dembele D, manuscript under preparation}
 
 \examples{
 #    data(fdata);

@@ -20,8 +20,7 @@
   \item{fcMat}{ A matrix containing fold changes or ratios from a biological
                 dataset to process for searching differentially expressed
                 genes or for detecting recurrent copy number aberrations 
-                regions: \code{fcMat}. The first column of the matrix "fcMat" 
-                should contain the gene IDs or symbols.}
+                regions. The rownames of fcMat are used for the output idnames.}
   \item{samp}{ A vector of sample label names which should appear in the columns
                of the matrix fcMat: \code{samp}.}
   \item{log2.opt}{ A scalar equals to 0 or 1. The value 0 (default) means that
@@ -30,7 +29,7 @@
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
                 that 25\% of the lower and the upper rank values for each gene 
                 are not used for computing the statistic "ri", i.e. the 
-                inter-quartile range rank values are averaged:
+                interquartile range rank values are averaged:
                 \code{trim.opt} = 0.25}
 }
 
@@ -64,10 +63,11 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
 \references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, 2018}
+values, Stat Methods Med Res, accepted for publication, 2018}
 
 \examples{
    data(fdata);
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");
@@ -78,8 +78,9 @@ values, Stat Methods Med Res, 2018}
    fc <- fcrosFCmat(fdata, cont, test, log2.opt, trim.opt);
    m <- ncol(fc$fcMat)
    samp <- paste("Col",as.character(1:m), sep = "");
-   fc.val <- cbind(fdata[,1], data.frame(fc$fcMat))
-   colnames(fc.val) <- c("ID", samp)
+   fc.val <- cbind(data.frame(fc$fcMat))
+   colnames(fc.val) <- samp
+   rownames(fc.val) <- fdata[,1]
 
    af <- fcrosMod(fc.val, samp, log2.opt, trim.opt);
 

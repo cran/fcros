@@ -19,12 +19,10 @@
 \arguments{
     \item{xdata1}{ A matrix or a table containing two biological conditions
                    dataset to process for detecting differentially expressed
-                   genes: \code{xdata1}. The first column of the matrix "xdata1" 
-                   should contain the gene IDs or symbols.}
+                   genes. The rownames of xdata1 are used for the output idnames.}
     \item{xdata2}{ A matrix or a table containing two biological conditions
                    dataset to process fordetecting differentially expressed
-                   genes: \code{xdata2}. The first column of the matrix "xdata2" 
-                   should contain the gene IDs or symbols.}
+                   genes: \code{xdata2}. }
   \item{cont}{ A vector containing the label names of the control samples:
        \code{cont} = c("cont01", "cont02", ...)}
   \item{test}{ A vector containing the label names of the test samples:
@@ -35,7 +33,7 @@
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
                    that 25\% of the lower and  the upper rank values for a gene
                    are not used for computing  the statistics "ri", i.e. the 
-                   inter-quartile range
+                   interquartile range
                    rank values are averaged: \code{trim.opt} = 0.25}
 }
 
@@ -77,10 +75,16 @@ used in xdata1 and xdata2.}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
              a new method for detecting differentially expressed genes, 
-             BMC Bioinformatics, 2014, 15:14}
+             BMC Bioinformatics, 2014, 15:14\cr
+
+            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
+                    a new method for detecting differentially expressed
+                    genes, BMC Bioinformatics, 2016, 17:462}
 
 \examples{
    data(fdata);
+
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont02", "cont03", "cont04", "cont05",
              "cont06", "cont07", "cont08", "cont09", "cont10");
@@ -92,6 +96,9 @@ used in xdata1 and xdata2.}
    # perform fcros2()
    xdata1 <- fdata[,c(2:5, 12:17)];
    xdata2 <- fdata[,c(6:11, 18:21)];
+   rownames(xdata1) <- fdata[,1];
+   rownames(xdata2) <- fdata[,1];
+
    af2 <- fcros2(xdata1, xdata2, cont, test, log2.opt, trim.opt);
 
    # now select top 20 down and/or up regulated genes
@@ -118,14 +125,14 @@ used in xdata1 and xdata2.}
    # now plot down regulated genes
    t <- 1:20;
    op = par(mfrow = c(2,1));
-   plot(t, data.down[1,2:21], type = "l", col = "blue", xlim = c(1,20), 
+   plot(t, data.down[1,2:21], type = "l", col = "blue", xlim = c(1,20),
         ylim = c(0,18), main = "Top down-regulated genes");
    for (i in 2:ndown) {
        lines(t,data.down[i,2:21], type = "l", col = "blue")
    }
 
    # now plot down and up regulated genes
-   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20), 
+   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20),
        ylim = c(0,18), main = "Top up-regulated genes");
    for (i in 2:nup) {
        lines(t, data.up[i,2:21], type = "l", col = "red")

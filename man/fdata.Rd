@@ -5,7 +5,7 @@
 
 \title{Example of dataset for the fcros package.}
 
-\description{This is a synthetic dataset generated using the R package "madsim"
+\description{This is a synthetic dataset generated using the "madsim" R package 
 (available from the CRAN web site).
 Two biological conditions data matrix using 10,000 genes and 20
 samples (10 control and 10 test samples) were simulated.
@@ -54,11 +54,13 @@ Microarrays, 2013, v.2, n.2, pp.115-130}
 \examples{
    data(fdata)
 
-   op = par(mfrow = c(2,1));
+   rownames(fdata) <- fdata[,1];
+
+   op <- par(mfrow = c(2,1));
 
    #  perform MA plot using samples "cont01" and "cont05"
-   A1 = 0.5*(fdata$cont01 + fdata$cont05);
-   M1 = fdata$cont05 - fdata$cont01;
+   A1 <- 0.5*(fdata$cont01 + fdata$cont05);
+   M1 <- fdata$cont05 - fdata$cont01;
 
    plot(A1, M1, col="red", xlim=c(2,18), ylim=c(-5,5),
             main="MA plot with two control samples");
@@ -67,8 +69,8 @@ Microarrays, 2013, v.2, n.2, pp.115-130}
    lines(x = c(2,18), y = c(1,1), col = "blue")
 
    #  perform MA plot using samples "cont01" and "test05"
-   A2 = 0.5*(fdata$cont01 + fdata$test05);
-   M2 = fdata$test05 - fdata$cont01;
+   A2 <- 0.5*(fdata$cont01 + fdata$test05);
+   M2 <- fdata$test05 - fdata$cont01;
 
    plot(A2, M2, col="red", xlim=c(2,18), ylim=c(-5,5),
             main="MA plot with one control and one test samples");

@@ -13,8 +13,7 @@ fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().}
 \arguments{
   \item{fval}{ This is a f-values vector obtained using the functions fcros(),
         fcros2(), fcrosMod(), pfco() or pfcoMod(): \code{fval = af$f.value}}
-  \item{topN}{ The expected number of the top DE genes/probes in the dataset used:
-               \code{topN}}
+  \item{topN}{ The expected number of the top DE genes/probes in the dataset used.}
 }
 
 \value{ This function returns a data frame containing 2 components
@@ -27,10 +26,15 @@ fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().}
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
             a new method for detecting differentially expressed genes,
-            BMC Bioinformatics, 2014, 15:14}
+            BMC Bioinformatics, 2014, 15:14\cr
+
+            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
+                    a new method for detecting differentially expressed
+                    genes, BMC Bioinformatics, 2016, 17:462}
 
 \examples{
    data(fdata);
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");

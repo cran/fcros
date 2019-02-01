@@ -18,8 +18,8 @@
     \tabular{ll}{
         Package: \tab fcros\cr
         Type: \tab Package\cr
-        Version: \tab 1.5.6\cr
-        Date: \tab 2018-03-21\cr
+        Version: \tab 1.6\cr
+        Date: \tab 2019-02-01\cr
         License: \tab GPL (>= 2)\cr
     }
        
@@ -45,7 +45,7 @@
                   statistic\cr\tab with genes/probes using a singular value decomposition.\cr
          fcrosFCmat(): \tab This function allows to compute a matrix of fold changes using\cr\tab
                    pairwise comparisons of the two biological condition samples in a dataset.\cr
-         fcrosTtest(): \tab This function allows to use the Student t-test to calculate p-values\cr\tab 
+         fcrosTtest(): \tab This function allows to use the Student t-test to calculate p-values\cr\tab
                   for the genes in a dataset.\cr
          fcrosRead(): \tab This function allows to read a tab delimited text file to be use as an\cr\tab 
                   input for the function fcros(), fcros2() or fcrosMod().\cr
@@ -77,7 +77,10 @@
                   The\cr\tab dataset should be in a single table. The function rankReads() performs a\cr\tab 
                   pairwise conparison of samples to obtain a matrix of fold changes. Small uniform\cr\tab
                   values are added to read counts. This is repeated nrun time. The fold changes\cr\tab
-                  are sorted and their rank values are used to associate statistic with genes/probes.
+                  are sorted and their rank values are used to associate statistic with genes/probes.\cr
+         scoreThr(): \tab Using the log10 transformed score values obtained with the rankReads(),
+                  this function\cr\tab computes numerically the inflection point value given lower
+                  and upper bound\cr\tab values for the slope region.
     }
 }
 
@@ -88,13 +91,19 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
                     a new method for detecting differentially expressed 
                     genes, BMC Bioinformatics, 2014, 15:14\cr
 
+            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
+                    a new method for detecting differentially expressed
+                    genes, BMC Bioinformatics, 2016, 17:462\cr
+
             Dembele D, Analysis of high biological data using their rank
-                    values, Stat Methods Med Res, 2018}
+                    values, Stat Methods Med Res, accepted for publication, 2018}
 
 \keyword{ package }
 
 \examples{
    data(fdata);
+
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");
@@ -109,9 +118,6 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
 
    # save fcros values in a file
    fcrosWrite(af, file = "test2delete_values.txt");
-   
-   # save fcros parameters in a file
-   fcrosWrite(af, file = "test2delete_params.txt", values = FALSE);
 
    # now select top 20 down and/or up regulated genes
    top20 <- fcrosTopN(af, 20);

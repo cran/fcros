@@ -1,96 +1,65 @@
-rankReads <- function(xdata, cont, test, nrun=10, err=0.01, trim.opt=0.25, rseed=57) {
+rankReads <- function(xdata, cont, test, meth=0, Ttimes=10, err=0.1,
+                             trim.opt=0.25, rseed=60) {
     n <- nrow(xdata);
-    idnames <- xdata[,1];   # first column is unique ID for genes
+    idnames <- rownames(xdata);
     xcol <- colnames(xdata);
     n.xcol <- length(xcol);
     idx1 <- xcol %in% cont;
-    m1 <- sum(idx1 == TRUE);
+    m1 <- sum(idx1);
     idx2 <- xcol %in% test;
-    m2 <- sum(idx2 == TRUE);
+    m2 <- sum(idx2);
     m <- m1+m2;
-    m1m2 <- m1*m2;
 
     # adjust uniform value level if necessary
-    if ((err < 0) || (err > 1)) err <- 0.01;
+    if ((err < 0) || (err > 1)) err <- 0.1;
 
     # form data matrix
     fmat <- matrix(c(rep(0,n*m)), ncol = m);
-    x1 <- xdata[, idx1 == TRUE];
+    x1 <- xdata[, idx1];
     fmat[,1:m1] <- as.matrix(x1);
-    x2 <- xdata[, idx2 == TRUE];
+    x2 <- xdata[, idx2];
     fmat[,(m1+1):m] <- as.matrix(x2);
+    colnames(fmat) <- c(cont, test);
+    rownames(fmat) <- rownames(xdata)
 
     set.seed(rseed);
-    # compute rank statistics
-    if (nrun <= 0) {
-        fmat3 <- log2(fmat + matrix(c(runif(n*m, 0, err)), ncol=m))
-        fvect <-  c(fmat3)
-        rvect <- rmatCalc(fvect, n, m1, m2);
-        rmat <- matrix(rvect$rvectC, ncol=m1*m2);
-        rmat2 <- apply(rmat, 2, rank, ties.method = "average")/n;
-        ri <- apply(rmat2, 1, mean, trim.opt);
-        FC  <- rvect$FCC;
-        FC2 <- apply(2^rmat, 1, mean, trim.opt);
-        score <- rep(1, n);
-        deb <- round(trim.opt*m1m2) + 1;
-        fin <- m1m2 - deb + 1;
-        idx <- deb:fin;
-        rmat3 <- t(apply(rmat2, 1, sort));
-        rmat4 <- rmat3[, idx];
-        ri.std <- apply(rmat4, 1, sd);
-    } else {
-        for (r in 1:nrun) {
-            fmat3 <- log2(fmat + matrix(c(runif(n*m, 0, err)), ncol=m))
-            fvect <-  c(fmat3)
-            rvect <- rmatCalc(fvect, n, m1, m2);
-            rmat <- matrix(rvect$rvectC, ncol=m1*m2);
-            rmat2 <- apply(rmat, 2, rank, ties.method = "average")/n;
-            if (r==1) {
-               riMat <- apply(rmat2, 1, mean, trim.opt);
-               fcMat <- rvect$FCC;
-               fcMat2 <- apply(2^rmat, 1, mean, trim.opt)
-            } else {
-               ri <- apply(rmat2, 1, mean, trim.opt);
-               fc2 <- apply(2^rmat, 1, mean, trim.opt);
-               riMat <- cbind(riMat, ri);
-               fcMat <- cbind(fcMat, rvect$FCC);
-               fcMat2 <- cbind(fcMat2, fc2);
-            }
-        }
-        ri <- apply(riMat, 1, mean);
-        ri.std <- apply(riMat, 1, sd);
-        mt <- m1+m2-2*round(trim.opt*(m1+m2));
-        yi <- 12*(mt)*ri.std^2;
-        score <- pf(yi, mt-1, mt-1);
-        FC <- apply(fcMat, 1, mean);
-        FC2 <- apply(fcMat2, 1, mean);
+    if (Ttimes > 0) { # perform Ttimes runs
+       rmat <- matrix(0, nrow=n, ncol=Ttimes)
+       for (i in 1:Ttimes) {
+           fmat2 <- fmat + matrix(c(runif(n*m, 0, err)), ncol=m);
+           if (meth == 0) {
+              rmat.tmp <- (apply(fmat2, 2, rank, ties.method = "average"))/n;
+              rmat[,i] <- apply(rmat.tmp, 1, mean, trim.opt)
+           }
+           else {
+              tmp <- log2(fmat2)
+              af <- pfco(tmp, cont, test, trim.opt=trim.opt);
+              rmat[,i] <- af$ri;
+           }
+       }
+       moy <- apply(rmat, 1, mean);
+       std <- apply(rmat, 1, sd);
+       if (meth) {
+          stat <- 12*Ttimes*std^2;
+          pval <- pf(stat, Ttimes-1, Ttimes);
+          moyT <- mean(moy)
+          stdT <- sqrt((n-1)/n)*sd(moy)
+          f.value <- pnorm(moy, mean = moyT, sd = stdT)
+          FC <- af$FC; FC2 <- af$FC2; p.value <- af$p.value; ri <- af$ri;
+
+          list(idnames=idnames, FC=FC, FC2=FC2, ri=ri, f.value=f.value,
+                                p.value=p.value, score=pval);
+       } else {
+          score <- std/moy;
+
+          list(idnames=idnames, moy=moy, score=score);
+       }
+    } else { # allow to perform one run of the fcros method only
+       fmat2 <- log2(fmat + matrix(c(runif(n*m, 0, err)), ncol=m));
+       af <- pfco(fmat2, cont, test, trim.opt=trim.opt);
+
+       list(idnames=af$idnames, FC=af$FC, FC2=af$FC2, ri=af$ri, 
+            f.value=af$f.value, p.value=af$p.value, bounds=af$bounds, 
+            params=af$params, params_t=af$params_t);
     }
-    # sort ranks average values
-    ris <- sort(ri);
-
-    # compute parameters
-    lb <- n*ris[1];
-    ub <- n*ris[n];
-    delta <- (n-1)*mean(ris[-1]-ris[-n]);
-
-    # compute f-value
-    moy <- mean(ri);
-    std <- sqrt((n-1)/n)*sd(ri);
-    f.value <- pnorm(ri, moy, std);
-
-    # perform the Student one sample test to get p-values
-    mt <- round((1-2*trim.opt)*m1m2);
-    em <- 0.5;
-    p.value <- tprobaCalc(ri, ri.std, n, mt-1, em);
-
-    moy_t <- (lb+ub)/(2*n);
-    delta_t <- (ub-lb)/(n-1);
-    std_t <- delta_t/sqrt(12);
-    bounds <- c(lb, ub);
-    params <- c(delta, moy, std);
-    params_t <- c(delta_t, moy_t, std_t);
-
-    list(idnames=idnames, FC=FC, FC2=FC2, ri=ri, f.value=f.value,
-    p.value=p.value, bounds=bounds, params=params, params_t=params_t, 
-    score=score);
 }

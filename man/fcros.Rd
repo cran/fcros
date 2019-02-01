@@ -20,8 +20,7 @@
 \arguments{
   \item{xdata}{ A matrix or a table containing two biological conditions
                 dataset to process for detecting differentially expressed
-                genes: \code{xdata}. The first column of the matrix "xdata" 
-                should contain the gene IDs or their names.}
+                genes. The rownames of xdata are used for the output idnames.}
   \item{cont}{ A vector containing the label names of the control samples:
                \code{cont} = c("cont01", "cont02", ...).}
   \item{test}{ A vector containing the label names of the test samples:
@@ -31,7 +30,7 @@
               \code{log2.opt} = 0}
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
               that 25\% of the lower and the upper rank values of each gene are not
-              used for computing its statistics "ri", i.e. the inter-quartile range
+              used for computing its statistics "ri", i.e. the interquartile range
               rank values are averaged: \code{trim.opt} = 0.25}
 }
 
@@ -70,11 +69,16 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
                     a new method for detecting differentially expressed 
-                    genes, BMC Bioinformatics, 2014, 15:14}
+                    genes, BMC Bioinformatics, 2014, 15:14\cr
+
+            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
+                    a new method for detecting differentially expressed
+                    genes, BMC Bioinformatics, 2016, 17:462}
 
 \examples{
    data(fdata);
 
+   rownames(fdata) <- fdata[,1];
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");
    log2.opt <- 0;

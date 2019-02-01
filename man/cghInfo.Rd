@@ -26,8 +26,8 @@ Expression Omnibus website and accession number GSE17907.}
   }
 }
 
-\details{These information data are obtained from the Agilent 244K design array
-probes description file, see reference below for details.}
+\details{This is a part of information obtained from the Agilent 244K design array
+probes description file.}
 
 \references{F Sircoulomb, I Bekhouche, P Finetti, J Adelaide, AB Hamida,
 J Bonansea, S Raynaud, C Innocenti, E Charafe-Jauffret, C Tarpin, FB Ayed,

@@ -13,9 +13,8 @@
 
 \arguments{
   \item{xdata}{ A table containing a two biological conditions
-          dataset to process for detecting differentially expressed genes:
-          \code{xdata}. The first column of the dataset "xdata"
-          should be gene IDs or symbols}
+          dataset to process for detecting differentially expressed genes.
+          The rownames of xdata are used for the output idnames.}
   \item{cont}{ A vector containing the label names of the control samples:
        \code{cont} = c("cont01", "cont02", ...)}
   \item{test}{ A vector containing the label names of the test samples:
@@ -29,6 +28,7 @@ column label names of the data matrix "xdata". It is not necessary to use all
 column label names of the dataset "xdata".}
 
 \value{     
+    \item{idnames}{ A vector containing the list of IDs or symbols associated with genes}
     \item{FC }{The fold changes for the genes in the dataset.}
     \item{stat }{The Student t-test statistics associated with genes.}
     \item{p.value }{The Student t-test p-values associated with genes.}
@@ -38,6 +38,8 @@ column label names of the dataset "xdata".}
 
 \examples{
    data(fdata);
+
+   rownames(fdata) <- fdata[,1];
 
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");

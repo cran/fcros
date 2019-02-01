@@ -5,12 +5,10 @@
 
 \description{This function creates a tab-delimited text file with the
 results of the function fcros(), fcros2(), fcrosMod(), pfco() or pfcoMod().
-Two kind of files can be obtained. In the first, the results of the parameters
-"idnames", "ri" ("u1"), "FC", "FC2", "f.value" and "p.value" are saved. 
-In the second, the results of the parameters "lb", "ub", "delta", "meand" 
-and "sd" (fcros) or "comp", "comp.w" and "comp.wcum" (pfco()) are saved.}
+The results are the values associated with the parameters
+"idnames", "ri", "FC", "FC2", "f.value" and "p.value".}
 
-\usage{fcrosWrite(af, file = "fcrosResults.txt", values = TRUE, thr = 1)}
+\usage{fcrosWrite(af, file = "fcrosResults.txt", thr = 1)}
 
 \arguments{
   \item{af}{ An output object of the functions fcros(), fcros2(), fcrosMod(), 
@@ -20,11 +18,6 @@ and "sd" (fcros) or "comp", "comp.w" and "comp.wcum" (pfco()) are saved.}
              \code{af = pfco(xdata, cont, test, log2.opt, trim.opt)}}
   \item{file}{ The output file name:
              \code{file = "fcrosResults.txt"}}
-  \item{values}{ A flag allowing to create a file with the parameters "ri" (or "u1"), 
-                 "FC", "FC2", "f.value" and "p.value" (default) or with the parameters
-                 "lb", "ub", "delta", "meand" and "sd" (fcros() case) or with the
-                 parameters "comp", "comp.w" and "comp.wcum" (pfco() case):
-                 \code{values} = TRUE}
   \item{thr}{ A threshold allowing to filter data based on p-values. Default
               setting is 1 (no filtering) \code{thr = 1}}
 }
@@ -35,6 +28,8 @@ and "sd" (fcros) or "comp", "comp.w" and "comp.wcum" (pfco()) are saved.}
 
 \examples{
     data(fdata);
+
+    rownames(fdata) <- fdata[,1];
     cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
     test <- c("test01", "test02", "test08", "test09", "test05");
     log2.opt <- 0;
@@ -43,7 +38,5 @@ and "sd" (fcros) or "comp", "comp.w" and "comp.wcum" (pfco()) are saved.}
     af2 <- pfco(fdata, cont, test, log2.opt, trim.opt);
 
     fcrosWrite(af, file = "test2delete_values.txt");
-    fcrosWrite(af, file = "test2delete_params.txt", values = FALSE);
     fcrosWrite(af2, file = "test2delete2_values.txt");
-    fcrosWrite(af2, file = "test2delete2_params.txt", values = FALSE);
 }

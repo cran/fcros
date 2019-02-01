@@ -5,8 +5,7 @@ tcnReads <- function(x, maxVal=0) {
     colnames(x2) <- colnames(x);
     sampReads <- apply(x, 2, sum);
     if (maxVal <= 1000) maxVal <- median(sampReads)
-    for (j in 1:m) {
-        x2[,j] <- round((x[,j]/sampReads[j])*maxVal + 1, 0)
-    }
+    for (j in 1:m) x2[,j] <- (x[,j]/sampReads[j])*maxVal
+    x2 <- round(x2,0)
     return(x2);
 }

@@ -1,5 +1,6 @@
 fcros2 <-
 function(xdata1, xdata2, cont, test, log2.opt = 0, trim.opt = 0.25) {
+    idnames <- rownames(xdata1);
     n1 <- nrow(xdata1);
     n2 <- nrow(xdata2);
     if (n1 != n2) stop('xdata1 and xdata2 should have the same number of rows');
@@ -18,8 +19,9 @@ function(xdata1, xdata2, cont, test, log2.opt = 0, trim.opt = 0.25) {
     samp <- c(samp1, samp2);
     m <- m1+m2;
     idnames <- fc1$idnames;
-    fc <- matrix(c(idnames, fc1$fcMat, fc2$fcMat), ncol = (m+1));
-    colnames(fc) <- c("ID", samp);
+    fc <- matrix(c(fc1$fcMat, fc2$fcMat), ncol = m);
+    colnames(fc) <- c(samp);
+    rownames(fc) <- rownames(xdata1);
 
     # compute the fold changes
     FC <-  0.5*(fc1$FC + fc2$FC);
