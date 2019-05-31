@@ -1,5 +1,5 @@
-a01917dd53067fde56e6f1a4078405f3 *DESCRIPTION
-7297c49ba665b32f5512174979cfd51b *NAMESPACE
+41efdddcc2c4d7686356df9ec35f0456 *DESCRIPTION
+83dc0584a331ff3ff8810a85f1857f3e *NAMESPACE
 c3dd932314257fee1aafa5f909c2b881 *R/calcSRmat.R
 13106516718d60956cc1ab1b8c29fa2c *R/calcSRmatMod.R
 66d90f174ac8760a02f5f0f206a41a3a *R/chrMerge.R
@@ -24,12 +24,13 @@ d2fa7901e94ab7acdad6926d86acc1cc *R/fvalTopN.R
 8b7885bce551c855c81bef459d7ece99 *R/pfcoMod.R
 e40f238244fc09bfa96dab5d1c5fcc86 *R/pvalTopN.R
 65d233c595cd0180fd19ab8a682a101d *R/pvalVolcanoPlot.R
-3ae01bccd4c3b0c2d4cf58921592bdc5 *R/rankReads.R
+79863778faabfb2349f7374027dc3906 *R/rankReads.R
 eb2652642483a4fe96936dba2bdf97db *R/rmatCalc.R
 326915f7f052c64a285b6c6380896cb2 *R/rmatTrim.R
 037be742b5d7330e46f7a72bd2b3ecb0 *R/scoreThr.R
 a7a13ab5a10ef5ca78f8b14061979de3 *R/tcnReads.R
 7ee9c79aed9990a99490370715b6eec1 *R/tprobaCalc.R
+1a02b2ed0fa7c2b1d882b5281bf5f0d9 *R/varBeta.R
 c53e89f717a18918c8122692af4e7805 *R/voomReads.R
 d4e982f938b1792373564670376b574c *data/bott.rda
 33935fe0bd98cc9b6a8ac444e09d6cd4 *data/cghData.rda
@@ -47,7 +48,7 @@ c0ddddc86a17258adc94617376e1f2c3 *man/chrPlot.rd
 1202e403da8066693173f6470ac713a8 *man/chrSegment.rd
 b8ef7af6cdac9eb5d5a46e0bfd491c51 *man/dataSummary.rd
 8ce9ae8508ead47586e5634bf3fa38fb *man/fc2Calc.rd
-d7a62b5a47d208bbb68956849c35d3d1 *man/fcros-package.Rd
+9463bd5b34a01eddab21af5e7cbd6325 *man/fcros-package.Rd
 de810e8641d4ab331e43728ba8e9e0f9 *man/fcros.Rd
 3e457813fc3ee80374e3361fce6841a2 *man/fcros2.Rd
 2da057a304bf900fb42e3556e075e87b *man/fcrosFCmat.Rd
@@ -65,12 +66,13 @@ c613e615f9e64c98e7ce78c41ca27a1b *man/pfco.rd
 57b1b31607c21170fb5f2c59fd0fd6a7 *man/pfcoMod.rd
 25ff929aa5f05fcd066aac18d81e4783 *man/pvalTopN.rd
 b94b2c84c4b09f6731c2a464f1857b0f *man/pvalVolcanoPlot.rd
-aa1d2d64881e490fb21d6cf6cf418a45 *man/rankReads.Rd
+16c4bbc4af02760c70e025e4d0cd0980 *man/rankReads.Rd
 c35706db243173d61b1c29a85f436d4f *man/rmatCalc.rd
 79ed5d43535693caf4852af85b4cf510 *man/rmatTrim.rd
 843a0aa40ef0330df886063dca89b1e0 *man/scoreThr.Rd
 0b5197b494b962dfafba7e9f00d6bcd3 *man/tcnReads.Rd
 0f631f67aaed22637e6ce9f4f388ae0a *man/tprobaCalc.rd
+08f5e28d2b7754cd2416df5ccda94cef *man/varBeta.Rd
 738a54617ecae54bb62ceae3a6285907 *man/voomReads.rd
 d380ee39a220ab9bd655b5e209df04f8 *src/fcros.c
 e551e07f07ca4c8f07559a0ca6bb93dd *src/fcros.h

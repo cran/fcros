@@ -1,5 +1,5 @@
 rankReads <- function(xdata, cont, test, meth=0, Ttimes=10, err=0.1,
-                             trim.opt=0.25, rseed=60) {
+                             trim.opt=0, rseed=60) {
     n <- nrow(xdata);
     idnames <- rownames(xdata);
     xcol <- colnames(xdata);
@@ -23,13 +23,13 @@ rankReads <- function(xdata, cont, test, meth=0, Ttimes=10, err=0.1,
     rownames(fmat) <- rownames(xdata)
 
     set.seed(rseed);
-    if (Ttimes > 0) { # perform Ttimes runs
+    if (Ttimes > 1) { # perform Ttimes runs
        rmat <- matrix(0, nrow=n, ncol=Ttimes)
        for (i in 1:Ttimes) {
            fmat2 <- fmat + matrix(c(runif(n*m, 0, err)), ncol=m);
            if (meth == 0) {
               rmat.tmp <- (apply(fmat2, 2, rank, ties.method = "average"))/n;
-              rmat[,i] <- apply(rmat.tmp, 1, mean, trim.opt)
+              rmat[,i] <- apply(rmat.tmp, 1, varBeta, trim.opt)
            }
            else {
               tmp <- log2(fmat2)
@@ -50,16 +50,25 @@ rankReads <- function(xdata, cont, test, meth=0, Ttimes=10, err=0.1,
           list(idnames=idnames, FC=FC, FC2=FC2, ri=ri, f.value=f.value,
                                 p.value=p.value, score=pval);
        } else {
-          score <- std/moy;
+          score <- apply(rmat, 1, mean);
 
           list(idnames=idnames, moy=moy, score=score);
        }
-    } else { # allow to perform one run of the fcros method only
-       fmat2 <- log2(fmat + matrix(c(runif(n*m, 0, err)), ncol=m));
-       af <- pfco(fmat2, cont, test, trim.opt=trim.opt);
+    } else { # perform one run
+           fmat2 <- log2(fmat + matrix(c(runif(n*m, 0, err)), ncol=m));
+           if (meth == 0) {
+                rmat.tmp <- (apply(fmat2, 2, rank, ties.method = "average"))/n;
+                score <- apply(rmat.tmp, 1, varBeta, trim.opt);
 
-       list(idnames=af$idnames, FC=af$FC, FC2=af$FC2, ri=af$ri, 
-            f.value=af$f.value, p.value=af$p.value, bounds=af$bounds, 
-            params=af$params, params_t=af$params_t);
+                list(idnames=idnames, score=score);
+           }
+           else {
+                # allow to perform one run of the fcros method only
+                af <- pfco(fmat2, cont, test, trim.opt=trim.opt);
+
+                list(idnames=af$idnames, FC=af$FC, FC2=af$FC2, ri=af$ri,
+                f.value=af$f.value, p.value=af$p.value, bounds=af$bounds,
+                params=af$params, params_t=af$params_t);
+           }
     }
 }

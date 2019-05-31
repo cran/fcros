@@ -8,7 +8,7 @@
              with significant sequencing values (gwssv). A score is obtained for each
              gene and a threshold allows to select the number of gwssv.}
 
-\usage{rankReads(xdata, cont, test, meth=0, Ttimes=10, err=0.1, trim.opt=0.25,
+\usage{rankReads(xdata, cont, test, meth=0, Ttimes=10, err=0.1, trim.opt=0,
                         rseed=60)}
 
 \arguments{
