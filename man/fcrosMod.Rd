@@ -62,8 +62,8 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, accepted for publication, 2018}
+\references{Dembele D, Analysis of high-throughput biological data using their
+                    rank values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
    data(fdata);
@@ -116,7 +116,7 @@ values, Stat Methods Med Res, accepted for publication, 2018}
    }
 
    # now plot down and up regulated genes
-   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20), 
+   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20),
        ylim = c(0,18), main = "Top up-regulated genes");
    for (i in 2:nup) {
        lines(t, data.up[i,2:21], type = "l", col = "red")

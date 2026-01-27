@@ -1,4 +1,4 @@
-pvalVolcanoPlot <- function(af, thr = 0.05) {
+pvalVolcanoPlot <- function(af, thr=0.05) {
     ratio <- af$FC2;
     pval <- af$p.value;
     de.idx <- (pval <= thr);

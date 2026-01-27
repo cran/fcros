@@ -5,7 +5,7 @@
                    or reduced matrix of sorted ranks}
 
 \description{This is an internal function for using a C code in the
-calculation of the mean and the standard deviation of the full or reduced 
+calculation of the mean and the standard deviation of the full or reduced
 matrix with sorted rank values. The calculations are performed for each row.}
 
 \usage{moyStdCalc(rvect, n, m)}
@@ -18,8 +18,8 @@ matrix with sorted rank values. The calculations are performed for each row.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, accepted for publication, 2018}
+\references{Dembele D, Analysis of high-throughput biological data using their
+                    rank values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
 #    data(fdata);

@@ -1,5 +1,4 @@
-fcrosMod <-
-function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
+fcrosMod <- function(fcMat, samp, log2.opt=0, trim.opt=0.25) {
     n <- nrow(fcMat);
     idnames <- rownames(fcMat);
 
@@ -36,6 +35,6 @@ function(fcMat, samp, log2.opt = 0, trim.opt = 0.25) {
     params <- c(delta,moy,std);
     params_t <- c(delta_t,moy_t,std_t);
 
-    list(idnames = idnames, FC2 = FC2, ri = ri, p.value = p.value, f.value = f.value,
-    bounds = bounds, params = params, params_t = params_t)
+    list(idnames=idnames, FC2=FC2, ri=ri, p.value=p.value, f.value=f.value,
+    bounds=bounds, params=params, params_t=params_t)
 }

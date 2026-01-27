@@ -1,4 +1,3 @@
-
 calcSRmat <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
    n <- nrow(xdata);
    xcol <- colnames(xdata);
@@ -36,7 +35,7 @@ calcSRmat <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
    rvectC <- rmat.val$rvectC;
 
    # compute the standard ranks matrix
-   rmat.s <- (apply(rmat, 2, rank, ties.method = "average"))/n;
+   rmat.s <- (apply(rmat, 2, rank, ties.method="average"))/n;
 
    # if (trim.opt), reduce the standard rank matrix
    if ((trim.opt > 0) & (trim.opt < 0.5)) {

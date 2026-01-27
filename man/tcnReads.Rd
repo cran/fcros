@@ -12,7 +12,7 @@ to be used for each sample.}
 
 \arguments{
   \item{x}{ Data table with count reads, one column for one sample}
-  \item{maxVal}{ Target total number reads for each sample. The value 0 
+  \item{maxVal}{ Target total number reads for each sample. The value 0
                  (default) means that the median total of samples is
                  used: \code{maxVal} = 0}
 }
@@ -26,7 +26,8 @@ to be used for each sample.}
 \references{Dembele D, Analysis of high biological data using their rank
                     values, Stat Methods Med Res, accepted for publication, 2018\cr
 
-        Dembele D, manuscript under preparation}
+        Dembele D, Analysis of high-throughput biological data using their rank
+                    values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
 #    data(fdata);

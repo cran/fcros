@@ -1,7 +1,7 @@
 rmatTrim <- function(rvect, n, m, idx, m2) {
-    .Call(C_rmat2, rvectC = as.double(rvect),
-               nC = as.integer(n),
-               mC = as.integer(m),
-               idxC = as.integer(idx),
-               m2C = as.integer(m2));
+    .Call(C_rmat2, rvect = as.double(rvect),
+               n = as.integer(n),
+               m = as.integer(m),
+               idx = as.integer(idx),
+               m2 = as.integer(m2));
 }

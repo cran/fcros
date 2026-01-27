@@ -18,8 +18,8 @@ calculating the reduced matrix of sorted rank values.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, accepted for publication, 2018}
+\references{Dembele D, Analysis of high-throughput biological data using 
+                their rank values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
 #    data(fdata);

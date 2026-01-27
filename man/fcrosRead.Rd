@@ -34,12 +34,14 @@ read.csv2(), read.delim() or read.delim2()) to read your dataset.}
   # set column names
   colnames(xdata) <- c("Index", "Col_1", "Col_2", "Col_3", "Col_4", "Col_5");
 
-  # save data in a text file
-  write.table(xdata, file = "test2delete.txt", quote = FALSE, sep = "\t",
-         eol = "\n", col.names = TRUE, row.names = FALSE);
+# save, load and display results
+  # save xdata in a text file
+#  write.table(xdata, file = "test2delete.txt", quote = FALSE, sep = "\t",
+#         eol = "\n", col.names = TRUE, row.names = FALSE);
 
-  # now used fcros.read() to open the file
-  mydata <- fcrosRead(file = "test2delete.txt");
+  # now used fcros.read() to open the file in mydata dataframe
+#  mydata <- fcrosRead(file = "test2delete.txt");
 
-  summary(mydata)
+   # display summary results
+#  summary(mydata)
 }

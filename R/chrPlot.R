@@ -1,4 +1,4 @@
-chrPlot <- function(chrData, thr = 0.05, deb = 100, fin = 1e10) {
+chrPlot <- function(chrData, thr=0.05, deb=100, fin=1e10) {
     a1 <- 0.5*thr
     a2 <- 1 - 0.5*thr
     positions <- chrData$Position
@@ -30,8 +30,8 @@ chrPlot <- function(chrData, thr = 0.05, deb = 100, fin = 1e10) {
        gax <- (fax >= a2); gp = c(rep(1, length(fax[gax])))
     }
 
-    plot(xax, yax, ylim = c(ymin, ymax), cex = .8, xlab = "x 10^6", ylab = "Log2 Ratio", main = chr)
-    points(xax[dax], dp, col = "blue", type = "p", cex = 0.6, pch = 24)
-    points(xax[gax], gp, col = "red", type = "p", cex = 0.6, pch = 25)
-    abline(h = 0, col = "black")
+    plot(xax, yax, ylim=c(ymin, ymax), cex=0.8, xlab="x 10^6", ylab="Log2 Ratio", main=chr)
+    points(xax[dax], dp, col="blue", type="p", cex=0.6, pch=24)
+    points(xax[gax], gp, col="red", type="p", cex=0.6, pch=25)
+    abline(h = 0, col="black")
 }

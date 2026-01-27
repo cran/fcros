@@ -1,4 +1,3 @@
-
 #include<R.h>
 #include<Rmath.h>
 #include <Rinternals.h>
@@ -48,6 +47,40 @@ SEXP rmat(SEXP fvectC, SEXP nC, SEXP m1C, SEXP m2C) {
      UNPROTECT(1);
      return results;
 }/* end of function rmat() */
+
+/* this function is called in fcros() and in pfco() */
+/*SEXP fc(SEXP fvectC, SEXP nC, SEXP m1C, SEXP m2C) {
+
+     int i, j, k, nn, mm1, mm2, n;
+     double deno, nume, *fvect, *rvect, *fc;
+     SEXP FCC;
+*/
+/*     static const char *resultNames[]={"rvectC", "FCC", ""}; */
+/*
+     fvect = REAL(fvectC);
+     nn = asInteger(nC);
+     mm1 = asInteger(m1C);
+     mm2 = asInteger(m2C);
+     n = nn*mm1*mm2;
+
+    PROTECT(FCC = allocVector(REALSXP, nn));
+    fc = REAL(FCC);
+*/
+     /* calculation of FCC  */
+/*     for (i=0; i<nn; i++) {
+         deno = nume = 0.0;
+         for (j=0; j<mm1; j++) deno += pow(2, fvect[i+j*nn]);
+         for (j=0; j<mm2; j++) nume += pow(2, fvect[nn*mm1+i+j*nn]);
+         if (deno != 0.0) 
+            fc[i] = (nume*mm1)/(deno*mm2);
+         else fc[i] = 1000;
+     }
+
+     UNPROTECT(1);
+     return FCC;
+
+} */
+/* end of function fc() */
 
 /* This function is used in the functions rmat2() and fc2() */
 void qSort(double *table, int p, int r) {

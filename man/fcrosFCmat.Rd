@@ -54,7 +54,10 @@ contain other label names not used.}
 
             Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
                     a new method for detecting differentially expressed
-                    genes, BMC Bioinformatics, 2016, 17:462}
+                    genes, BMC Bioinformatics, 2016, 17:462\cr
+
+            Dembele D, Analysis of high-throughput biological data using their rank
+                    values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
    data(fdata);

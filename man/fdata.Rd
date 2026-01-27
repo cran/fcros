@@ -5,7 +5,7 @@
 
 \title{Example of dataset for the fcros package.}
 
-\description{This is a synthetic dataset generated using the "madsim" R package 
+\description{This is a synthetic dataset generated using the "madsim" R package
 (available from the CRAN web site).
 Two biological conditions data matrix using 10,000 genes and 20
 samples (10 control and 10 test samples) were simulated.
@@ -49,7 +49,7 @@ The parameter "sdn" was set to 0.3 and all the other parameters in the madsim pa
 were set to their default settings.}
 
 \references{Dembele D, A flexible microarray data simulation model.
-Microarrays, 2013, v.2, n.2, pp.115-130}
+                    Microarrays, 2013, v.2, n.2, pp.115-130}
 
 \examples{
    data(fdata)

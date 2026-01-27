@@ -1,4 +1,4 @@
-chrPlot2 <- function(chrData, chrSeg, deb = 100, fin = 1e10) {
+chrPlot2 <- function(chrData, chrSeg, deb=100, fin=1e10) {
     positions <- chrData$Position
     ndata <- length(positions)
     mega <- 1e6
@@ -14,11 +14,11 @@ chrPlot2 <- function(chrData, chrSeg, deb = 100, fin = 1e10) {
        iseg_e <- chrSeg[,2]
        segVal <- chrSeg[,5]
        nseg <- length(iseg_s)
-    } else {          
+    } else {
        if (deb < positions[1]) { deb <- positions[1] }
        if (fin > positions[ndata]) { fin <- positions[ndata] }
        i <- 1;       t1 <- i;
-       while (deb > positions[i]) { t1 <- i; i <- i+1 }       
+       while (deb > positions[i]) { t1 <- i; i <- i+1 }
        t2 <- i
        while (positions[i] < fin) { t2 <- i; i <- i+1 }
        chr <- unique(chrData$Chromosome[t1:t2])
@@ -58,8 +58,8 @@ chrPlot2 <- function(chrData, chrSeg, deb = 100, fin = 1e10) {
        }
     }
 
-    plot(xax, yax, ylim = c(ymin, ymax), cex = .8, xlab = "x 10^6", ylab = "Log2 Ratio", main = chr)
-    abline(h = 0, col = "black")
+    plot(xax, yax, ylim = c(ymin, ymax), cex=.8, xlab="x 10^6", ylab="Log2 Ratio", main=chr)
+    abline(h=0, col="black")
     if (nseg) {
        for (i in 1:nseg) {
            fax <- segVal[i]
@@ -67,10 +67,10 @@ chrPlot2 <- function(chrData, chrSeg, deb = 100, fin = 1e10) {
            xax <- positions[iseg_s[i]:iseg_e[i]]/mega
            if (fax <0) {
               yax <- c(rep(-1, np))
-              lines(xax, yax, col = "blue", type = "b", cex = 0.6, pch = 24)
+              lines(xax, yax, col="blue", type="b", cex=0.6, pch=24)
            } else {
              yax <- c(rep(1, np))
-             lines(xax, yax, col = "red", type = "b", cex = 0.6, pch = 25)
+             lines(xax, yax, col="red", type="b", cex=0.6, pch=25)
            }
        }
     } else {

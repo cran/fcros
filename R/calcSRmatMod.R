@@ -1,4 +1,3 @@
-
 calcSRmatMod <- function(xdata, samp, log2.opt=0, trim.opt=0.25) {
    n <- nrow(xdata);
    xcol <- colnames(xdata);
@@ -7,17 +6,17 @@ calcSRmatMod <- function(xdata, samp, log2.opt=0, trim.opt=0.25) {
    m <- sum(idx);
 
    # form data matrix
-   fmat <- matrix(c(rep(0,n*m)), ncol = m);
+   fmat <- matrix(c(rep(0,n*m)), ncol=m);
    if (log2.opt) {
-      x1 <- log2(xdata[, idx]);
+      x1 <- log2(xdata[,idx]);
    } else {
-      x1 <- xdata[, idx];
+      x1 <- xdata[,idx];
    }
    fmat <- as.matrix(x1);
 
    # compute matrix containing pairwise fold changes
    rvectC <- c(fmat[, 1:m]);
-   rmat <- apply(fmat, 2, rank, ties.method = "average")/n;
+   rmat <- apply(fmat, 2, rank, ties.method="average")/n;
 
    # if (trim.opt), reduce the standard rank matrix
    if ((trim.opt > 0) & (trim.opt < 0.5)) {

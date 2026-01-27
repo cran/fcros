@@ -95,8 +95,8 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
                     a new method for detecting differentially expressed
                     genes, BMC Bioinformatics, 2016, 17:462\cr
 
-            Dembele D, Analysis of high biological data using their rank
-                    values, Stat Methods Med Res, accepted for publication, 2018}
+            Dembele D, Analysis of high-throughput biological data using their rank 
+                    values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \keyword{ package }
 
@@ -117,7 +117,7 @@ Maintainer: Doulaye Dembele doulaye@igbmc.fr}
    fvalVolcanoPlot(af, thr = 0.01)
 
    # save fcros values in a file
-   fcrosWrite(af, file = "test2delete_values.txt");
+#   fcrosWrite(af, file = "test2delete_values.txt");
 
    # now select top 20 down and/or up regulated genes
    top20 <- fcrosTopN(af, 20);

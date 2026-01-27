@@ -37,6 +37,7 @@ The results are the values associated with the parameters
     af <- fcros(fdata, cont, test, log2.opt, trim.opt);
     af2 <- pfco(fdata, cont, test, log2.opt, trim.opt);
 
-    fcrosWrite(af, file = "test2delete_values.txt");
-    fcrosWrite(af2, file = "test2delete2_values.txt");
+    # the following 2 lines code allow to save the result in text files
+#    fcrosWrite(af, file = "test2delete_values.txt");
+#    fcrosWrite(af2, file = "test2delete2_values.txt");
 }

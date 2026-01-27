@@ -1,5 +1,4 @@
-fcrosWrite <-
-function(af, file = "fcrosResults.txt", thr = 1) {
+fcrosWrite <- function(af, file="fcrosResults.txt", thr=1) {
    n <- length(af$idnames);
    id <- 1:n
    idx <- id[af$p.value <= thr];
@@ -17,5 +16,5 @@ function(af, file = "fcrosResults.txt", thr = 1) {
       results <- matrix(c(as.character(idnames), ri, FC2, fVal, pVal), ncol=5);
       colnames(results) <- c("idnames", "ri", "FC2", "f.value", "p.value");
    }
-   write.table(results, file, quote = FALSE, sep = "\t", eol = "\n", col.names = TRUE, row.names = FALSE);
+   write.table(results, file, quote=FALSE, sep="\t", eol="\n", col.names=TRUE, row.names=FALSE);
 }

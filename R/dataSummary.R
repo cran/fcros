@@ -1,4 +1,4 @@
-dataSummary <- function(af, xinfo, chromosomes = c(1:22,"X","Y"), alpha = 0.05) {
+dataSummary <- function(af, xinfo, chromosomes=c(1:22,"X","Y"), alpha=0.05) {
    tmp <- xinfo
    n <- nrow(tmp)
    tmp$Position <- 0.5*(as.numeric(xinfo$Start) + as.numeric(xinfo$End))
@@ -28,5 +28,5 @@ dataSummary <- function(af, xinfo, chromosomes = c(1:22,"X","Y"), alpha = 0.05) 
        chrSumm[i,2] <- sum(xda$f.call == -1)
        chrSumm[i,3] <- sum(xda$f.call == 1)
    }
-   list(xinfo.s = xinfo.s, chrSumm = chrSumm)
+   list(xinfo.s=xinfo.s, chrSumm=chrSumm)
 }

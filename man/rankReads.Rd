@@ -70,7 +70,8 @@ For a general purpose dataset, one of these parametere can be empty.}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, manuscript under preparation}
+\references{Dembele D, Analysis of high-throughput biological data using their
+                    rank values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
    data(bott);

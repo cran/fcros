@@ -6,7 +6,7 @@
 \description{This function generates a picture. It uses a chromosome data and the 
 output results of the segmentation function chrSegment().}
 
-\usage{chrPlot2(chrData, chrSeg, deb = 100, fin = 1e10)}
+\usage{chrPlot2(chrData, chrSeg, deb=100, fin=1e10)}
 
 \arguments{
   \item{chrData}{ A chromosome data obtained from an output of the function
@@ -15,10 +15,10 @@ output results of the segmentation function chrSegment().}
                                  \code{chrData} = xinfo2$xinfo.s[idx, ]}
   \item{chrSeg}{ An output object of the function chrSegment():
               \code{chrSeg} = chrSegment(chrData, nd = 10)}
-  \item{deb}{ This parameter allows to specify the start position of the chromosome region 
+  \item{deb}{ This parameter allows to specify the start position of the chromosome region
               for plotting. It can be used for zooming. Negative value will lead to the plot
               of all chromosome data. \code{deb} = 100}
-  \item{fin}{ This parameter allows to specify the end position of the chromosome region for 
+  \item{fin}{ This parameter allows to specify the end position of the chromosome region for
               plot. It can be used for zooming. Negative value will lead to the plot of all
               chromosome data. \code{thr} = 1e7}
 }
@@ -27,8 +27,8 @@ output results of the segmentation function chrSegment().}
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, accepted for publication, 2018}
+\references{Dembele D, Analysis of high-throughput biological data using their rank
+                    values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
     # load CGH data and info files

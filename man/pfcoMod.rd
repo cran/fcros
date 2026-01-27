@@ -5,7 +5,7 @@
                   recurrent copy number aberration probes using
                   an approach based on the Perron-Frobenius theorem}
 
-\description{Implementation of a method based on fold change rank and the Perron 
+\description{Implementation of a method based on fold change rank and the Perron
              theorem to search for differentially expressed genes or to
              detect chromosomal recurrent copy number aberration probes. This
              function should be used with a matrix of fold changes or ratios
@@ -20,7 +20,7 @@
 \arguments{
   \item{fcMat}{ A matrix containing fold changes or ratios from a biological
                 dataset to process for searching differentially expressed
-                genes or for detecting recurrent copy number aberrations 
+                genes or for detecting recurrent copy number aberrations
                 regions. The rownames of fcMat are used for the output idnames.}
   \item{samp}{ A vector of sample label names which should appear in the columns
                of the matrix fcMat: \code{samp}.}
@@ -28,14 +28,14 @@
                 values in the matrix "fcMat" are expressed in a log2 scale:
                 \code{log2.opt} = 0}
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
-                that 25\% of the lower and the upper rank values for each gene 
-                are not used for computing the statistic "ri", i.e. the 
+                that 25\% of the lower and the upper rank values for each gene
+                are not used for computing the statistic "ri", i.e. the
                 interquartile range rank values are averaged:
                 \code{trim.opt} = 0.25}
 }
 
 \details{The label names appearing in the parameter "samp" should
-match some label names of the columns in the data matrix "xdata". It is not 
+match some label names of the columns in the data matrix "xdata". It is not
 necessary to use all label names appearing in the columns of the dataset matrix.}
 
 \value{ This function returns a data frame containing 8 components
@@ -47,7 +47,7 @@ necessary to use all label names appearing in the columns of the dataset matrix.
              changes are calculated as a trimed mean of the values in
              "fcMat". Non log scale values are used in this calculation.}
     \item{f.value }{The f-values are probabilities associated with genes using
-             the "mean" and the "standard deviation" ("sd") of values in "ri". 
+             the "mean" and the "standard deviation" ("sd") of values in "ri".
              The "mean" and "sd" are used as a normal distribution parameters.}
     \item{p.value }{The p-values associated with genes. The p-values are obtained
              from the fold change ranks using a one sample t-test.}
@@ -58,8 +58,8 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \author{Doulaye Dembele doulaye@igbmc.fr}
 
-\references{Dembele D, Analysis of high biological data using their rank
-values, Stat Methods Med Res, accepted for publication, 2018}
+\references{Dembele D, Analysis of high-throughput biological data using their
+                    rank values, Stat Meth Med Res, 2019, 28(8)2276-2291}
 
 \examples{
    data(fdata);
@@ -112,7 +112,7 @@ values, Stat Methods Med Res, accepted for publication, 2018}
    }
 
    # now plot down and up regulated genes
-   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20), 
+   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20),
        ylim = c(0,18), main = "Top up-regulated genes");
    for (i in 2:nup) {
        lines(t, data.up[i,2:21], type = "l", col = "red")

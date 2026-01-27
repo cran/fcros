@@ -1,5 +1,5 @@
-\name{fcros}
-\alias{fcros}
+\name{fcrosC}
+\alias{fcrosC}
 
 \title{Search for differentially expressed genes/probes}
 
@@ -15,12 +15,13 @@
              Then, a statistic is assigned to the robust average ordered rank
              values for each gene/probe.}
 
-\usage{fcros(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
+\usage{fcrosC(xdata, cont, test, log2.opt = 0, trim.opt = 0.25)}
 
 \arguments{
   \item{xdata}{ A matrix or a table containing two biological conditions
                 dataset to process for detecting differentially expressed
-                genes. The rownames of xdata are used for the output idnames.}
+                genes: \code{xdata}. The first column of the matrix "xdata" 
+                should contain the gene IDs or their names.}
   \item{cont}{ A vector containing the label names of the control samples:
                \code{cont} = c("cont01", "cont02", ...).}
   \item{test}{ A vector containing the label names of the test samples:
@@ -30,7 +31,7 @@
               \code{log2.opt} = 0}
   \item{trim.opt}{ A scalar between 0 and 0.5. The value 0.25 (default) means
               that 25\% of the lower and the upper rank values of each gene are not
-              used for computing its statistics "ri", i.e. the interquartile range
+              used for computing its statistics "ri", i.e. the inter-quartile range
               rank values are averaged: \code{trim.opt} = 0.25}
 }
 
@@ -54,7 +55,7 @@ necessary to use all label names appearing in the columns of the dataset matrix.
              the "mean" and the "standard deviation" ("sd") of the statistics "ri".
              The "mean" and "sd" are used as a normal distribution parameters.}
     \item{p.value }{The p-values associated with genes. These values are obtained
-             from the fold change rank values and one sample t-test.}
+             from the f-values.}
     \item{bounds }{Two values, which are the lower and the upper bounds or
              the minimum and the maximum values of the non standardized "ri".}
     \item{params }{Three values, which are the estimates for the parameters "delta"
@@ -69,19 +70,11 @@ necessary to use all label names appearing in the columns of the dataset matrix.
 
 \references{Dembele D and Kastner P, Fold change rank ordering statistics: 
                     a new method for detecting differentially expressed 
-                    genes, BMC Bioinformatics, 2014, 15:14\cr
-
-            Dembele D and Kastner P, Comment on: Fold change rank ordering statistics:
-                    a new method for detecting differentially expressed
-                    genes, BMC Bioinformatics, 2016, 17:462\cr
-
-            Dembele D, Analysis of high-throughput biological data using their rank
-                    values, Stat Meth Med Res, 2019, 28(8)2276-2291}
+                    genes, BMC Bioinformatics, 2014, 15:14}
 
 \examples{
    data(fdata);
 
-   rownames(fdata) <- fdata[,1];
    cont <- c("cont01", "cont07", "cont03", "cont04", "cont08");
    test <- c("test01", "test02", "test08", "test09", "test05");
    log2.opt <- 0;
@@ -115,14 +108,14 @@ necessary to use all label names appearing in the columns of the dataset matrix.
    # now plot down regulated genes
    t <- 1:20;
    op = par(mfrow = c(2,1));
-   plot(t, data.down[1,2:21], type = "l", col = "blue", xlim = c(1,20),
+   plot(t, data.down[1,2:21], type = "l", col = "blue", xlim = c(1,20), 
         ylim = c(0,18), main = "Top down-regulated genes");
    for (i in 2:ndown) {
        lines(t,data.down[i,2:21], type = "l", col = "blue")
    }
 
    # now plot down and up regulated genes
-   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20),
+   plot(t, data.up[1,2:21], type = "l", col = "red", xlim = c(1,20), 
        ylim = c(0,18), main = "Top up-regulated genes");
    for (i in 2:nup) {
        lines(t, data.up[i,2:21], type = "l", col = "red")

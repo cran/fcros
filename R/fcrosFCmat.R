@@ -1,5 +1,4 @@
-fcrosFCmat <-
-function(xdata, cont, test, log2.opt = 0, trim.opt = 0.25) {
+fcrosFCmat <- function(xdata, cont, test, log2.opt=0, trim.opt=0.25) {
     n <- nrow(xdata);
     idnames <- rownames(xdata);
     xcol <- colnames(xdata);
@@ -46,5 +45,5 @@ function(xdata, cont, test, log2.opt = 0, trim.opt = 0.25) {
     }
     FC2 = apply(2^fcMat, 1, mean, trim = trim.opt);
 
-    list(idnames=idnames, fcMat = fcMat, FC = FC, FC2 = FC2);
+    list(idnames=idnames, fcMat=fcMat, FC=FC, FC2=FC2);
 }

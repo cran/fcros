@@ -1,5 +1,4 @@
-fcrosTtest <-
-function(xdata, cont, test, log2.opt = 0) {
+fcrosTtest <- function(xdata, cont, test, log2.opt=0) {
     n <- nrow(xdata);
     idnames <- rownames(xdata);
     xcol <- colnames(xdata);
@@ -42,5 +41,5 @@ function(xdata, cont, test, log2.opt = 0) {
         }
         FC[i] <- mean(2^x2)/mean(2^x1);
     }
-     list(idnames=idnames, FC = FC, p.value = p.value, stat = stat);
+     list(idnames=idnames, FC=FC, p.value=p.value, stat=stat);
 }
